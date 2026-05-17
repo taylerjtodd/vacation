@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
-import { CalendarDays, WifiOff, FileText, Briefcase, Settings } from 'lucide-react';
+import { CalendarDays, WifiOff, FileText, Briefcase, Settings, Info } from 'lucide-react';
 import ItineraryTab from './components/ItineraryTab';
 import PackingTab from './components/PackingTab';
 import NotesTab from './components/NotesTab';
-import { VacationEvent, PackingItem, LocalData } from './types';
+import OverviewTab from './components/OverviewTab';
+import { VacationEvent, PackingItem, LocalData, Vacation } from './types';
 import './index.css';
 
 function App() {
+  const [vacations, setVacations] = useState<Vacation[]>([]);
+  const [currentVacation, setCurrentVacation] = useState<Vacation | null>(null);
   const [events, setEvents] = useState<VacationEvent[]>([]);
   const [packingList, setPackingList] = useState<PackingItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -97,47 +100,80 @@ function App() {
   }, []);
 
   useEffect(() => {
+    fetch('vacations.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load vacations');
+        return res.json();
+      })
+      .then((data: Vacation[]) => {
+        setVacations(data);
+        if (data.length > 0) {
+          setCurrentVacation(data[0]);
+        } else {
+          setLoading(false);
+          setError('No vacations found.');
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        setError('Failed to load vacations.');
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (!currentVacation) return;
+    setLoading(true);
+
     Promise.all([
-      fetch('events.json').then(res => {
+      fetch(`${currentVacation.folderName}/events.json`).then(res => {
         if (!res.ok) throw new Error('Failed to load events');
         return res.json();
       }),
-      fetch('packing.json').then(res => {
+      fetch(`${currentVacation.folderName}/packing.json`).then(res => {
         if (!res.ok) throw new Error('Failed to load packing list');
         return res.json();
       })
     ])
       .then(([eventsData, packingData]) => {
-        // Sort by date and time
-        const sorted = eventsData.sort((a: VacationEvent, b: VacationEvent) => {
-          const dateA = new Date(`${a.date}T${a.startTime}`);
-          const dateB = new Date(`${b.date}T${b.startTime}`);
+        const mappedEvents = eventsData.map((e: VacationEvent) => {
+          const date = new Date(`${currentVacation.startDate}T12:00:00`);
+          date.setDate(date.getDate() + (e.dayNumber - 1));
+          return {
+            ...e,
+            date: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+          };
+        });
+
+        const sorted = mappedEvents.sort((a: VacationEvent, b: VacationEvent) => {
+          const dateA = new Date(`${a.date!}T${a.startTime}`);
+          const dateB = new Date(`${b.date!}T${b.startTime}`);
           return dateA.getTime() - dateB.getTime();
         });
         setEvents(sorted);
         setPackingList(packingData);
-        
+
         if (sorted.length > 0) {
           const firstEventDateStr = sorted[0].date;
           const today = new Date();
           const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-          if (todayStr < firstEventDateStr) {
-            setActiveTab('packing');
+          if (firstEventDateStr && todayStr < firstEventDateStr) {
+            setActiveTab('overview');
           } else {
             setActiveTab('itinerary');
           }
         } else {
-          setActiveTab('packing');
+          setActiveTab('overview');
         }
-        
+
         setLoading(false);
       })
       .catch(err => {
         console.error(err);
-        setError('Failed to load data. Please try again later.');
+        setError('Failed to load vacation data. Please try again later.');
         setLoading(false);
       });
-  }, []);
+  }, [currentVacation]);
 
   useEffect(() => {
     if (loading || events.length === 0 || activeTab !== 'itinerary') return;
@@ -145,7 +181,7 @@ function App() {
     const today = new Date();
     const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
     
-    const uniqueDates = [...new Set(events.map(e => e.date))].sort();
+    const uniqueDates = [...new Set(events.map(e => e.date).filter(Boolean) as string[])].sort();
     let targetDate = uniqueDates.find(d => d >= todayStr);
     
     if (!targetDate && uniqueDates.length > 0) {
@@ -166,6 +202,7 @@ function App() {
   if (error) return <div className="text-center p-8 text-red-500">{error}</div>;
 
   const groupedEvents = events.reduce((acc: Record<string, VacationEvent[]>, event) => {
+    if (!event.date) return acc;
     if (!acc[event.date]) {
       acc[event.date] = [];
     }
@@ -204,16 +241,16 @@ function App() {
 
       <div className="flex gap-2 mb-8 bg-white dark:bg-slate-800 p-2 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-x-auto snap-x">
         <button 
-          className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium cursor-pointer transition-all duration-200 whitespace-nowrap snap-center min-w-[120px] ${activeTab === 'packing' ? 'bg-blue-500 text-white shadow-sm' : 'bg-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:hover:bg-slate-700 dark:hover:text-slate-50'}`}
-          onClick={() => setActiveTab('packing')}
-        >
-          <Briefcase size={18} /> Packing
-        </button>
-        <button 
           className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium cursor-pointer transition-all duration-200 whitespace-nowrap snap-center min-w-[120px] ${activeTab === 'itinerary' ? 'bg-blue-500 text-white shadow-sm' : 'bg-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:hover:bg-slate-700 dark:hover:text-slate-50'}`}
           onClick={() => setActiveTab('itinerary')}
         >
           <CalendarDays size={18} /> Itinerary
+        </button>
+        <button 
+          className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium cursor-pointer transition-all duration-200 whitespace-nowrap snap-center min-w-[120px] ${activeTab === 'packing' ? 'bg-blue-500 text-white shadow-sm' : 'bg-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:hover:bg-slate-700 dark:hover:text-slate-50'}`}
+          onClick={() => setActiveTab('packing')}
+        >
+          <Briefcase size={18} /> Packing
         </button>
         <button 
           className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium cursor-pointer transition-all duration-200 whitespace-nowrap snap-center min-w-[120px] ${activeTab === 'notes' ? 'bg-blue-500 text-white shadow-sm' : 'bg-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:hover:bg-slate-700 dark:hover:text-slate-50'}`}
@@ -221,9 +258,19 @@ function App() {
         >
           <FileText size={18} /> Notes
         </button>
+        <button 
+          className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium cursor-pointer transition-all duration-200 whitespace-nowrap snap-center min-w-[120px] ${activeTab === 'overview' ? 'bg-blue-500 text-white shadow-sm' : 'bg-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:hover:bg-slate-700 dark:hover:text-slate-50'}`}
+          onClick={() => setActiveTab('overview')}
+        >
+          <Info size={18} /> Overview
+        </button>
       </div>
 
       <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
+        {activeTab === 'overview' && currentVacation && (
+          <OverviewTab vacation={currentVacation} />
+        )}
+
         {activeTab === 'itinerary' && (
           <ItineraryTab 
             groupedEvents={groupedEvents}

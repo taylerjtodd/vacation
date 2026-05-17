@@ -1,8 +1,17 @@
-export interface VacationEvent {
+export interface Vacation {
   id: string;
+  title: string;
+  description: string;
+  startDate: string;
+  folderName: string;
+}
+
+export interface VacationEvent {
+  id: string | number;
   type: 'activity' | 'flight' | 'hotel' | 'driving';
   title: string;
-  date: string;
+  dayNumber: number;
+  date?: string;
   startTime: string;
   endTime?: string;
   location?: string;
