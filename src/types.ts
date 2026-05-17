@@ -26,6 +26,15 @@ export interface PackingItem {
   text: string;
 }
 
+export interface PackingData {
+  each: string[];
+  family: string[];
+  lists: {
+    person: string;
+    items: string[];
+  }[];
+}
+
 export interface LocalData {
   completedEvents: Record<string, boolean>;
   completedPacking: Record<string, boolean>;

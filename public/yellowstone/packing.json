@@ -1,27 +1,45 @@
-[
-  {
-    "id": 1,
-    "text": "Passport",
-    "owner": "Tayler"
-  },
-  {
-    "id": 2,
-    "text": "Phone charger",
-    "owner": "Tayler"
-  },
-  {
-    "id": 3,
-    "text": "Sunscreen",
-    "owner": "Shared"
-  },
-  {
-    "id": 4,
-    "text": "Swimwear",
-    "owner": "Tayler"
-  },
-  {
-    "id": 5,
-    "text": "Camera",
-    "owner": "Shared"
-  }
-]
+{
+  "each": [
+    "Phone charger",
+    "Clothes - need layers",
+    "Swimwear",
+    "Toothbrush",
+    "Snacks",
+    "Hat",
+    "Bear Spray",
+    "Book",
+    "Fishing Gear"
+  ],
+  "family": [
+    "Sunscreen",
+    "Binoculars",
+    "Spotting Scope",
+    "First aid kit",
+    "Cooler",
+    "Storage bags"
+  ],
+  "lists": [
+    {
+      "person": "Tayler",
+      "items": [
+        "Swimwear",
+        "Sunglasses"
+      ]
+    },
+    {
+      "person": "Robin",
+      "items": [
+        "Camera",
+        "Sunglasses"
+      ]
+    },
+    {
+      "person": "Tucker",
+      "items": []
+    },
+    {
+      "person": "Abram",
+      "items": []
+    }
+  ]
+}

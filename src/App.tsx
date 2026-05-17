@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { CalendarDays, WifiOff, FileText, Briefcase, Settings, Info } from 'lucide-react';
+import { CalendarDays, WifiOff, FileText, Briefcase, Settings, ChevronDown } from 'lucide-react';
 import ItineraryTab from './components/ItineraryTab';
 import PackingTab from './components/PackingTab';
 import NotesTab from './components/NotesTab';
 import OverviewTab from './components/OverviewTab';
-import { VacationEvent, PackingItem, LocalData, Vacation } from './types';
+import { VacationEvent, PackingItem, LocalData, Vacation, PackingData } from './types';
 import './index.css';
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
   const [activeTab, setActiveTab] = useState('itinerary');
+  const [isOverviewOpen, setIsOverviewOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -151,19 +152,51 @@ function App() {
           return dateA.getTime() - dateB.getTime();
         });
         setEvents(sorted);
-        setPackingList(packingData);
+
+        let flattenedPackingList: PackingItem[] = [];
+        if (Array.isArray(packingData)) {
+          flattenedPackingList = packingData;
+        } else {
+          const { each = [], family = [], lists = [] } = packingData as PackingData;
+
+          family.forEach(item => {
+            flattenedPackingList.push({
+              id: `family-${item}`,
+              owner: 'Family',
+              text: item
+            });
+          });
+
+          lists.forEach(list => {
+            each.forEach(item => {
+              flattenedPackingList.push({
+                id: `${list.person}-each-${item}`,
+                owner: list.person,
+                text: item
+              });
+            });
+            list.items.forEach(item => {
+              flattenedPackingList.push({
+                id: `${list.person}-list-${item}`,
+                owner: list.person,
+                text: item
+              });
+            });
+          });
+        }
+        setPackingList(flattenedPackingList);
 
         if (sorted.length > 0) {
           const firstEventDateStr = sorted[0].date;
           const today = new Date();
           const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
           if (firstEventDateStr && todayStr < firstEventDateStr) {
-            setActiveTab('overview');
+            setActiveTab('packing');
           } else {
             setActiveTab('itinerary');
           }
         } else {
-          setActiveTab('overview');
+          setActiveTab('packing');
         }
 
         setLoading(false);
@@ -177,17 +210,17 @@ function App() {
 
   useEffect(() => {
     if (loading || events.length === 0 || activeTab !== 'itinerary') return;
-    
+
     const today = new Date();
     const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-    
+
     const uniqueDates = [...new Set(events.map(e => e.date).filter(Boolean) as string[])].sort();
     let targetDate = uniqueDates.find(d => d >= todayStr);
-    
+
     if (!targetDate && uniqueDates.length > 0) {
       targetDate = uniqueDates[uniqueDates.length - 1];
     }
-    
+
     if (targetDate) {
       setTimeout(() => {
         const el = document.getElementById(`date-${targetDate}`);
@@ -212,11 +245,16 @@ function App() {
 
   return (
     <div className="max-w-3xl mx-auto p-4 md:p-6">
-      <header className="mb-8 text-center py-6">
+      <header className="text-center">
         <div className="flex justify-between items-start relative">
-          <div className="text-left">
-            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-blue-500 to-violet-500 bg-clip-text text-transparent mb-2">Vacation Itinerary</h1>
-            <p className="text-slate-500 dark:text-slate-400 text-lg">Your upcoming adventure</p>
+          <div
+            className="text-left cursor-pointer group select-none"
+            onClick={() => setIsOverviewOpen(!isOverviewOpen)}
+          >
+            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-blue-500 to-violet-500 bg-clip-text text-transparent mb-2 flex items-center gap-2">
+              {currentVacation?.title || 'Vacation Itinerary'}
+              <ChevronDown className={`text-blue-500 transition-transform duration-300 ${isOverviewOpen ? 'rotate-180' : ''}`} size={28} />
+            </h1>
           </div>
           <div className="relative">
             <button className="bg-transparent border-none text-slate-500 cursor-pointer p-2 rounded-lg transition-all duration-200 flex items-center justify-center hover:bg-slate-200 hover:text-slate-900 dark:hover:bg-slate-700 dark:hover:text-slate-50" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -239,40 +277,36 @@ function App() {
         )}
       </header>
 
+      {isOverviewOpen && currentVacation && (
+        <div className="mb-8 animate-in slide-in-from-top-4 fade-in duration-300">
+          <OverviewTab vacation={currentVacation} />
+        </div>
+      )}
+
       <div className="flex gap-2 mb-8 bg-white dark:bg-slate-800 p-2 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-x-auto snap-x">
-        <button 
+        <button
           className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium cursor-pointer transition-all duration-200 whitespace-nowrap snap-center min-w-[120px] ${activeTab === 'itinerary' ? 'bg-blue-500 text-white shadow-sm' : 'bg-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:hover:bg-slate-700 dark:hover:text-slate-50'}`}
           onClick={() => setActiveTab('itinerary')}
         >
           <CalendarDays size={18} /> Itinerary
         </button>
-        <button 
+        <button
           className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium cursor-pointer transition-all duration-200 whitespace-nowrap snap-center min-w-[120px] ${activeTab === 'packing' ? 'bg-blue-500 text-white shadow-sm' : 'bg-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:hover:bg-slate-700 dark:hover:text-slate-50'}`}
           onClick={() => setActiveTab('packing')}
         >
           <Briefcase size={18} /> Packing
         </button>
-        <button 
+        <button
           className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium cursor-pointer transition-all duration-200 whitespace-nowrap snap-center min-w-[120px] ${activeTab === 'notes' ? 'bg-blue-500 text-white shadow-sm' : 'bg-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:hover:bg-slate-700 dark:hover:text-slate-50'}`}
           onClick={() => setActiveTab('notes')}
         >
           <FileText size={18} /> Notes
         </button>
-        <button 
-          className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium cursor-pointer transition-all duration-200 whitespace-nowrap snap-center min-w-[120px] ${activeTab === 'overview' ? 'bg-blue-500 text-white shadow-sm' : 'bg-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:hover:bg-slate-700 dark:hover:text-slate-50'}`}
-          onClick={() => setActiveTab('overview')}
-        >
-          <Info size={18} /> Overview
-        </button>
       </div>
 
       <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-        {activeTab === 'overview' && currentVacation && (
-          <OverviewTab vacation={currentVacation} />
-        )}
-
         {activeTab === 'itinerary' && (
-          <ItineraryTab 
+          <ItineraryTab
             groupedEvents={groupedEvents}
             completedEvents={localData.completedEvents}
             confirmations={localData.confirmations}
@@ -282,7 +316,7 @@ function App() {
         )}
 
         {activeTab === 'packing' && (
-          <PackingTab 
+          <PackingTab
             packingList={packingList}
             completedPacking={localData.completedPacking}
             togglePackingItem={togglePackingItem}
@@ -290,7 +324,7 @@ function App() {
         )}
 
         {activeTab === 'notes' && (
-          <NotesTab 
+          <NotesTab
             notes={localData.notes}
             updateNotes={updateNotes}
           />

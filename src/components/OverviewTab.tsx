@@ -12,12 +12,7 @@ export default function OverviewTab({ vacation }: Props) {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 md:p-8 shadow-md border border-slate-200 dark:border-slate-700">
-      <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-6 flex items-center gap-3">
-        <MapIcon className="text-blue-500" />
-        {vacation.title}
-      </h2>
-      
+    <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 md:p-8 shadow-md border border-slate-200 dark:border-slate-700">      
       <div className="flex flex-col gap-6">
         <div className="flex items-start gap-4">
           <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-xl text-blue-500 shrink-0">
