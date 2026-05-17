@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "text": "Passport",
+    "owner": "Tayler"
+  },
+  {
+    "id": 2,
+    "text": "Phone charger",
+    "owner": "Tayler"
+  },
+  {
+    "id": 3,
+    "text": "Sunscreen",
+    "owner": "Shared"
+  },
+  {
+    "id": 4,
+    "text": "Swimwear",
+    "owner": "Tayler"
+  },
+  {
+    "id": 5,
+    "text": "Camera",
+    "owner": "Shared"
+  }
+]

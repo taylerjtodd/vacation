@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "type": "flight",
+    "title": "Flight to Hawaii",
+    "date": "2026-06-01",
+    "startTime": "08:00",
+    "endTime": "12:00",
+    "location": "Honolulu International Airport",
+    "address": "300 Rodgers Blvd, Honolulu, HI 96819",
+    "description": "Delta Airlines Flight DL 123"
+  },
+  {
+    "id": 2,
+    "type": "hotel",
+    "title": "Check-in at Waikiki Resort",
+    "date": "2026-06-01",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "location": "Waikiki Beach Resort",
+    "address": "2490 Kalakaua Ave, Honolulu, HI 96815",
+    "description": "Confirmation: #WK123456"
+  },
+  {
+    "id": 3,
+    "type": "activity",
+    "title": "Snorkeling at Hanauma Bay",
+    "date": "2026-06-02",
+    "startTime": "09:00",
+    "endTime": "13:00",
+    "location": "Hanauma Bay Nature Preserve",
+    "address": "7455 Kalanianaole Hwy, Honolulu, HI 96825",
+    "description": "Bring sunscreen and towels. Tickets pre-booked."
+  },
+  {
+    "id": 4,
+    "type": "driving",
+    "title": "Drive to North Shore",
+    "date": "2026-06-03",
+    "startTime": "10:00",
+    "endTime": "11:30",
+    "location": "Haleiwa Town",
+    "address": "Haleiwa, HI 96712",
+    "description": "Scenic drive along the east coast."
+  }
+]
