@@ -16,8 +16,11 @@ const formatDate = (dateStr: string) => {
   return new Date(dateStr).toLocaleDateString('en-US', options);
 };
 
-const getGoogleMapsLink = (address: string) => {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+const getMapLink = (event: VacationEvent) => {
+  if (event.coordinates) {
+    return `geo:${event.coordinates[0]},${event.coordinates[1]}?q=${event.coordinates[0]},${event.coordinates[1]}(${encodeURIComponent(event.location || event.title)})`;
+  }
+  return `geo:0,0?q=${encodeURIComponent(event.address || event.location || event.title)}`;
 };
 
 interface Props {
@@ -85,14 +88,14 @@ export default function ItineraryTab({
                       <MapPin size={16} className="mt-0.5 shrink-0" />
                       <div>
                         <div>{event.location}</div>
-                        {event.address && (
+                        {(event.address || event.coordinates) && (
                           <a 
-                            href={getGoogleMapsLink(event.address)}
+                            href={getMapLink(event)}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-blue-500 text-xs flex items-center gap-1 mt-1 hover:text-blue-600 hover:underline transition-colors"
                           >
-                            Open in Google Maps
+                            Open in Maps
                           </a>
                         )}
                       </div>

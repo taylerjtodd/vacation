@@ -7,6 +7,7 @@ export interface VacationEvent {
   endTime?: string;
   location?: string;
   address?: string;
+  coordinates?: [number, number];
   description?: string;
 }
 
