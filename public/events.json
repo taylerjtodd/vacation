@@ -8,7 +8,8 @@
     "endTime": "16:00",
     "location": "La Quinta Inn and Suites by Wyndham at WaTiki Waterpark",
     "address": "1416 N Elk Vale Rd, Rapid City, SD 57703",
-    "description": ""
+    "description": "",
+    "coordinates": [44.09927221915958, -103.14819092886047]
   },
   {
     "id": 2,
@@ -19,7 +20,8 @@
     "endTime": "16:00",
     "location": "Yellowstone Park / West Gate KOA Holiday",
     "address": "3305 Targhee Pass Highway 6 miles West on, US-20, West Yellowstone, MT 59758",
-    "description": ""
+    "description": "",
+    "coordinates": [44.689265651080056, -111.21680875212687]
   },
   {
     "id": 3,
@@ -30,7 +32,8 @@
     "endTime": "16:00",
     "location": "Travelodge by Wyndham Gardiner Yellowstone Park North",
     "address": "109 Hellroaring Street, Gardiner, MT, 59030",
-    "description": ""
+    "description": "",
+    "coordinates": [45.0374831968102, -110.71581897006291]
   },
   {
     "id": 4,
