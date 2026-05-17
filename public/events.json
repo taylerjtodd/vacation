@@ -1,46 +1,46 @@
 [
   {
     "id": 1,
-    "type": "flight",
-    "title": "Flight to Hawaii",
-    "date": "2026-06-01",
-    "startTime": "08:00",
-    "endTime": "12:00",
-    "location": "Honolulu International Airport",
-    "address": "300 Rodgers Blvd, Honolulu, HI 96819",
-    "description": "Delta Airlines Flight DL 123"
+    "type": "hotel",
+    "title": "La Quinta Inn and Suites by Wyndham at WaTiki Waterpark",
+    "date": "2026-06-06",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "location": "WaTiki Waterpark",
+    "address": "1416 N Elk Vale Rd, Rapid City, SD 57703",
+    "description": ""
   },
   {
     "id": 2,
     "type": "hotel",
-    "title": "Check-in at Waikiki Resort",
-    "date": "2026-06-01",
+    "title": "Yellowstone Park / West Gate KOA Holiday",
+    "date": "2026-06-08",
     "startTime": "15:00",
     "endTime": "16:00",
-    "location": "Waikiki Beach Resort",
-    "address": "2490 Kalakaua Ave, Honolulu, HI 96815",
-    "description": "Confirmation: #WK123456"
+    "location": "West Gate KOA",
+    "address": "3305 Targhee Pass Highway 6 miles West on, US-20, West Yellowstone, MT 59758",
+    "description": ""
   },
   {
     "id": 3,
-    "type": "activity",
-    "title": "Snorkeling at Hanauma Bay",
-    "date": "2026-06-02",
-    "startTime": "09:00",
-    "endTime": "13:00",
-    "location": "Hanauma Bay Nature Preserve",
-    "address": "7455 Kalanianaole Hwy, Honolulu, HI 96825",
-    "description": "Bring sunscreen and towels. Tickets pre-booked."
+    "type": "hotel",
+    "title": "Travelodge by Wyndham Gardiner Yellowstone Park North",
+    "date": "2026-06-07",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "location": "Gardiner, MT",
+    "address": "109 Hellroaring Street, Gardiner, MT, 59030",
+    "description": ""
   },
   {
     "id": 4,
-    "type": "driving",
-    "title": "Drive to North Shore",
-    "date": "2026-06-03",
-    "startTime": "10:00",
-    "endTime": "11:30",
-    "location": "Haleiwa Town",
-    "address": "Haleiwa, HI 96712",
-    "description": "Scenic drive along the east coast."
+    "type": "hotel",
+    "title": "Jackson Lake Lodge",
+    "date": "2026-06-09",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "location": "Jackson Lake Lodge",
+    "address": "101 Jackson Lake Lodge Rd, Moran, WY 83013",
+    "description": ""
   }
 ]

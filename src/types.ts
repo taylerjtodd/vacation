@@ -1,6 +1,6 @@
 export interface VacationEvent {
   id: string;
-  type: string;
+  type: 'activity' | 'flight' | 'hotel' | 'driving';
   title: string;
   date: string;
   startTime: string;
