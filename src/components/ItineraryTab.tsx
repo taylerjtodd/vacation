@@ -1,5 +1,6 @@
 import { Plane, Hotel, Car, MapPin, Clock, Map as MapIcon, CalendarDays } from 'lucide-react';
 import { VacationEvent } from '../types';
+import MapLink from './MapLink';
 
 const EventIcon = ({ type }: { type: string }) => {
   switch (type) {
@@ -16,12 +17,6 @@ const formatDate = (dateStr: string) => {
   return new Date(dateStr).toLocaleDateString('en-US', options);
 };
 
-const getMapLink = (event: VacationEvent) => {
-  if (event.coordinates) {
-    return `geo:${event.coordinates[0]},${event.coordinates[1]}?q=${event.coordinates[0]},${event.coordinates[1]}(${encodeURIComponent(event.location || event.title)})`;
-  }
-  return `geo:0,0?q=${encodeURIComponent(event.address || event.location || event.title)}`;
-};
 
 interface Props {
   groupedEvents: Record<string, VacationEvent[]>;
@@ -83,24 +78,7 @@ export default function ItineraryTab({
                     {event.startTime} {event.endTime ? `- ${event.endTime}` : ''}
                   </div>
                   
-                  {event.location && (
-                    <div className="flex items-start gap-2 text-slate-900 dark:text-slate-50 text-sm mb-2">
-                      <MapPin size={16} className="mt-0.5 shrink-0" />
-                      <div>
-                        <div>{event.location}</div>
-                        {(event.address || event.coordinates) && (
-                          <a 
-                            href={getMapLink(event)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-500 text-xs flex items-center gap-1 mt-1 hover:text-blue-600 hover:underline transition-colors"
-                          >
-                            Open in Maps
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  )}
+                  <MapLink event={event} />
                   
                   {event.description && (
                     <div className="text-slate-500 dark:text-slate-400 text-sm mt-3 pt-3 border-t border-slate-200 dark:border-slate-700">
