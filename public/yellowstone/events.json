@@ -46,5 +46,101 @@
     "address": "101 Jackson Lake Lodge Rd, Moran, WY 83013",
     "coordinates": [43.87721293918336, -110.57735497376447],
     "description": ""
+  },
+  {
+    "id": 5,
+    "type": "driving",
+    "title": "Drive - Home to Rapid City",
+    "dayNumber": 1,
+    "startTime": "08:00",
+    "description": "9hr drive"
+  },
+  {
+    "id": 6,
+    "type": "driving",
+    "title": "Drive - Rapid City to Devils Tower",
+    "dayNumber": 2,
+    "startTime": "08:00",
+    "description": "1.5 hrs"
+  },
+  {
+    "id": 7,
+    "type": "activity",
+    "title": "Hike around Devils Tower",
+    "dayNumber": 2,
+    "startTime": "09:30",
+    "description": "1 hr hike"
+  },
+  {
+    "id": 8,
+    "type": "driving",
+    "title": "Drive - Devils Tower to east Yellowstone entrance",
+    "dayNumber": 2,
+    "startTime": "10:30",
+    "description": "6hrs drive"
+  },
+  {
+    "id": 9,
+    "type": "activity",
+    "title": "Northeast Yellowstone site-seeing between East Entrance and Gardiner, MT",
+    "dayNumber": 2,
+    "startTime": "16:30",
+    "description": "Site-seeing"
+  },
+  {
+    "id": 10,
+    "type": "activity",
+    "title": "Northern/Central Yellowstone site-seeing",
+    "dayNumber": 3,
+    "startTime": "09:00",
+    "description": "Site-seeing"
+  },
+  {
+    "id": 11,
+    "type": "activity",
+    "title": "South Yellowstone sight-seeing",
+    "dayNumber": 4,
+    "startTime": "09:00",
+    "description": "Site-seeing"
+  },
+  {
+    "id": 12,
+    "type": "activity",
+    "title": "Grand Teton sight-seeing",
+    "dayNumber": 5,
+    "startTime": "09:00",
+    "description": "Sight-seeing"
+  },
+  {
+    "id": 13,
+    "type": "activity",
+    "title": "Grand Teton sight-seeing",
+    "dayNumber": 6,
+    "startTime": "09:00",
+    "description": "Sight-seeing"
+  },
+  {
+    "id": 14,
+    "type": "activity",
+    "title": "Grand Teton sight-seeing",
+    "dayNumber": 7,
+    "startTime": "09:00",
+    "description": "Sight-seeing"
+  },
+  {
+    "id": 15,
+    "type": "driving",
+    "title": "Drive - Moran, WY to Cheyenne",
+    "dayNumber": 8,
+    "startTime": "12:00",
+    "description": "6.5 hrs"
+  },
+  {
+    "id": 16,
+    "type": "driving",
+    "title": "Drive - Cheyenne to Home",
+    "dayNumber": 9,
+    "startTime": "09:00",
+    "description": "9 hrs"
   }
 ]
