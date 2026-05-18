@@ -4,209 +4,36 @@ import ItineraryTab from './components/ItineraryTab';
 import PackingTab from './components/PackingTab';
 import NotesTab from './components/NotesTab';
 import OverviewTab from './components/OverviewTab';
-import { VacationEvent, PackingItem, LocalData, Vacation, PackingData } from './types';
+import { VacationEvent } from './types';
+import { useNetworkStatus } from './hooks/useNetworkStatus';
+import { useLocalData } from './hooks/useLocalData';
+import { useVacationData } from './hooks/useVacationData';
 import './index.css';
 
 function App() {
-  const [vacations, setVacations] = useState<Vacation[]>([]);
-  const [currentVacation, setCurrentVacation] = useState<Vacation | null>(null);
-  const [events, setEvents] = useState<VacationEvent[]>([]);
-  const [packingList, setPackingList] = useState<PackingItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [isOffline, setIsOffline] = useState(!navigator.onLine);
   const [activeTab, setActiveTab] = useState('itinerary');
   const [isOverviewOpen, setIsOverviewOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [localData, setLocalData] = useState<LocalData>(() => {
-    const saved = localStorage.getItem('vacationData');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (!parsed.completedPacking) parsed.completedPacking = {};
-        return parsed;
-      } catch (e) {
-        console.error("Failed to parse local data", e);
-      }
-    }
-    return {
-      completedEvents: {},
-      completedPacking: {},
-      confirmations: {},
-      notes: ''
-    };
-  });
+  const isOffline = useNetworkStatus();
+  
+  const {
+    localData,
+    toggleEventCompleted,
+    updateConfirmation,
+    togglePackingItem,
+    updateNotes,
+    handleClearData
+  } = useLocalData();
 
-  useEffect(() => {
-    localStorage.setItem('vacationData', JSON.stringify(localData));
-  }, [localData]);
-
-  const toggleEventCompleted = (id: string) => {
-    setLocalData(prev => ({
-      ...prev,
-      completedEvents: {
-        ...prev.completedEvents,
-        [id]: !prev.completedEvents[id]
-      }
-    }));
-  };
-
-  const updateConfirmation = (id: string, value: string) => {
-    setLocalData(prev => ({
-      ...prev,
-      confirmations: {
-        ...prev.confirmations,
-        [id]: value
-      }
-    }));
-  };
-
-  const togglePackingItem = (id: string) => {
-    setLocalData(prev => ({
-      ...prev,
-      completedPacking: {
-        ...prev.completedPacking,
-        [id]: !prev.completedPacking[id]
-      }
-    }));
-  };
-
-  const updateNotes = (notes: string) => {
-    setLocalData(prev => ({ ...prev, notes }));
-  };
-
-  const handleClearData = () => {
-    setLocalData({
-      completedEvents: {},
-      completedPacking: {},
-      confirmations: {},
-      notes: ''
-    });
-    setIsModalOpen(false);
-  };
-
-  useEffect(() => {
-    const handleOnline = () => setIsOffline(false);
-    const handleOffline = () => setIsOffline(true);
-
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
-
-    return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
-    };
-  }, []);
-
-  useEffect(() => {
-    fetch('vacations.json')
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to load vacations');
-        return res.json();
-      })
-      .then((data: Vacation[]) => {
-        setVacations(data);
-        if (data.length > 0) {
-          setCurrentVacation(data[0]);
-        } else {
-          setLoading(false);
-          setError('No vacations found.');
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        setError('Failed to load vacations.');
-        setLoading(false);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (!currentVacation) return;
-    setLoading(true);
-
-    Promise.all([
-      fetch(`${currentVacation.folderName}/events.json`).then(res => {
-        if (!res.ok) throw new Error('Failed to load events');
-        return res.json();
-      }),
-      fetch(`${currentVacation.folderName}/packing.json`).then(res => {
-        if (!res.ok) throw new Error('Failed to load packing list');
-        return res.json();
-      })
-    ])
-      .then(([eventsData, packingData]) => {
-        const mappedEvents = eventsData.map((e: VacationEvent) => {
-          const date = new Date(`${currentVacation.startDate}T12:00:00`);
-          date.setDate(date.getDate() + (e.dayNumber - 1));
-          return {
-            ...e,
-            date: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
-          };
-        });
-
-        const sorted = mappedEvents.sort((a: VacationEvent, b: VacationEvent) => {
-          const dateA = new Date(`${a.date!}T${a.startTime}`);
-          const dateB = new Date(`${b.date!}T${b.startTime}`);
-          return dateA.getTime() - dateB.getTime();
-        });
-        setEvents(sorted);
-
-        let flattenedPackingList: PackingItem[] = [];
-        if (Array.isArray(packingData)) {
-          flattenedPackingList = packingData;
-        } else {
-          const { each = [], family = [], lists = [] } = packingData as PackingData;
-
-          family.forEach(item => {
-            flattenedPackingList.push({
-              id: `family-${item}`,
-              owner: 'Family',
-              text: item
-            });
-          });
-
-          lists.forEach(list => {
-            each.forEach(item => {
-              flattenedPackingList.push({
-                id: `${list.person}-each-${item}`,
-                owner: list.person,
-                text: item
-              });
-            });
-            list.items.forEach(item => {
-              flattenedPackingList.push({
-                id: `${list.person}-list-${item}`,
-                owner: list.person,
-                text: item
-              });
-            });
-          });
-        }
-        setPackingList(flattenedPackingList);
-
-        if (sorted.length > 0) {
-          const firstEventDateStr = sorted[0].date;
-          const today = new Date();
-          const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-          if (firstEventDateStr && todayStr < firstEventDateStr) {
-            setActiveTab('packing');
-          } else {
-            setActiveTab('itinerary');
-          }
-        } else {
-          setActiveTab('packing');
-        }
-
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error(err);
-        setError('Failed to load vacation data. Please try again later.');
-        setLoading(false);
-      });
-  }, [currentVacation]);
+  const {
+    currentVacation,
+    events,
+    packingList,
+    loading,
+    error
+  } = useVacationData(setActiveTab);
 
   useEffect(() => {
     if (loading || events.length === 0 || activeTab !== 'itinerary') return;
@@ -338,7 +165,7 @@ function App() {
             <p className="text-slate-500 dark:text-slate-400 mb-6 text-sm leading-relaxed">Are you sure you want to clear all local data? This cannot be undone.</p>
             <div className="flex justify-end gap-3">
               <button className="px-4 py-2 rounded-lg font-medium bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-50 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors cursor-pointer" onClick={() => setIsModalOpen(false)}>Cancel</button>
-              <button className="px-4 py-2 rounded-lg font-medium bg-red-500 border border-red-500 text-white hover:bg-red-600 hover:border-red-600 transition-colors cursor-pointer" onClick={handleClearData}>Clear</button>
+              <button className="px-4 py-2 rounded-lg font-medium bg-red-500 border border-red-500 text-white hover:bg-red-600 hover:border-red-600 transition-colors cursor-pointer" onClick={() => { handleClearData(); setIsModalOpen(false); }}>Clear</button>
             </div>
           </div>
         </div>
