@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Plane, Hotel, Car, MapPin, Clock, Map as MapIcon, CalendarDays } from 'lucide-react';
 import { VacationEvent } from '../types';
 import MapLink from './MapLink';
@@ -17,7 +18,6 @@ const formatDate = (dateStr: string) => {
   return new Date(dateStr).toLocaleDateString('en-US', options);
 };
 
-
 interface Props {
   groupedEvents: Record<string, VacationEvent[]>;
   completedEvents: Record<string, boolean>;
@@ -33,6 +33,31 @@ export default function ItineraryTab({
   toggleEventCompleted, 
   updateConfirmation 
 }: Props) {
+  const dateKeys = Object.keys(groupedEvents).sort().join(',');
+
+  useEffect(() => {
+    if (!dateKeys) return;
+    const dates = dateKeys.split(',');
+
+    const today = new Date();
+    const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+
+    let targetDate = dates.find(d => d >= todayStr);
+
+    if (!targetDate && dates.length > 0) {
+      targetDate = dates[dates.length - 1];
+    }
+
+    if (targetDate) {
+      setTimeout(() => {
+        const el = document.getElementById(`date-${targetDate}`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  }, [dateKeys]);
+
   return (
     <section className="relative pl-8 sm:pl-12">
       <div className="absolute top-0 bottom-0 left-[11px] sm:left-[27px] w-0.5 bg-slate-200 dark:bg-slate-700 rounded-full" />
