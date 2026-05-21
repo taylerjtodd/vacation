@@ -12,8 +12,12 @@ export interface VacationEvent {
   title: string;
   dayNumber: number;
   date?: string;
-  startTime: string;
+  startTime?: string;
   endTime?: string;
+  duration?: number;
+  earliestStart?: string;
+  latestStart?: string;
+  timeWarning?: string;
   location?: string;
   address?: string;
   coordinates?: [number, number];

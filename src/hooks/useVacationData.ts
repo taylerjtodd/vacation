@@ -1,5 +1,22 @@
 import { useState, useEffect } from 'react';
+import { parse, addMinutes, format, isBefore } from 'date-fns';
 import { Vacation, VacationEvent, PackingItem, PackingData } from '../types';
+
+const BASE_DATE = new Date(2000, 0, 1); // Arbitrary fixed date for time-only parsing
+
+function parseTime(time: string): Date {
+  return parse(time, 'HH:mm', BASE_DATE);
+}
+
+function addHoursToTime(time: string, hours: number): string {
+  if (!time) return "00:00";
+  return format(addMinutes(parseTime(time), Math.round(hours * 60)), 'HH:mm');
+}
+
+export function formatDisplayTime(time: string | undefined): string {
+  if (!time) return '';
+  return format(parseTime(time), 'h:mm a');
+}
 
 export function useVacationData(setActiveTab: (tab: string) => void) {
   const [vacations, setVacations] = useState<Vacation[]>([]);
@@ -56,11 +73,53 @@ export function useVacationData(setActiveTab: (tab: string) => void) {
         });
 
         const sorted = mappedEvents.sort((a: VacationEvent, b: VacationEvent) => {
-          const dateA = new Date(`${a.date!}T${a.startTime}`);
-          const dateB = new Date(`${b.date!}T${b.startTime}`);
-          return dateA.getTime() - dateB.getTime();
+          return a.dayNumber - b.dayNumber;
         });
-        setEvents(sorted);
+
+        let currentTime = "08:00";
+        let currentDay = 0;
+
+        const computedEvents = sorted.map((event: VacationEvent) => {
+          if (event.dayNumber !== currentDay) {
+            currentDay = event.dayNumber;
+            currentTime = "08:00"; 
+          }
+
+          let startTime = event.startTime;
+          if (startTime) {
+            currentTime = startTime;
+          } else {
+            startTime = currentTime;
+          }
+
+          let endTime = event.endTime;
+          if (event.duration) {
+            endTime = addHoursToTime(startTime, event.duration);
+            currentTime = endTime;
+          } else if (endTime) {
+            currentTime = endTime;
+          }
+
+          let timeWarning = "";
+          if (event.earliestStart) {
+            if (isBefore(parseTime(startTime), parseTime(event.earliestStart))) {
+              timeWarning = `Must be after ${formatDisplayTime(event.earliestStart)}`;
+            }
+          }
+          if (event.latestStart && !timeWarning) {
+            if (isBefore(parseTime(event.latestStart), parseTime(startTime))) {
+              timeWarning = `Must be before ${formatDisplayTime(event.latestStart)}`;
+            }
+          }
+
+          return {
+            ...event,
+            startTime,
+            endTime,
+            timeWarning: timeWarning || undefined
+          };
+        });
+        setEvents(computedEvents);
 
         let flattenedPackingList: PackingItem[] = [];
         if (Array.isArray(packingData)) {
@@ -97,8 +156,7 @@ export function useVacationData(setActiveTab: (tab: string) => void) {
 
         if (sorted.length > 0) {
           const firstEventDateStr = sorted[0].date;
-          const today = new Date();
-          const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+          const todayStr = format(new Date(), 'yyyy-MM-dd');
           if (firstEventDateStr && todayStr < firstEventDateStr) {
             setActiveTab('packing');
           } else {

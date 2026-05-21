@@ -1,59 +1,23 @@
 [
   {
-    "id": 1,
-    "type": "hotel",
-    "title": "Hotel in Rapid City, SD",
-    "dayNumber": 1,
-    "startTime": "15:00",
-    "endTime": "16:00",
-    "location": "La Quinta Inn and Suites by Wyndham at WaTiki Waterpark",
-    "address": "1416 N Elk Vale Rd, Rapid City, SD 57703",
-    "description": "",
-    "coordinates": [44.09927221915958, -103.14819092886047]
-  },
-  {
-    "id": 2,
-    "type": "hotel",
-    "title": "West Gate KOA",
-    "dayNumber": 3,
-    "startTime": "15:00",
-    "endTime": "16:00",
-    "location": "Yellowstone Park / West Gate KOA Holiday",
-    "address": "3305 Targhee Pass Highway 6 miles West on, US-20, West Yellowstone, MT 59758",
-    "description": "",
-    "coordinates": [44.689265651080056, -111.21680875212687]
-  },
-  {
-    "id": 3,
-    "type": "hotel",
-    "title": "Hotel in Gardiner, MT",
-    "dayNumber": 2,
-    "startTime": "15:00",
-    "endTime": "16:00",
-    "location": "Travelodge by Wyndham Gardiner Yellowstone Park North",
-    "address": "109 Hellroaring Street, Gardiner, MT, 59030",
-    "description": "",
-    "coordinates": [45.0374831968102, -110.71581897006291]
-  },
-  {
-    "id": 4,
-    "type": "hotel",
-    "title": "Jackson Lake Lodge",
-    "dayNumber": 4,
-    "startTime": "15:00",
-    "endTime": "16:00",
-    "location": "Jackson Lake Lodge",
-    "address": "101 Jackson Lake Lodge Rd, Moran, WY 83013",
-    "coordinates": [43.87721293918336, -110.57735497376447],
-    "description": ""
-  },
-  {
     "id": 5,
     "type": "driving",
     "title": "Drive - Home to Rapid City",
     "dayNumber": 1,
     "startTime": "08:00",
-    "description": "9hr drive"
+    "duration": 9
+  },
+  {
+    "id": 1,
+    "type": "hotel",
+    "title": "Hotel in Rapid City, SD",
+    "dayNumber": 1,
+    "duration": 1,
+    "earliestStart": "15:00",
+    "latestStart": "22:00",
+    "location": "La Quinta Inn and Suites by Wyndham at WaTiki Waterpark",
+    "address": "1416 N Elk Vale Rd, Rapid City, SD 57703",
+    "coordinates": [44.09927221915958, -103.14819092886047]
   },
   {
     "id": 6,
@@ -61,31 +25,40 @@
     "title": "Drive - Rapid City to Devils Tower",
     "dayNumber": 2,
     "startTime": "08:00",
-    "description": "1.5 hrs"
+    "duration": 1.5
   },
   {
     "id": 7,
     "type": "activity",
     "title": "Hike around Devils Tower",
     "dayNumber": 2,
-    "startTime": "09:30",
-    "description": "1 hr hike"
+    "duration": 1
   },
   {
     "id": 8,
     "type": "driving",
     "title": "Drive - Devils Tower to east Yellowstone entrance",
     "dayNumber": 2,
-    "startTime": "10:30",
-    "description": "6hrs drive"
+    "duration": 6
   },
   {
     "id": 9,
     "type": "activity",
     "title": "Northeast Yellowstone site-seeing between East Entrance and Gardiner, MT",
     "dayNumber": 2,
-    "startTime": "16:30",
-    "description": "Site-seeing"
+    "duration": 2
+  },
+  {
+    "id": 3,
+    "type": "hotel",
+    "title": "Hotel in Gardiner, MT",
+    "dayNumber": 2,
+    "duration": 1,
+    "earliestStart": "15:00",
+    "latestStart": "22:00",
+    "location": "Travelodge by Wyndham Gardiner Yellowstone Park North",
+    "address": "109 Hellroaring Street, Gardiner, MT, 59030",
+    "coordinates": [45.0374831968102, -110.71581897006291]
   },
   {
     "id": 10,
@@ -93,7 +66,19 @@
     "title": "Northern/Central Yellowstone site-seeing",
     "dayNumber": 3,
     "startTime": "09:00",
-    "description": "Site-seeing"
+    "duration": 6
+  },
+  {
+    "id": 2,
+    "type": "hotel",
+    "title": "West Gate KOA",
+    "dayNumber": 3,
+    "duration": 1,
+    "earliestStart": "15:00",
+    "latestStart": "22:00",
+    "location": "Yellowstone Park / West Gate KOA Holiday",
+    "address": "3305 Targhee Pass Highway 6 miles West on, US-20, West Yellowstone, MT 59758",
+    "coordinates": [44.689265651080056, -111.21680875212687]
   },
   {
     "id": 11,
@@ -101,7 +86,19 @@
     "title": "South Yellowstone sight-seeing",
     "dayNumber": 4,
     "startTime": "09:00",
-    "description": "Site-seeing"
+    "duration": 6
+  },
+  {
+    "id": 4,
+    "type": "hotel",
+    "title": "Jackson Lake Lodge",
+    "dayNumber": 4,
+    "duration": 1,
+    "earliestStart": "15:00",
+    "latestStart": "22:00",
+    "location": "Jackson Lake Lodge",
+    "address": "101 Jackson Lake Lodge Rd, Moran, WY 83013",
+    "coordinates": [43.87721293918336, -110.57735497376447]
   },
   {
     "id": 12,
@@ -109,7 +106,7 @@
     "title": "Grand Teton sight-seeing",
     "dayNumber": 5,
     "startTime": "09:00",
-    "description": "Sight-seeing"
+    "duration": 8
   },
   {
     "id": 13,
@@ -117,7 +114,7 @@
     "title": "Grand Teton sight-seeing",
     "dayNumber": 6,
     "startTime": "09:00",
-    "description": "Sight-seeing"
+    "duration": 8
   },
   {
     "id": 14,
@@ -125,7 +122,7 @@
     "title": "Grand Teton sight-seeing",
     "dayNumber": 7,
     "startTime": "09:00",
-    "description": "Sight-seeing"
+    "duration": 8
   },
   {
     "id": 15,
@@ -133,7 +130,7 @@
     "title": "Drive - Moran, WY to Cheyenne",
     "dayNumber": 8,
     "startTime": "12:00",
-    "description": "6.5 hrs"
+    "duration": 6.5
   },
   {
     "id": 16,
@@ -141,6 +138,6 @@
     "title": "Drive - Cheyenne to Home",
     "dayNumber": 9,
     "startTime": "09:00",
-    "description": "9 hrs"
+    "duration": 9
   }
 ]

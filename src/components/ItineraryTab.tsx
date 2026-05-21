@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
-import { Plane, Hotel, Car, MapPin, Clock, Map as MapIcon, CalendarDays } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Plane, Hotel, Car, MapPin, Clock, Map as MapIcon, CalendarDays, AlertTriangle, ChevronDown } from 'lucide-react';
 import { VacationEvent } from '../types';
 import MapLink from './MapLink';
+import { formatDisplayTime } from '../hooks/useVacationData';
 
 const EventIcon = ({ type }: { type: string }) => {
   switch (type) {
@@ -34,6 +35,11 @@ export default function ItineraryTab({
   updateConfirmation 
 }: Props) {
   const dateKeys = Object.keys(groupedEvents).sort().join(',');
+  const [collapsedDays, setCollapsedDays] = useState<Record<string, boolean>>({});
+
+  const toggleDay = (date: string) => {
+    setCollapsedDays(prev => ({ ...prev, [date]: !prev[date] }));
+  };
 
   useEffect(() => {
     if (!dateKeys) return;
@@ -62,15 +68,30 @@ export default function ItineraryTab({
     <section className="relative pl-8 sm:pl-12">
       <div className="absolute top-0 bottom-0 left-[11px] sm:left-[27px] w-0.5 bg-slate-200 dark:bg-slate-700 rounded-full" />
 
-      {Object.entries(groupedEvents).map(([date, dayEvents]) => (
+      {Object.entries(groupedEvents).map(([date, dayEvents]) => {
+        const isCollapsed = !!collapsedDays[date];
+        return (
         <div key={date} id={`date-${date}`} className="mb-10">
-          <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2 relative">
+          <button
+            onClick={() => toggleDay(date)}
+            className="w-full text-left mb-6 flex items-center gap-2 relative group"
+            aria-expanded={!isCollapsed}
+          >
             <div className="absolute -left-[2.35rem] sm:-left-[3.35rem] w-4 h-4 bg-blue-500 border-4 border-slate-50 dark:border-slate-900 rounded-full z-10" />
-            <CalendarDays size={24} className="text-blue-500" />
-            {formatDate(date)}
-          </h2>
+            <CalendarDays size={24} className="text-blue-500 shrink-0" />
+            <span className="text-2xl font-semibold text-slate-900 dark:text-slate-50 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">
+              {formatDate(date)}
+            </span>
+            <span className="ml-1 text-sm text-slate-400 dark:text-slate-500 font-normal">
+              {dayEvents.length} {dayEvents.length === 1 ? 'event' : 'events'}
+            </span>
+            <ChevronDown
+              size={20}
+              className={`ml-auto text-slate-400 dark:text-slate-500 transition-transform duration-200 shrink-0 ${isCollapsed ? '-rotate-90' : ''}`}
+            />
+          </button>
           
-          <div className="flex flex-col gap-4">
+          <div className={`flex flex-col gap-4 overflow-hidden transition-all duration-300 ${isCollapsed ? 'max-h-0' : 'max-h-[9999px]'}`}>
             {dayEvents.map(event => {
               let typeColorClass = "bg-slate-200";
               let textColorClass = "text-slate-500";
@@ -80,7 +101,7 @@ export default function ItineraryTab({
               if (event.type === 'driving') { typeColorClass = "bg-amber-500"; textColorClass = "text-amber-500"; }
 
               return (
-                <div key={event.id} className={`bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-md border border-slate-200 dark:border-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg relative overflow-hidden flex flex-col ${completedEvents[event.id] ? 'opacity-60' : ''}`}>
+                <div key={event.id} className={`bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-md border ${event.timeWarning ? 'border-red-500/50 dark:border-red-500/50 shadow-red-500/10' : 'border-slate-200 dark:border-slate-700'} transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg relative overflow-hidden flex flex-col ${completedEvents[event.id] ? 'opacity-60' : ''}`}>
                   <div className={`absolute top-0 left-0 bottom-0 w-1 ${typeColorClass}`} />
                   
                   <div className="flex justify-between items-start mb-3 gap-4 sm:flex-row flex-col-reverse">
@@ -98,9 +119,17 @@ export default function ItineraryTab({
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm font-medium mb-2">
-                    <Clock size={16} />
-                    {event.startTime} {event.endTime ? `- ${event.endTime}` : ''}
+                  <div className={`flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm font-medium mb-2 ${event.timeWarning ? 'text-red-500 dark:text-red-400' : 'text-slate-500 dark:text-slate-400'}`}>
+                    <div className="flex items-center gap-2">
+                      <Clock size={16} />
+                      {formatDisplayTime(event.startTime)} {event.endTime ? `- ${formatDisplayTime(event.endTime)}` : ''}
+                    </div>
+                    {event.timeWarning && (
+                      <div className="flex items-center gap-1.5 text-xs bg-red-50 dark:bg-red-900/20 px-2 py-1 rounded-md">
+                        <AlertTriangle size={14} />
+                        {event.timeWarning}
+                      </div>
+                    )}
                   </div>
                   
                   <MapLink event={event} />
@@ -128,7 +157,8 @@ export default function ItineraryTab({
             })}
           </div>
         </div>
-      ))}
+        );
+      })}
     </section>
   );
 }
