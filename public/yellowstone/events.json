@@ -17,7 +17,10 @@
     "latestStart": "22:00",
     "location": "La Quinta Inn and Suites by Wyndham at WaTiki Waterpark",
     "address": "1416 N Elk Vale Rd, Rapid City, SD 57703",
-    "coordinates": [44.09927221915958, -103.14819092886047]
+    "coordinates": [
+      44.09927221915958,
+      -103.14819092886047
+    ]
   },
   {
     "id": 6,
@@ -42,20 +45,25 @@
     "duration": 6
   },
   {
+    "id": 17,
+    "type": "activity",
+    "title": "Trout Lake Trail & Fishing",
+    "dayNumber": 2,
+    "duration": 1.5,
+    "address": "US-212, Yellowstone National Park, WY 82190",
+    "coordinates": [
+      44.89917378699662,
+      -110.12315956962577
+    ],
+    "description": "🥾 Short Hike & Lure Fishing: 1.2 mi loop, easy. A peaceful alpine lake hike with frequent river otter and osprey sightings. Trout Lake is a premier spot for spin-fishing with lead-free, barbless lures. Target large native cutthroat trout (must release unharmed) and rainbow trout from the shore. NOTE: The inlet stream and cove are permanently closed to fishing to protect spawning trout."
+  },
+  {
     "id": 9,
     "type": "activity",
     "title": "Yellowstone River Picnic Area",
     "dayNumber": 2,
     "duration": 0.5,
     "description": "🦬 Wildlife: A great first stop just inside the East Entrance — the Yellowstone River corridor here is an excellent wildlife viewing area. Scan the hillsides and riverbanks for bison, elk, and raptors."
-  },
-  {
-    "id": 17,
-    "type": "activity",
-    "title": "Trout Lake Trail & Fishing",
-    "dayNumber": 2,
-    "duration": 1.5,
-    "description": "🥾 Short Hike & Lure Fishing: 1.2 mi loop, easy. A peaceful alpine lake hike with frequent river otter and osprey sightings. Trout Lake is a premier spot for spin-fishing with lead-free, barbless lures. Target large native cutthroat trout (must release unharmed) and rainbow trout from the shore. NOTE: The inlet stream and cove are permanently closed to fishing to protect spawning trout."
   },
   {
     "id": 18,
@@ -71,6 +79,11 @@
     "title": "Tower Fall",
     "dayNumber": 2,
     "duration": 0.5,
+    "address": "1 Dunraven Pass Road, Yellowstone National Park, WY 82190",
+    "coordinates": [
+      44.894008857481644,
+      -110.38719474240085
+    ],
     "description": "🌋 Geologic Feature: A dramatic 132-ft waterfall carved through volcanic rock. Short walk to the overlook. The basalt columns framing the falls are a great example of the park's volcanic geology."
   },
   {
@@ -79,6 +92,11 @@
     "title": "Calcite Springs Overlook & Petrified Tree",
     "dayNumber": 2,
     "duration": 0.5,
+    "address": "Yellowstone National Park, Grand Loop Rd, Mammoth, WY 82190",
+    "coordinates": [
+      44.90399497883069,
+      -110.39325246220208
+    ],
     "description": "🌋 Geologic Features: Calcite Springs Overlook offers dramatic views of columnar basalt cliffs dropping into the Yellowstone River canyon. Just up the road, the Petrified Tree is a lone ancient redwood turned to stone by volcanic ash millions of years ago — a quick roadside stop."
   },
   {
@@ -87,6 +105,11 @@
     "title": "Wraith Falls",
     "dayNumber": 2,
     "duration": 0.75,
+    "address": "Yellowstone National Park, Grand Loop Rd, Mammoth, WY 82190",
+    "coordinates": [
+      44.94280735867329,
+      -110.62358238766807
+    ],
     "description": "🥾 Short Hike: 0.8 mi out-and-back, easy. A beautiful 100-ft cascade tucked into a meadow near Mammoth. One of the most rewarding short hikes in the northern range — easy enough for the whole family."
   },
   {
@@ -99,7 +122,10 @@
     "latestStart": "22:00",
     "location": "Travelodge by Wyndham Gardiner Yellowstone Park North",
     "address": "109 Hellroaring Street, Gardiner, MT, 59030",
-    "coordinates": [45.0374831968102, -110.71581897006291]
+    "coordinates": [
+      45.0374831968102,
+      -110.71581897006291
+    ]
   },
   {
     "id": 10,
@@ -108,6 +134,11 @@
     "dayNumber": 3,
     "startTime": "09:00",
     "duration": 1.5,
+    "address": "Mammoth, WY 82190",
+    "coordinates": [
+      44.977928343700924,
+      -110.70240039079818
+    ],
     "description": "🌋 Geologic Feature: A surreal landscape of travertine terraces built by calcium carbonate-rich water. Walk the Upper Terrace Loop (1.5 mi, easy boardwalk) to explore both active steaming terraces and pale dormant formations. One of the most otherworldly sights in the park."
   },
   {
@@ -116,6 +147,11 @@
     "title": "Norris Geyser Basin",
     "dayNumber": 3,
     "duration": 1.5,
+    "address": "Wyoming 82190",
+    "coordinates": [
+      44.74251178314092,
+      -110.70932061598391
+    ],
     "description": "🌋 Geologic Feature: The hottest and most dynamic thermal basin in the park. Steamboat Geyser is the world's tallest active geyser. Walk the Back Basin and Porcelain Basin loops (combined ~2.5 mi, easy boardwalks) to see boiling pools, fumaroles, and Echinus Geyser."
   },
   {
@@ -124,6 +160,11 @@
     "title": "Artist Paint Pots Trail",
     "dayNumber": 3,
     "duration": 0.75,
+    "address": "Yellowstone National Park, WY 82190",
+    "coordinates": [
+      44.696421236007886,
+      -110.74106834382816
+    ],
     "description": "🥾 Short Hike: 0.9 mi loop, easy. A fun, accessible trail winding through colorful mud pots and small geysers. The bubbling pink and gray mud pots are a highlight — great for kids."
   },
   {
@@ -132,6 +173,11 @@
     "title": "Grand Prismatic Spring & Fairy Falls",
     "dayNumber": 3,
     "duration": 2,
+    "address": "Wyoming 82190",
+    "coordinates": [
+      44.52960637021252,
+      -110.8380556059732
+    ],
     "description": "🌋 Geologic Feature + 🥾 Hike: Grand Prismatic Spring is Yellowstone's largest hot spring and most photographed thermal feature. Start with the Fairy Falls Trail (5.4 mi out-and-back, easy) — the overlook at mile 1 gives the iconic aerial view of the rainbow-colored spring. Continue to Fairy Falls itself, a stunning 200-ft waterfall at the end of the trail."
   },
   {
@@ -160,7 +206,10 @@
     "latestStart": "22:00",
     "location": "Yellowstone Park / West Gate KOA Holiday",
     "address": "3305 Targhee Pass Highway 6 miles West on, US-20, West Yellowstone, MT 59758",
-    "coordinates": [44.689265651080056, -111.21680875212687]
+    "coordinates": [
+      44.689265651080056,
+      -111.21680875212687
+    ]
   },
   {
     "id": 11,
@@ -169,6 +218,11 @@
     "dayNumber": 4,
     "startTime": "09:00",
     "duration": 1,
+    "address": "Yellowstone National Park, WY 82190",
+    "coordinates": [
+      44.41698594503287,
+      -110.57186893644477
+    ],
     "description": "🌋 Geologic Feature: A unique spot where hydrothermal features meet the shore of Yellowstone Lake. Walk the short boardwalk loop past boiling pools and the famous Fishing Cone — a submerged geyser where early visitors would cook fish directly in the boiling water."
   },
   {
@@ -177,6 +231,11 @@
     "title": "Storm Point Trail",
     "dayNumber": 4,
     "duration": 1.5,
+    "address": "Unnamed Road, Cody, WY 82414",
+    "coordinates": [
+      44.55988755246777,
+      -110.32651211553014
+    ],
     "description": "🥾 Short Hike: 2.3 mi loop, easy. Hugs the Yellowstone Lake shoreline with frequent bison and waterfowl sightings. Check the trailhead for bear activity before heading out — this area sees regular grizzly use. Great views across the lake toward the Absaroka Range."
   },
   {
@@ -185,6 +244,11 @@
     "title": "Natural Bridge Trail",
     "dayNumber": 4,
     "duration": 1,
+    "address": "Natural Brg Trl, Yellowstone National Park, WY 82190",
+    "coordinates": [
+      44.53056494188415,
+      -110.43615854974772
+    ],
     "description": "🥾 Short Hike: 2 mi out-and-back, easy. Leads to a 51-ft rhyolite arch carved by Bridge Creek — one of the park's lesser-known geological gems. A quiet trail away from the crowds near Bridge Bay."
   },
   {
@@ -193,6 +257,11 @@
     "title": "Lone Star Geyser Trail",
     "dayNumber": 4,
     "duration": 2.5,
+    "address": "Yellowstone National Park, WY 82190",
+    "coordinates": [
+      44.44659097807842,
+      -110.80395474640005
+    ],
     "description": "🥾 Hike + ⛲ Geyser: 4.8 mi out-and-back, easy. Follows the Firehole River through a peaceful backcountry corridor to a cone geyser that erupts every ~3 hours with a 30–50 ft column. Check the logbook at the trailhead for the last eruption time to time your arrival. One of the most rewarding uncrowded experiences in the park."
   },
   {
@@ -201,6 +270,11 @@
     "title": "Yellowstone Lake & Grant Village Wildlife",
     "dayNumber": 4,
     "duration": 1,
+    "address": "2 Grant Village Rd, Yellowstone National Park, WY 82190",
+    "coordinates": [
+      44.39565856458025,
+      -110.55685695868935
+    ],
     "description": "🦬 Wildlife: The meadows near Grant Village often have bison and elk in the early morning and evening. Yellowstone Lake is a hotspot for osprey, bald eagles, and river otters along the shoreline. Keep an eye out for black bears along the forest edges on the south entrance road as you head toward Jackson."
   },
   {
@@ -210,7 +284,11 @@
     "dayNumber": 4,
     "duration": 1.5,
     "location": "Lewis Lake Shoreline",
-    "coordinates": [44.3105, -110.6385],
+    "address": "S Entrance Rd, Yellowstone National Park, WY 82190",
+    "coordinates": [
+      44.3105,
+      -110.6385
+    ],
     "description": "🎣 Lure Fishing: Lewis Lake is renowned for excellent shore lure fishing. Cast lead-free, barbless spinners (like Panther Martins) or spoons (like Jake's Spin-A-Lure) from the shore near the lake inlet/outlet or pullouts along the South Entrance Road. Good chance of catching Lake Trout or Brown Trout."
   },
   {
@@ -223,7 +301,10 @@
     "latestStart": "22:00",
     "location": "Jackson Lake Lodge",
     "address": "101 Jackson Lake Lodge Rd, Moran, WY 83013",
-    "coordinates": [43.87721293918336, -110.57735497376447]
+    "coordinates": [
+      43.87721293918336,
+      -110.57735497376447
+    ]
   },
   {
     "id": 12,
@@ -232,6 +313,102 @@
     "dayNumber": 5,
     "startTime": "09:00",
     "duration": 8
+  },
+  {
+    "id": 32,
+    "type": "activity",
+    "title": "Bradley Lake Trail",
+    "dayNumber": 5,
+    "duration": 2.5,
+    "coordinates": [
+      43.6967,
+      -110.7317
+    ],
+    "description": "🥾 Moderate Hike: 5.3 mi loop, 565 ft elevation gain. A scenic and relatively gentle trail that loops past the forested shores of both Taggart Lake and Bradley Lake. Resting directly beneath the massive peaks of the Teton Range, this hike offers outstanding mountain reflections and beautiful aspen groves."
+  },
+  {
+    "id": 33,
+    "type": "activity",
+    "title": "Cottonwood Creek",
+    "dayNumber": 5,
+    "duration": 0.75,
+    "coordinates": [
+      43.6974,
+      -110.7302
+    ],
+    "description": "🏞️ Scenic Walk & Picnic: A quiet, beautiful spot near Moose along the Teton Park Road where Cottonwood Creek flows. Walk down to the water, enjoy a picnic, and view the nearby historic Jimmy Manges Cabin, the oldest standing homestead structure in Jackson Hole."
+  },
+  {
+    "id": 34,
+    "type": "activity",
+    "title": "Lakeshore Trail",
+    "dayNumber": 5,
+    "duration": 1.0,
+    "coordinates": [
+      43.9036,
+      -110.6436
+    ],
+    "description": "🥾 Easy Hike: 2.2 mi loop, 100 ft elevation gain. Located at Colter Bay. A flat, paved figure-eight loop that follows the forested shoreline of Jackson Lake. Offers spectacular, easy-access views of the lake and the Teton Range, including Mount Moran — perfect for a relaxing stroll."
+  },
+  {
+    "id": 35,
+    "type": "activity",
+    "title": "Schwabacher Trail",
+    "dayNumber": 5,
+    "duration": 1.0,
+    "coordinates": [
+      43.7115,
+      -110.6709
+    ],
+    "description": "📷 Scenic Walk: 1.3 mi round-trip, flat. A world-famous photography spot along the Snake River. Beaver dams create perfectly still pools that reflect the Grand Teton. Excellent for a morning walk and highly active for wildlife like moose and waterfowl."
+  },
+  {
+    "id": 36,
+    "type": "activity",
+    "title": "Cascade Canyon Trail",
+    "dayNumber": 5,
+    "duration": 5.0,
+    "coordinates": [
+      43.763,
+      -110.722
+    ],
+    "description": "🥾 Challenging Hike: 9.3 mi out-and-back, 1,100 ft elevation gain. One of the most famous and scenic hikes in the Rocky Mountains. Take the Jenny Lake shuttle boat across the water, then ascend past Hidden Falls and Inspiration Point into the breathtaking, steep-walled Cascade Canyon. High chance of spotting moose in the willows."
+  },
+  {
+    "id": 37,
+    "type": "activity",
+    "title": "Delta Lake Loop",
+    "dayNumber": 5,
+    "duration": 5.0,
+    "coordinates": [
+      43.7346,
+      -110.7415
+    ],
+    "description": "🥾 Strenuous Scramble: 8.0 mi round-trip, 2,300 ft elevation gain. An unofficial, unmarked, and physically grueling trail starting from Lupine Meadows. The final 3/4 mile requires scrambling over steep boulder fields and dirt slopes, but rewards you with an up-close, breathtaking view of the brilliant turquoise Delta Lake sitting directly underneath the Grand Teton."
+  },
+  {
+    "id": 38,
+    "type": "activity",
+    "title": "Colter Bay Hermitage Point Trail",
+    "dayNumber": 5,
+    "duration": 4.5,
+    "coordinates": [
+      43.88,
+      -110.6356
+    ],
+    "description": "🥾 Moderate Hike: 9.7 mi loop, 930 ft elevation gain. A long but relatively flat, rolling hike exploring the peninsula extending into Jackson Lake from Colter Bay. Winds through lodgepole pine forests, meadows, Swan Lake, and Heron Pond. Perfect for viewing trumpeter swans, moose, and waterfowl before reaching the scenic point."
+  },
+  {
+    "id": 39,
+    "type": "activity",
+    "title": "Big Rocks Trail and Black Canyon Loop",
+    "dayNumber": 5,
+    "duration": 4.5,
+    "coordinates": [
+      43.4919,
+      -110.9082
+    ],
+    "description": "🥾 Challenging Hike: ~8.3 mi loop. Located in the Bridger-Teton National Forest near Wilson, WY. Climbs through lush wildflower meadows and aspen groves on the Big Rocks Trail (#4004A), then connects to follow a gorgeous high ridgeline along the Black Canyon Trail (#4004) before descending along the creek. Note: The Black Canyon section is also popular with mountain bikers."
   },
   {
     "id": 13,
