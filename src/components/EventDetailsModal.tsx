@@ -49,9 +49,11 @@ function getMapsUrl(event: VacationEvent): string | null {
 interface Props {
   event: VacationEvent;
   onClose: () => void;
+  completedEvents: Record<string, boolean>;
+  toggleEventCompleted: (id: string) => void;
 }
 
-export default function EventDetailsModal({ event, onClose }: Props) {
+export default function EventDetailsModal({ event, onClose, completedEvents, toggleEventCompleted }: Props) {
   const styles = TYPE_STYLES[event.type] ?? TYPE_STYLES.activity;
   const mapsUrl = getMapsUrl(event);
 
@@ -99,7 +101,7 @@ export default function EventDetailsModal({ event, onClose }: Props) {
           </div>
 
           <div className="flex-1 min-w-0">
-            <h2 className="text-lg font-bold text-slate-900 dark:text-slate-50 leading-tight">
+            <h2 className={`text-lg font-bold leading-tight ${completedEvents[event.id] ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-slate-50'}`}>
               {event.title}
             </h2>
             <span className={`inline-block mt-1 text-xs font-semibold px-2 py-0.5 rounded-full ${styles.badge}`}>
@@ -177,20 +179,44 @@ export default function EventDetailsModal({ event, onClose }: Props) {
         </div>
 
         {/* Footer actions */}
-        {mapsUrl && (
-          <div className="shrink-0 px-5 pb-5 pt-3 border-t border-slate-100 dark:border-slate-700">
+        <div className="shrink-0 px-5 pb-5 pt-3 border-t border-slate-100 dark:border-slate-700 flex gap-3">
+          <button
+            id={`modal-complete-btn-${event.id}`}
+            onClick={() => toggleEventCompleted(String(event.id))}
+            className={`flex items-center justify-center gap-2 flex-1 px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-150 border ${
+              completedEvents[event.id]
+                ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300'
+                : 'bg-slate-50 dark:bg-slate-900/60 border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:border-emerald-400 hover:text-emerald-600 dark:hover:text-emerald-400'
+            }`}
+            aria-pressed={!!completedEvents[event.id]}
+          >
+            <span className={`w-4 h-4 rounded border-2 flex items-center justify-center shrink-0 transition-colors ${
+              completedEvents[event.id]
+                ? 'bg-emerald-500 border-emerald-500'
+                : 'border-slate-400 dark:border-slate-500'
+            }`}>
+              {completedEvents[event.id] && (
+                <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                  <path d="M1 4l2.5 2.5L9 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )}
+            </span>
+            {completedEvents[event.id] ? 'Completed' : 'Mark Complete'}
+          </button>
+
+          {mapsUrl && (
             <a
               href={mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
               id={`modal-maps-link-${event.id}`}
-              className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 active:scale-[0.98] text-white font-semibold text-sm transition-all duration-150 shadow-sm shadow-blue-500/30"
+              className="flex items-center justify-center gap-2 flex-1 px-4 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 active:scale-[0.98] text-white font-semibold text-sm transition-all duration-150 shadow-sm shadow-blue-500/30"
             >
               <Navigation size={16} />
-              Get Directions
+              Directions
             </a>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

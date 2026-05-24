@@ -2,17 +2,16 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Plane, Hotel, Car, MapPin, Clock, Map as MapIcon, CalendarDays, AlertTriangle, ChevronDown, Info } from 'lucide-react';
 import { VacationEvent } from '../types';
-import MapLink from './MapLink';
 import { formatDisplayTime } from '../hooks/useVacationData';
 import EventDetailsModal from './EventDetailsModal';
 
 const EventIcon = ({ type }: { type: string }) => {
   switch (type) {
-    case 'flight': return <Plane size={24} />;
-    case 'hotel': return <Hotel size={24} />;
-    case 'activity': return <MapIcon size={24} />;
-    case 'driving': return <Car size={24} />;
-    default: return <MapPin size={24} />;
+    case 'flight': return <Plane size={14} />;
+    case 'hotel': return <Hotel size={14} />;
+    case 'activity': return <MapIcon size={14} />;
+    case 'driving': return <Car size={14} />;
+    default: return <MapPin size={14} />;
   }
 };
 
@@ -95,7 +94,7 @@ export default function ItineraryTab({
             />
           </button>
           
-          <div className={`flex flex-col gap-4 overflow-hidden transition-all duration-300 ${isCollapsed ? 'max-h-0' : 'max-h-[9999px]'}`}>
+          <div className={`flex flex-col gap-2 overflow-hidden transition-all duration-300 ${isCollapsed ? 'max-h-0' : 'max-h-[9999px]'}`}>
             {dayEvents.map(event => {
               let typeColorClass = "bg-slate-200";
               let textColorClass = "text-slate-500";
@@ -105,62 +104,65 @@ export default function ItineraryTab({
               if (event.type === 'driving') { typeColorClass = "bg-amber-500"; textColorClass = "text-amber-500"; }
 
               return (
-                <div key={event.id} className={`bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-md border ${event.timeWarning ? 'border-red-500/50 dark:border-red-500/50 shadow-red-500/10' : 'border-slate-200 dark:border-slate-700'} transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg relative overflow-hidden flex flex-col ${completedEvents[event.id] ? 'opacity-60' : ''}`}>
+                <div
+                  key={event.id}
+                  className={`bg-white dark:bg-slate-800 rounded-xl px-4 py-3 shadow-sm border ${
+                    event.timeWarning
+                      ? 'border-red-500/50 dark:border-red-500/50 shadow-red-500/10'
+                      : 'border-slate-200 dark:border-slate-700'
+                  } transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md relative overflow-hidden flex flex-col gap-1 ${
+                    completedEvents[event.id] ? 'opacity-60' : ''
+                  }`}
+                >
                   <div className={`absolute top-0 left-0 bottom-0 w-1 ${typeColorClass}`} />
-                  
-                  <div className="flex justify-between items-start mb-3 gap-4 sm:flex-row flex-col-reverse">
-                    <div className="flex items-center gap-3">
-                      <input 
-                        type="checkbox" 
-                        className="w-5 h-5 cursor-pointer accent-blue-500 shrink-0"
-                        checked={!!completedEvents[event.id]}
-                        onChange={() => toggleEventCompleted(String(event.id))}
-                      />
-                      <h3 className={`text-xl font-semibold ${completedEvents[event.id] ? 'line-through text-slate-500 dark:text-slate-400' : 'text-slate-900 dark:text-slate-50'}`}>{event.title}</h3>
+
+                  {/* Row 1: time + icons */}
+                  <div className="flex items-center justify-between gap-2">
+                    <div className={`flex items-center gap-1.5 text-xs font-medium ${
+                      event.timeWarning ? 'text-red-500 dark:text-red-400' : 'text-slate-400 dark:text-slate-500'
+                    }`}>
+                      <Clock size={12} className="shrink-0" />
+                      {formatDisplayTime(event.startTime)}
+                      {event.endTime ? ` – ${formatDisplayTime(event.endTime)}` : ''}
+                      {event.timeWarning && (
+                        <span className="flex items-center gap-1 bg-red-50 dark:bg-red-900/20 px-1.5 py-0.5 rounded">
+                          <AlertTriangle size={11} />
+                          {event.timeWarning}
+                        </span>
+                      )}
                     </div>
-                    <div className="flex items-center gap-2 sm:relative absolute top-5 right-5">
+
+                    <div className="flex items-center gap-1.5">
                       <button
                         id={`event-details-btn-${event.id}`}
                         onClick={() => setSelectedEvent(event)}
-                        className={`flex items-center justify-center w-8 h-8 rounded-lg bg-slate-50 dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors ${textColorClass}`}
+                        className={`flex items-center justify-center w-7 h-7 rounded-lg bg-slate-50 dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors ${textColorClass}`}
                         aria-label={`View details for ${event.title}`}
                       >
-                        <Info size={16} />
+                        <Info size={14} />
                       </button>
-                      <div className={`flex items-center justify-center w-10 h-10 rounded-lg bg-slate-50 dark:bg-slate-900 ${textColorClass}`}>
+                      <div className={`flex items-center justify-center w-7 h-7 rounded-lg bg-slate-50 dark:bg-slate-900 ${textColorClass}`}>
                         <EventIcon type={event.type} />
                       </div>
                     </div>
                   </div>
-                  
-                  <div className={`flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm font-medium mb-2 ${event.timeWarning ? 'text-red-500 dark:text-red-400' : 'text-slate-500 dark:text-slate-400'}`}>
-                    <div className="flex items-center gap-2">
-                      <Clock size={16} />
-                      {formatDisplayTime(event.startTime)} {event.endTime ? `- ${formatDisplayTime(event.endTime)}` : ''}
-                    </div>
-                    {event.timeWarning && (
-                      <div className="flex items-center gap-1.5 text-xs bg-red-50 dark:bg-red-900/20 px-2 py-1 rounded-md">
-                        <AlertTriangle size={14} />
-                        {event.timeWarning}
-                      </div>
-                    )}
-                  </div>
-                  
-                  <MapLink event={event} />
-                  
-                  {event.description && (
-                    <div className="text-slate-500 dark:text-slate-400 text-sm mt-3 pt-3 border-t border-slate-200 dark:border-slate-700">
-                      {event.description}
-                    </div>
-                  )}
+
+                  {/* Row 2: title */}
+                  <h3 className={`text-sm font-semibold leading-snug ${
+                    completedEvents[event.id]
+                      ? 'line-through text-slate-400 dark:text-slate-500'
+                      : 'text-slate-900 dark:text-slate-50'
+                  }`}>
+                    {event.title}
+                  </h3>
 
                   {event.type === 'hotel' && (
-                    <div className="mt-4 pt-4 border-t border-dashed border-slate-200 dark:border-slate-700 flex flex-col gap-2">
-                      <label className="text-xs text-slate-500 dark:text-slate-400 font-medium">Confirmation Number:</label>
-                      <input 
-                        type="text" 
-                        placeholder="Enter confirmation #" 
-                        className="w-full p-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition-colors text-sm"
+                    <div className="mt-2 pt-2 border-t border-dashed border-slate-200 dark:border-slate-700 flex flex-col gap-1.5">
+                      <label className="text-[10px] text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">Confirmation #:</label>
+                      <input
+                        type="text"
+                        placeholder="Enter confirmation #"
+                        className="w-full px-2 py-1.5 border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition-colors text-xs"
                         value={confirmations[String(event.id)] || ''}
                         onChange={(e) => updateConfirmation(String(event.id), e.target.value)}
                       />
@@ -176,7 +178,12 @@ export default function ItineraryTab({
     </section>
 
       {selectedEvent && createPortal(
-        <EventDetailsModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />,
+        <EventDetailsModal
+          event={selectedEvent}
+          onClose={() => setSelectedEvent(null)}
+          completedEvents={completedEvents}
+          toggleEventCompleted={toggleEventCompleted}
+        />,
         document.body
       )}
     </>
