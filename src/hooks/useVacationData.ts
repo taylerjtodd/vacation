@@ -156,8 +156,10 @@ export function useVacationData(setActiveTab: (tab: string) => void) {
 
         if (sorted.length > 0) {
           const firstEventDateStr = sorted[0].date;
-          const todayStr = format(new Date(), 'yyyy-MM-dd');
-          if (firstEventDateStr && todayStr < firstEventDateStr) {
+          const today = new Date();
+          const todayStr = format(today, 'yyyy-MM-dd');
+          const twoDaysFromNow = format(new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2), 'yyyy-MM-dd');
+          if (firstEventDateStr && todayStr <= twoDaysFromNow && firstEventDateStr <= twoDaysFromNow && firstEventDateStr > todayStr) {
             setActiveTab('packing');
           } else {
             setActiveTab('itinerary');
