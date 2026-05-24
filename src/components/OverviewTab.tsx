@@ -1,5 +1,5 @@
 import { Vacation } from '../types';
-import { CalendarDays, Map as MapIcon, Info } from 'lucide-react';
+import { CalendarDays, Info } from 'lucide-react';
 
 interface Props {
   vacation: Vacation;

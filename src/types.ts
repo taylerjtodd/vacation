@@ -22,6 +22,7 @@ export interface VacationEvent {
   address?: string;
   coordinates?: [number, number];
   description?: string;
+  details?: Record<string, string>;
 }
 
 export interface PackingItem {

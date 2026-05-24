@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Plane, Hotel, Car, MapPin, Clock, Map as MapIcon, CalendarDays, AlertTriangle, ChevronDown } from 'lucide-react';
+import { createPortal } from 'react-dom';
+import { Plane, Hotel, Car, MapPin, Clock, Map as MapIcon, CalendarDays, AlertTriangle, ChevronDown, Info } from 'lucide-react';
 import { VacationEvent } from '../types';
 import MapLink from './MapLink';
 import { formatDisplayTime } from '../hooks/useVacationData';
+import EventDetailsModal from './EventDetailsModal';
 
 const EventIcon = ({ type }: { type: string }) => {
   switch (type) {
@@ -36,6 +38,7 @@ export default function ItineraryTab({
 }: Props) {
   const dateKeys = Object.keys(groupedEvents).sort().join(',');
   const [collapsedDays, setCollapsedDays] = useState<Record<string, boolean>>({});
+  const [selectedEvent, setSelectedEvent] = useState<VacationEvent | null>(null);
 
   const toggleDay = (date: string) => {
     setCollapsedDays(prev => ({ ...prev, [date]: !prev[date] }));
@@ -65,6 +68,7 @@ export default function ItineraryTab({
   }, [dateKeys]);
 
   return (
+    <>
     <section className="relative pl-8 sm:pl-12">
       <div className="absolute top-0 bottom-0 left-[11px] sm:left-[27px] w-0.5 bg-slate-200 dark:bg-slate-700 rounded-full" />
 
@@ -110,12 +114,22 @@ export default function ItineraryTab({
                         type="checkbox" 
                         className="w-5 h-5 cursor-pointer accent-blue-500 shrink-0"
                         checked={!!completedEvents[event.id]}
-                        onChange={() => toggleEventCompleted(event.id)}
+                        onChange={() => toggleEventCompleted(String(event.id))}
                       />
                       <h3 className={`text-xl font-semibold ${completedEvents[event.id] ? 'line-through text-slate-500 dark:text-slate-400' : 'text-slate-900 dark:text-slate-50'}`}>{event.title}</h3>
                     </div>
-                    <div className={`flex items-center justify-center w-10 h-10 rounded-lg bg-slate-50 dark:bg-slate-900 sm:relative absolute top-5 right-5 ${textColorClass}`}>
-                      <EventIcon type={event.type} />
+                    <div className="flex items-center gap-2 sm:relative absolute top-5 right-5">
+                      <button
+                        id={`event-details-btn-${event.id}`}
+                        onClick={() => setSelectedEvent(event)}
+                        className={`flex items-center justify-center w-8 h-8 rounded-lg bg-slate-50 dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors ${textColorClass}`}
+                        aria-label={`View details for ${event.title}`}
+                      >
+                        <Info size={16} />
+                      </button>
+                      <div className={`flex items-center justify-center w-10 h-10 rounded-lg bg-slate-50 dark:bg-slate-900 ${textColorClass}`}>
+                        <EventIcon type={event.type} />
+                      </div>
                     </div>
                   </div>
                   
@@ -147,8 +161,8 @@ export default function ItineraryTab({
                         type="text" 
                         placeholder="Enter confirmation #" 
                         className="w-full p-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition-colors text-sm"
-                        value={confirmations[event.id] || ''}
-                        onChange={(e) => updateConfirmation(event.id, e.target.value)}
+                        value={confirmations[String(event.id)] || ''}
+                        onChange={(e) => updateConfirmation(String(event.id), e.target.value)}
                       />
                     </div>
                   )}
@@ -160,5 +174,11 @@ export default function ItineraryTab({
         );
       })}
     </section>
+
+      {selectedEvent && createPortal(
+        <EventDetailsModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />,
+        document.body
+      )}
+    </>
   );
 }
