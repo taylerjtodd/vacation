@@ -189,6 +189,19 @@
     "description": "⛲ Geysers: Catch an Old Faithful eruption (roughly every 90 min — check the predicted time at the visitor center). Then walk the Upper Geyser Basin boardwalk, which has the highest concentration of geysers on Earth. Castle, Grand, and Riverside geysers are all within a short walk of Old Faithful."
   },
   {
+    "id": 40,
+    "type": "activity",
+    "title": "Grand Canyon of the Yellowstone",
+    "dayNumber": 3,
+    "duration": 1.5,
+    "address": "Canyon Village, WY 82190",
+    "coordinates": [
+      44.7185756856377,
+      -110.49644323070784
+    ],
+    "description": "🌋 Geologic Feature: Marvel at the breathtaking canyon walls and the spectacular 308-ft Lower Falls from Artist Point and other iconic rim overlooks. The brilliant yellow, pink, and orange canyon walls are a dramatic showcase of the park's volcanic history."
+  },
+  {
     "id": 26,
     "type": "activity",
     "title": "Hayden Valley Wildlife Viewing",
