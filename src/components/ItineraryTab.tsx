@@ -44,7 +44,7 @@ const getEventIconLabel = (event: VacationEvent) => {
 
 const formatDate = (dateStr: string) => {
   const options: Intl.DateTimeFormatOptions = { weekday: 'long', month: 'long', day: 'numeric' };
-  return new Date(dateStr).toLocaleDateString('en-US', options);
+  return new Date(`${dateStr}T12:00:00`).toLocaleDateString('en-US', options);
 };
 
 interface Props {
