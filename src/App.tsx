@@ -3,18 +3,12 @@ import { CalendarDays, FileText, Briefcase } from 'lucide-react';
 import ItineraryTab from './components/ItineraryTab';
 import PackingTab from './components/PackingTab';
 import NotesTab from './components/NotesTab';
-import { VacationEvent } from './types';
-import { useLocalData } from './context/LocalDataContext';
 import { useVacationData } from './hooks/useVacationData';
 import './index.css';
 import Header from './components/Header';
 
 function App() {
   const [activeTab, setActiveTab] = useState('itinerary');
-
-  const {
-    localData,
-  } = useLocalData();
 
   const {
     currentVacation,
@@ -26,19 +20,6 @@ function App() {
 
   if (loading) return <div className="text-center p-8 text-slate-500 dark:text-slate-400">Loading itinerary...</div>;
   if (error) return <div className="text-center p-8 text-red-500">{error}</div>;
-
-  const visibleEvents = localData.hideCompletedEvents
-    ? events.filter(event => !localData.completedEvents[String(event.id)])
-    : events;
-
-  const groupedEvents = visibleEvents.reduce((acc: Record<string, VacationEvent[]>, event) => {
-    if (!event.date) return acc;
-    if (!acc[event.date]) {
-      acc[event.date] = [];
-    }
-    acc[event.date].push(event);
-    return acc;
-  }, {});
 
   const TabButton = ({ children, myTab }: { children: React.ReactElement, myTab: string }) => {
     const title = toTitleCase(myTab);
@@ -66,7 +47,7 @@ function App() {
 
       <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
         {activeTab === 'itinerary' && (
-          <ItineraryTab groupedEvents={groupedEvents} />
+          <ItineraryTab events={events} />
         )}
 
         {activeTab === 'packing' && (

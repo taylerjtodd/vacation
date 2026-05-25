@@ -22,12 +22,23 @@ const formatDate = (dateStr: string) => {
 };
 
 interface Props {
-  groupedEvents: Record<string, VacationEvent[]>;
+  events: VacationEvent[];
 }
 
-export default function ItineraryTab({ groupedEvents }: Props) {
+export default function ItineraryTab({ events }: Props) {
   const { localData } = useLocalData();
-  const { completedEvents } = localData;
+  const { completedEvents, hideCompletedEvents } = localData;
+  const visibleEvents = hideCompletedEvents
+    ? events.filter((event) => !completedEvents[String(event.id)])
+    : events;
+  const groupedEvents = visibleEvents.reduce((acc: Record<string, VacationEvent[]>, event) => {
+    if (!event.date) return acc;
+    if (!acc[event.date]) {
+      acc[event.date] = [];
+    }
+    acc[event.date].push(event);
+    return acc;
+  }, {});
   const dateKeys = Object.keys(groupedEvents).sort().join(',');
   const [collapsedDays, setCollapsedDays] = useState<Record<string, boolean>>({});
   const [selectedEvent, setSelectedEvent] = useState<VacationEvent | null>(null);
