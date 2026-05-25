@@ -46,9 +46,12 @@
   {
     "id": 8,
     "type": "driving",
-    "title": "Drive - Devils Tower to east Yellowstone entrance",
+    "title": "Drive - Devils Tower to northeast Yellowstone entrance",
     "dayNumber": 2,
-    "duration": 6
+    "duration": 7,
+    "address": "212, Northeast Entrance, US-212, Cooke City, MT 59081",
+    "coordinates": [45.005396304330226, -110.01055999129481],
+    "description": "8 hrs from Rapid City if we skip Devils Tower"
   },
   {
     "id": 17,
@@ -72,14 +75,6 @@
     }
   },
   {
-    "id": 9,
-    "type": "activity",
-    "title": "Yellowstone River Picnic Area",
-    "dayNumber": 2,
-    "duration": 0.5,
-    "description": "🦬 Wildlife: A great first stop just inside the East Entrance — the Yellowstone River corridor here is an excellent wildlife viewing area. Scan the hillsides and riverbanks for bison, elk, and raptors."
-  },
-  {
     "id": 18,
     "type": "activity",
     "title": "Lamar Valley Wildlife Viewing",
@@ -99,7 +94,7 @@
       44.894008857481644,
       -110.38719474240085
     ],
-    "description": "🌋 Geologic Feature: A dramatic 132-ft waterfall carved through volcanic rock. Short walk to the overlook. The basalt columns framing the falls are a great example of the park's volcanic geology."
+    "description": "🌋 Geologic Feature: A dramatic 132-ft waterfall carved through volcanic rock. Park at the general store and then a short walk to the overlook. The basalt columns framing the falls are a great example of the park's volcanic geology."
   },
   {
     "id": 20,
@@ -201,41 +196,6 @@
     }
   },
   {
-    "id": 24,
-    "type": "activity",
-    "title": "Grand Prismatic Spring & Fairy Falls",
-    "dayNumber": 3,
-    "priority": 1,
-    "duration": 2,
-    "address": "Wyoming 82190",
-    "coordinates": [
-      44.52960637021252,
-      -110.8380556059732
-    ],
-    "description": "🌋 Geologic Feature + 🥾 Hike: Grand Prismatic Spring is Yellowstone's largest hot spring and most photographed thermal feature. Start with the Fairy Falls Trail (5.4 mi out-and-back, easy) — the overlook at mile 1 gives the iconic aerial view of the rainbow-colored spring. Continue to Fairy Falls itself, a stunning 200-ft waterfall at the end of the trail.",
-    "details": {
-      "Shoe Recommendation": "Hiking Shoes / Boots",
-      "Trail Type": "Dirt / Gravel & Boardwalk",
-      "Difficulty": "Easy / Moderate",
-      "Distance": "5.4 miles"
-    }
-  },
-  {
-    "id": 25,
-    "type": "activity",
-    "title": "Old Faithful & Upper Geyser Basin",
-    "dayNumber": 3,
-    "priority": 1,
-    "duration": 2,
-    "description": "⛲ Geysers: Catch an Old Faithful eruption (roughly every 90 min — check the predicted time at the visitor center). Then walk the Upper Geyser Basin boardwalk, which has the highest concentration of geysers on Earth. Castle, Grand, and Riverside geysers are all within a short walk of Old Faithful.",
-    "details": {
-      "Shoe Recommendation": "Walking Shoes",
-      "Trail Type": "Boardwalk / Paved",
-      "Difficulty": "Easy",
-      "Distance": "Varies (~2.0 miles suggested)"
-    }
-  },
-  {
     "id": 40,
     "type": "activity",
     "title": "Grand Canyon of the Yellowstone",
@@ -257,45 +217,10 @@
     "description": "🦬 Wildlife: Prime bison and grizzly bear territory on the drive toward West Yellowstone. Slow down and scan the open meadows — this broad glacially-carved valley is one of the best places in the park to spot large mammals. Pelican Valley and the Yellowstone Lake shoreline nearby are excellent for waterfowl and trumpeter swans."
   },
   {
-    "id": 2,
-    "type": "hotel",
-    "title": "West Gate KOA",
-    "dayNumber": 3,
-    "duration": 1,
-    "earliestStart": "15:00",
-    "latestStart": "22:00",
-    "location": "Yellowstone Park / West Gate KOA Holiday",
-    "address": "3305 Targhee Pass Highway 6 miles West on, US-20, West Yellowstone, MT 59758",
-    "coordinates": [
-      44.689265651080056,
-      -111.21680875212687
-    ]
-  },
-  {
-    "id": 11,
-    "type": "activity",
-    "title": "West Thumb Geyser Basin",
-    "dayNumber": 4,
-    "startTime": "09:00",
-    "duration": 1,
-    "address": "Yellowstone National Park, WY 82190",
-    "coordinates": [
-      44.41698594503287,
-      -110.57186893644477
-    ],
-    "description": "🌋 Geologic Feature: A unique spot where hydrothermal features meet the shore of Yellowstone Lake. Walk the short boardwalk loop past boiling pools and the famous Fishing Cone — a submerged geyser where early visitors would cook fish directly in the boiling water.",
-    "details": {
-      "Shoe Recommendation": "Walking Shoes",
-      "Trail Type": "Boardwalk",
-      "Difficulty": "Easy",
-      "Distance": "0.6 miles"
-    }
-  },
-  {
     "id": 27,
     "type": "activity",
     "title": "Storm Point Trail",
-    "dayNumber": 4,
+    "dayNumber": 3,
     "duration": 1.5,
     "address": "Unnamed Road, Cody, WY 82414",
     "coordinates": [
@@ -315,7 +240,7 @@
     "id": 28,
     "type": "activity",
     "title": "Natural Bridge Trail",
-    "dayNumber": 4,
+    "dayNumber": 3,
     "duration": 1,
     "address": "Natural Brg Trl, Yellowstone National Park, WY 82190",
     "coordinates": [
@@ -328,6 +253,88 @@
       "Trail Type": "Dirt Trail",
       "Difficulty": "Easy",
       "Distance": "2.0 miles"
+    }
+  },
+  {
+    "id": 30,
+    "type": "activity",
+    "title": "Yellowstone Lake & Grant Village Wildlife",
+    "dayNumber": 3,
+    "duration": 1,
+    "address": "2 Grant Village Rd, Yellowstone National Park, WY 82190",
+    "coordinates": [
+      44.39565856458025,
+      -110.55685695868935
+    ],
+    "description": "🦬 Wildlife: The meadows near Grant Village often have bison and elk in the early morning and evening. Yellowstone Lake is a hotspot for osprey, bald eagles, and river otters along the shoreline. Keep an eye out for black bears along the forest edges on the south entrance road as you head toward Jackson."
+  },
+  {
+    "id": 11,
+    "type": "activity",
+    "title": "West Thumb Geyser Basin",
+    "dayNumber": 3,
+    "duration": 1,
+    "address": "Yellowstone National Park, WY 82190",
+    "coordinates": [
+      44.41698594503287,
+      -110.57186893644477
+    ],
+    "description": "🌋 Geologic Feature: A unique spot where hydrothermal features meet the shore of Yellowstone Lake. Walk the short boardwalk loop past boiling pools and the famous Fishing Cone — a submerged geyser where early visitors would cook fish directly in the boiling water.",
+    "details": {
+      "Shoe Recommendation": "Walking Shoes",
+      "Trail Type": "Boardwalk",
+      "Difficulty": "Easy",
+      "Distance": "0.6 miles"
+    }
+  },
+  {
+    "id": 2,
+    "type": "hotel",
+    "title": "West Gate KOA",
+    "dayNumber": 3,
+    "duration": 1,
+    "earliestStart": "15:00",
+    "latestStart": "22:00",
+    "location": "Yellowstone Park / West Gate KOA Holiday",
+    "address": "3305 Targhee Pass Highway 6 miles West on, US-20, West Yellowstone, MT 59758",
+    "coordinates": [
+      44.689265651080056,
+      -111.21680875212687
+    ]
+  },
+  {
+    "id": 24,
+    "type": "activity",
+    "title": "Grand Prismatic Spring & Fairy Falls",
+    "dayNumber": 4,
+    "priority": 1,
+    "duration": 2,
+    "address": "Wyoming 82190",
+    "coordinates": [
+      44.52960637021252,
+      -110.8380556059732
+    ],
+    "description": "Alert: Trail might be closed due to bear attack. 🌋 Geologic Feature + 🥾 Hike: Grand Prismatic Spring is Yellowstone's largest hot spring and most photographed thermal feature. Start with the Fairy Falls Trail (5.4 mi out-and-back, easy) — the overlook at mile 1 gives the iconic aerial view of the rainbow-colored spring. Continue to Fairy Falls itself, a stunning 200-ft waterfall at the end of the trail.",
+    "details": {
+      "Shoe Recommendation": "Hiking Shoes / Boots",
+      "Trail Type": "Dirt / Gravel & Boardwalk",
+      "Difficulty": "Easy / Moderate",
+      "Distance": "5.4 miles"
+    }
+  },
+  {
+    "id": 25,
+    "type": "activity",
+    "title": "Old Faithful & Upper Geyser Basin",
+    "dayNumber": 4,
+    "priority": 1,
+    "duration": 2,
+    "description": "⛲ Geysers: Catch an Old Faithful eruption (roughly every 90 min — check the predicted time at the visitor center). Then walk the Upper Geyser Basin boardwalk, which has the highest concentration of geysers on Earth. Castle, Grand, and Riverside geysers are all within a short walk of Old Faithful.",
+    "details": {
+      "Shoe Recommendation": "Walking Shoes",
+      "Trail Type": "Boardwalk / Paved",
+      "Difficulty": "Easy",
+      "Distance": "Varies (~2.0 miles suggested)"
     }
   },
   {
@@ -349,19 +356,6 @@
       "Distance": "4.8 miles",
       "Eruption Cycle": "Every ~3 hours"
     }
-  },
-  {
-    "id": 30,
-    "type": "activity",
-    "title": "Yellowstone Lake & Grant Village Wildlife",
-    "dayNumber": 4,
-    "duration": 1,
-    "address": "2 Grant Village Rd, Yellowstone National Park, WY 82190",
-    "coordinates": [
-      44.39565856458025,
-      -110.55685695868935
-    ],
-    "description": "🦬 Wildlife: The meadows near Grant Village often have bison and elk in the early morning and evening. Yellowstone Lake is a hotspot for osprey, bald eagles, and river otters along the shoreline. Keep an eye out for black bears along the forest edges on the south entrance road as you head toward Jackson."
   },
   {
     "id": 31,
