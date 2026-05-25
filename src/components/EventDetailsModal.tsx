@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { VacationEvent } from '../types';
 import { formatDisplayTime } from '../hooks/useVacationData';
+import { useLocalData } from '../context/LocalDataContext';
 
 const EventIcon = ({ type }: { type: string }) => {
   const cls = 'shrink-0';
@@ -49,20 +50,14 @@ function getMapsUrl(event: VacationEvent): string | null {
 interface Props {
   event: VacationEvent;
   onClose: () => void;
-  completedEvents: Record<string, boolean>;
-  confirmations: Record<string, string>;
-  toggleEventCompleted: (id: string) => void;
-  updateConfirmation: (id: string, value: string) => void;
 }
 
 export default function EventDetailsModal({
   event,
   onClose,
-  completedEvents,
-  confirmations,
-  toggleEventCompleted,
-  updateConfirmation,
 }: Props) {
+  const { localData, toggleEventCompleted, updateConfirmation } = useLocalData();
+  const { completedEvents, confirmations } = localData;
   const styles = TYPE_STYLES[event.type] ?? TYPE_STYLES.activity;
   const mapsUrl = getMapsUrl(event);
   const confirmationValue = confirmations[String(event.id)] || '';

@@ -1,9 +1,8 @@
-interface Props {
-  notes: string;
-  updateNotes: (notes: string) => void;
-}
+import { useLocalData } from '../context/LocalDataContext';
 
-export default function NotesTab({ notes, updateNotes }: Props) {
+export default function NotesTab() {
+  const { localData, updateNotes } = useLocalData();
+  const { notes } = localData;
   return (
     <section className="bg-white dark:bg-slate-800 rounded-2xl p-5 shadow-md border border-slate-200 dark:border-slate-700">
       <h2 className="text-xl font-bold text-blue-500 mb-4">Notes</h2>

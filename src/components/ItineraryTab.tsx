@@ -4,6 +4,7 @@ import { Plane, Hotel, Car, MapPin, Clock, Map as MapIcon, CalendarDays, AlertTr
 import { VacationEvent } from '../types';
 import { formatDisplayTime } from '../hooks/useVacationData';
 import EventDetailsModal from './EventDetailsModal';
+import { useLocalData } from '../context/LocalDataContext';
 
 const EventIcon = ({ type }: { type: string }) => {
   switch (type) {
@@ -22,19 +23,11 @@ const formatDate = (dateStr: string) => {
 
 interface Props {
   groupedEvents: Record<string, VacationEvent[]>;
-  completedEvents: Record<string, boolean>;
-  confirmations: Record<string, string>;
-  toggleEventCompleted: (id: string) => void;
-  updateConfirmation: (id: string, value: string) => void;
 }
 
-export default function ItineraryTab({ 
-  groupedEvents, 
-  completedEvents, 
-  confirmations, 
-  toggleEventCompleted, 
-  updateConfirmation 
-}: Props) {
+export default function ItineraryTab({ groupedEvents }: Props) {
+  const { localData } = useLocalData();
+  const { completedEvents } = localData;
   const dateKeys = Object.keys(groupedEvents).sort().join(',');
   const [collapsedDays, setCollapsedDays] = useState<Record<string, boolean>>({});
   const [selectedEvent, setSelectedEvent] = useState<VacationEvent | null>(null);
@@ -168,10 +161,6 @@ export default function ItineraryTab({
         <EventDetailsModal
           event={selectedEvent}
           onClose={() => setSelectedEvent(null)}
-          completedEvents={completedEvents}
-          confirmations={confirmations}
-          toggleEventCompleted={toggleEventCompleted}
-          updateConfirmation={updateConfirmation}
         />,
         document.body
       )}

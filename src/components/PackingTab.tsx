@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { PackingItem } from '../types';
+import { useLocalData } from '../context/LocalDataContext';
 
 interface Props {
   packingList: PackingItem[];
-  completedPacking: Record<string, boolean>;
-  togglePackingItem: (id: string) => void;
 }
 
-export default function PackingTab({ packingList, completedPacking, togglePackingItem }: Props) {
+export default function PackingTab({ packingList }: Props) {
+  const { localData, togglePackingItem } = useLocalData();
+  const { completedPacking } = localData;
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
 
   const toggleSection = (owner: string) => {

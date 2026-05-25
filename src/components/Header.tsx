@@ -3,20 +3,15 @@ import { WifiOff, Settings, ChevronDown } from 'lucide-react';
 import OverviewTab from './OverviewTab';
 import { useNetworkStatus } from '../hooks/useNetworkStatus';
 import { Vacation } from '../types';
+import { useLocalData } from '../context/LocalDataContext';
 
 interface Props {
   vacation: Vacation | null;
-  hideCompletedEvents: boolean;
-  toggleHideCompletedEvents: () => void;
-  handleClearData: () => void;
 }
 
-export default function Header({
-  vacation,
-  hideCompletedEvents,
-  toggleHideCompletedEvents,
-  handleClearData
-}: Props) {
+export default function Header({ vacation }: Props) {
+  const { localData, toggleHideCompletedEvents, handleClearData } = useLocalData();
+  const { hideCompletedEvents } = localData;
   const [isOverviewOpen, setIsOverviewOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
