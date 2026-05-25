@@ -55,6 +55,7 @@
     "type": "activity",
     "title": "Trout Lake Trail & Fishing",
     "dayNumber": 2,
+    "priority": 1,
     "duration": 1.5,
     "address": "US-212, Yellowstone National Park, WY 82190",
     "coordinates": [
@@ -83,6 +84,7 @@
     "type": "activity",
     "title": "Lamar Valley Wildlife Viewing",
     "dayNumber": 2,
+    "priority": 1,
     "duration": 1,
     "description": "🦬 Wildlife: The crown jewel of Yellowstone wildlife viewing. Bison herds, wolves, grizzly bears, and pronghorn are all commonly spotted. Pull off at any turnout and scan the hillsides with binoculars — early afternoon is still productive but dawn/dusk are peak times."
   },
@@ -203,6 +205,7 @@
     "type": "activity",
     "title": "Grand Prismatic Spring & Fairy Falls",
     "dayNumber": 3,
+    "priority": 1,
     "duration": 2,
     "address": "Wyoming 82190",
     "coordinates": [
@@ -222,6 +225,7 @@
     "type": "activity",
     "title": "Old Faithful & Upper Geyser Basin",
     "dayNumber": 3,
+    "priority": 1,
     "duration": 2,
     "description": "⛲ Geysers: Catch an Old Faithful eruption (roughly every 90 min — check the predicted time at the visitor center). Then walk the Upper Geyser Basin boardwalk, which has the highest concentration of geysers on Earth. Castle, Grand, and Riverside geysers are all within a short walk of Old Faithful.",
     "details": {

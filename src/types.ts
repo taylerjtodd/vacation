@@ -11,6 +11,7 @@ export interface VacationEvent {
   type: 'activity' | 'flight' | 'hotel' | 'driving';
   title: string;
   dayNumber: number;
+  priority?: number;
   date?: string;
   startTime?: string;
   endTime?: string;

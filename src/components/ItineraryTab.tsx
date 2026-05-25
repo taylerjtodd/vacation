@@ -1,18 +1,44 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Plane, Hotel, Car, MapPin, Clock, Map as MapIcon, CalendarDays, AlertTriangle, ChevronDown, Info } from 'lucide-react';
+import { Plane, Hotel, Car, MapPin, Clock, Map as MapIcon, CalendarDays, AlertTriangle, ChevronDown, Info, Star } from 'lucide-react';
 import { VacationEvent } from '../types';
 import { formatDisplayTime } from '../hooks/useVacationData';
 import EventDetailsModal from './EventDetailsModal';
 import { useLocalData } from '../context/LocalDataContext';
 
-const EventIcon = ({ type }: { type: string }) => {
-  switch (type) {
+const MUST_DO_PRIORITY = 1;
+
+function isMustDoEvent(event: VacationEvent) {
+  return event.priority && event.priority <= MUST_DO_PRIORITY;
+}
+
+const EventIcon = ({ event }: { event: VacationEvent }) => {
+  switch (event.type) {
     case 'flight': return <Plane size={14} />;
     case 'hotel': return <Hotel size={14} />;
-    case 'activity': return <MapIcon size={14} />;
+    case 'activity':
+      if (isMustDoEvent(event)) {
+        return <Star size={14} fill="currentColor" />;
+      } else {
+        return <MapIcon size={14} />;
+      }
     case 'driving': return <Car size={14} />;
     default: return <MapPin size={14} />;
+  }
+};
+
+const getEventIconLabel = (event: VacationEvent) => {
+  switch (event.type) {
+    case 'flight': return 'Flight';
+    case 'hotel': return 'Hotel';
+    case 'activity': 
+        if (isMustDoEvent(event)) {
+          return 'Must do activity';
+        } else{
+          return 'Activity';
+        }
+    case 'driving': return 'Driving';
+    default: return 'Event';
   }
 };
 
@@ -145,8 +171,12 @@ export default function ItineraryTab({ events }: Props) {
                       >
                         <Info size={14} />
                       </button>
-                      <div className={`flex items-center justify-center w-7 h-7 rounded-lg bg-slate-50 dark:bg-slate-900 ${textColorClass}`}>
-                        <EventIcon type={event.type} />
+                      <div
+                        className={`flex items-center justify-center w-7 h-7 rounded-lg bg-slate-50 dark:bg-slate-900 ${textColorClass}`}
+                        aria-label={getEventIconLabel(event)}
+                        title={isMustDoEvent(event) ? 'Must do' : undefined}
+                      >
+                        <EventIcon event={event} />
                       </div>
                     </div>
                   </div>

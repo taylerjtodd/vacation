@@ -78,6 +78,9 @@ export default function EventDetailsModal({
   }, []);
 
   const detailEntries = event.details ? Object.entries(event.details) : [];
+  if (event.priority) {
+    detailEntries.unshift(['Priority', `${event.priority}`])
+  }
 
   return (
     /* Backdrop */
