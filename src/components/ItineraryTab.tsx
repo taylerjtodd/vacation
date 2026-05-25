@@ -155,19 +155,6 @@ export default function ItineraryTab({
                   }`}>
                     {event.title}
                   </h3>
-
-                  {event.type === 'hotel' && (
-                    <div className="mt-2 pt-2 border-t border-dashed border-slate-200 dark:border-slate-700 flex flex-col gap-1.5">
-                      <label className="text-[10px] text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">Confirmation #:</label>
-                      <input
-                        type="text"
-                        placeholder="Enter confirmation #"
-                        className="w-full px-2 py-1.5 border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition-colors text-xs"
-                        value={confirmations[String(event.id)] || ''}
-                        onChange={(e) => updateConfirmation(String(event.id), e.target.value)}
-                      />
-                    </div>
-                  )}
                 </div>
               );
             })}
@@ -182,7 +169,9 @@ export default function ItineraryTab({
           event={selectedEvent}
           onClose={() => setSelectedEvent(null)}
           completedEvents={completedEvents}
+          confirmations={confirmations}
           toggleEventCompleted={toggleEventCompleted}
+          updateConfirmation={updateConfirmation}
         />,
         document.body
       )}

@@ -50,12 +50,22 @@ interface Props {
   event: VacationEvent;
   onClose: () => void;
   completedEvents: Record<string, boolean>;
+  confirmations: Record<string, string>;
   toggleEventCompleted: (id: string) => void;
+  updateConfirmation: (id: string, value: string) => void;
 }
 
-export default function EventDetailsModal({ event, onClose, completedEvents, toggleEventCompleted }: Props) {
+export default function EventDetailsModal({
+  event,
+  onClose,
+  completedEvents,
+  confirmations,
+  toggleEventCompleted,
+  updateConfirmation,
+}: Props) {
   const styles = TYPE_STYLES[event.type] ?? TYPE_STYLES.activity;
   const mapsUrl = getMapsUrl(event);
+  const confirmationValue = confirmations[String(event.id)] || '';
 
   // Close on Escape key
   useEffect(() => {
@@ -167,6 +177,25 @@ export default function EventDetailsModal({ event, onClose, completedEvents, tog
                   </p>
                 </div>
               ))}
+            </div>
+          )}
+
+          {event.type === 'hotel' && (
+            <div className="flex flex-col gap-1.5">
+              <label
+                htmlFor={`hotel-confirmation-${event.id}`}
+                className="text-[10px] font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500"
+              >
+                Confirmation #
+              </label>
+              <input
+                id={`hotel-confirmation-${event.id}`}
+                type="text"
+                placeholder="Enter confirmation #"
+                className="w-full px-3 py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition-colors text-sm"
+                value={confirmationValue}
+                onChange={(e) => updateConfirmation(String(event.id), e.target.value)}
+              />
             </div>
           )}
 
