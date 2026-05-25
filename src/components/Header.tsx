@@ -2,23 +2,26 @@ import { useState } from 'react';
 import { WifiOff, Settings, ChevronDown } from 'lucide-react';
 import OverviewTab from './OverviewTab';
 import { useNetworkStatus } from '../hooks/useNetworkStatus';
-import { useLocalData } from '../hooks/useLocalData';
 import { Vacation } from '../types';
 
 interface Props {
   vacation: Vacation | null;
+  hideCompletedEvents: boolean;
+  toggleHideCompletedEvents: () => void;
+  handleClearData: () => void;
 }
 
-export default function Header({ vacation }: Props) {
+export default function Header({
+  vacation,
+  hideCompletedEvents,
+  toggleHideCompletedEvents,
+  handleClearData
+}: Props) {
   const [isOverviewOpen, setIsOverviewOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const isOffline = useNetworkStatus();
-  
-  const {
-    handleClearData
-  } = useLocalData();
 
   return (
     <>
@@ -39,6 +42,16 @@ export default function Header({ vacation }: Props) {
             </button>
             {isMenuOpen && (
               <div className="absolute top-full right-0 mt-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-lg z-50 min-w-[160px] overflow-hidden">
+                <button
+                  className="w-full text-left px-4 py-3 bg-transparent border-none text-slate-700 dark:text-slate-200 cursor-pointer transition-colors duration-200 hover:bg-slate-50 dark:hover:bg-slate-700 font-medium text-sm flex items-center justify-between gap-3"
+                  onClick={toggleHideCompletedEvents}
+                  aria-pressed={hideCompletedEvents}
+                >
+                  <span>{hideCompletedEvents ? 'Show Completed Events' : 'Hide Completed Events'}</span>
+                  <span className={`w-10 h-6 rounded-full transition-colors ${hideCompletedEvents ? 'bg-blue-500' : 'bg-slate-300 dark:bg-slate-600'} relative shrink-0`}>
+                    <span className={`absolute top-0.5 w-5 h-5 rounded-full bg-white transition-transform ${hideCompletedEvents ? 'translate-x-4.5' : 'translate-x-0.5'}`} />
+                  </span>
+                </button>
                 <button className="w-full text-left px-4 py-3 bg-transparent border-none text-red-500 cursor-pointer transition-colors duration-200 hover:bg-slate-50 dark:hover:bg-slate-700 font-medium text-sm" onClick={() => { setIsModalOpen(true); setIsMenuOpen(false); }}>
                   Clear Local Data
                 </button>

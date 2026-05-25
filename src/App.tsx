@@ -18,6 +18,8 @@ function App() {
     updateConfirmation,
     togglePackingItem,
     updateNotes,
+    toggleHideCompletedEvents,
+    handleClearData,
   } = useLocalData();
 
   const {
@@ -31,7 +33,11 @@ function App() {
   if (loading) return <div className="text-center p-8 text-slate-500 dark:text-slate-400">Loading itinerary...</div>;
   if (error) return <div className="text-center p-8 text-red-500">{error}</div>;
 
-  const groupedEvents = events.reduce((acc: Record<string, VacationEvent[]>, event) => {
+  const visibleEvents = localData.hideCompletedEvents
+    ? events.filter(event => !localData.completedEvents[String(event.id)])
+    : events;
+
+  const groupedEvents = visibleEvents.reduce((acc: Record<string, VacationEvent[]>, event) => {
     if (!event.date) return acc;
     if (!acc[event.date]) {
       acc[event.date] = [];
@@ -54,7 +60,12 @@ function App() {
 
   return (
     <div className="max-w-3xl mx-auto p-4 md:p-6">
-      <Header vacation={currentVacation} />
+      <Header
+        vacation={currentVacation}
+        hideCompletedEvents={localData.hideCompletedEvents}
+        toggleHideCompletedEvents={toggleHideCompletedEvents}
+        handleClearData={handleClearData}
+      />
 
       <div className="flex gap-2 mb-8 bg-white dark:bg-slate-800 p-2 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-x-auto snap-x">
         <TabButton myTab='itinerary'><CalendarDays size={18} /></TabButton>

@@ -8,6 +8,7 @@ export function useLocalData() {
       try {
         const parsed = JSON.parse(saved);
         if (!parsed.completedPacking) parsed.completedPacking = {};
+        if (typeof parsed.hideCompletedEvents !== 'boolean') parsed.hideCompletedEvents = false;
         return parsed;
       } catch (e) {
         console.error("Failed to parse local data", e);
@@ -17,7 +18,8 @@ export function useLocalData() {
       completedEvents: {},
       completedPacking: {},
       confirmations: {},
-      notes: ''
+      notes: '',
+      hideCompletedEvents: false
     };
   });
 
@@ -59,12 +61,20 @@ export function useLocalData() {
     setLocalData(prev => ({ ...prev, notes }));
   };
 
+  const toggleHideCompletedEvents = () => {
+    setLocalData(prev => ({
+      ...prev,
+      hideCompletedEvents: !prev.hideCompletedEvents
+    }));
+  };
+
   const handleClearData = () => {
     setLocalData({
       completedEvents: {},
       completedPacking: {},
       confirmations: {},
-      notes: ''
+      notes: '',
+      hideCompletedEvents: false
     });
   };
 
@@ -74,6 +84,7 @@ export function useLocalData() {
     updateConfirmation,
     togglePackingItem,
     updateNotes,
+    toggleHideCompletedEvents,
     handleClearData
   };
 }

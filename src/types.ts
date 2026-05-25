@@ -45,4 +45,5 @@ export interface LocalData {
   completedPacking: Record<string, boolean>;
   confirmations: Record<string, string>;
   notes: string;
+  hideCompletedEvents: boolean;
 }
