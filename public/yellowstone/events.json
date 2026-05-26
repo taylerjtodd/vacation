@@ -5,7 +5,7 @@
     "title": "Drive - Home to Rapid City",
     "dayNumber": 1,
     "startTime": "08:00",
-    "duration": 9
+    "duration": 8.5
   },
   {
     "id": 1,
@@ -24,34 +24,38 @@
   },
   {
     "id": 6,
+    "skip": true,
     "type": "driving",
     "title": "Drive - Rapid City to Devils Tower",
     "dayNumber": 2,
     "startTime": "08:00",
-    "duration": 1.5
+    "duration": 1.75
   },
   {
     "id": 7,
+    "skip": true,
     "type": "activity",
     "title": "Hike around Devils Tower",
     "dayNumber": 2,
-    "duration": 1,
+    "duration": 0.75,
     "details": {
       "Shoe Recommendation": "Hiking Shoes / Boots",
       "Trail Type": "Paved / Dirt Loop",
       "Difficulty": "Easy/Moderate",
       "Distance": "1.3 miles"
-    }
+    },
+    "coordinates": [44.617053856556474, -104.70365968683963],
+    "address": "340 WY-110, Devils Tower, WY 82714"
   },
   {
     "id": 8,
     "type": "driving",
-    "title": "Drive - Devils Tower to northeast Yellowstone entrance",
+    "title": "Drive to northeast Yellowstone entrance",
     "dayNumber": 2,
-    "duration": 7,
+    "duration": 8,
     "address": "212, Northeast Entrance, US-212, Cooke City, MT 59081",
     "coordinates": [45.005396304330226, -110.01055999129481],
-    "description": "8 hrs from Rapid City if we skip Devils Tower"
+    "description": "7 hrs if we do Devils Tower"
   },
   {
     "id": 17,
@@ -59,7 +63,7 @@
     "title": "Trout Lake Trail & Fishing",
     "dayNumber": 2,
     "priority": 1,
-    "duration": 1.5,
+    "duration": 2,
     "address": "US-212, Yellowstone National Park, WY 82190",
     "coordinates": [
       44.89917378699662,
@@ -80,24 +84,12 @@
     "title": "Lamar Valley Wildlife Viewing",
     "dayNumber": 2,
     "priority": 1,
-    "duration": 1,
+    "duration": 1.5,
     "description": "🦬 Wildlife: The crown jewel of Yellowstone wildlife viewing. Bison herds, wolves, grizzly bears, and pronghorn are all commonly spotted. Pull off at any turnout and scan the hillsides with binoculars — early afternoon is still productive but dawn/dusk are peak times."
   },
   {
-    "id": 19,
-    "type": "activity",
-    "title": "Tower Fall",
-    "dayNumber": 2,
-    "duration": 0.5,
-    "address": "1 Dunraven Pass Road, Yellowstone National Park, WY 82190",
-    "coordinates": [
-      44.894008857481644,
-      -110.38719474240085
-    ],
-    "description": "🌋 Geologic Feature: A dramatic 132-ft waterfall carved through volcanic rock. Park at the general store and then a short walk to the overlook. The basalt columns framing the falls are a great example of the park's volcanic geology."
-  },
-  {
     "id": 20,
+    "skip": true,
     "type": "activity",
     "title": "Calcite Springs Overlook & Petrified Tree",
     "dayNumber": 2,
@@ -111,6 +103,7 @@
   },
   {
     "id": 21,
+    "skip": true,
     "type": "activity",
     "title": "Wraith Falls",
     "dayNumber": 2,
@@ -121,6 +114,25 @@
       -110.62358238766807
     ],
     "description": "🥾 Short Hike: 0.8 mi out-and-back, easy. A beautiful 100-ft cascade tucked into a meadow near Mammoth. One of the most rewarding short hikes in the northern range — easy enough for the whole family."
+  },
+  {
+    "id": 10,
+    "type": "activity",
+    "title": "Mammoth Hot Springs Terraces",
+    "dayNumber": 2,
+    "duration": 1,
+    "address": "Mammoth, WY 82190",
+    "coordinates": [
+      44.977928343700924,
+      -110.70240039079818
+    ],
+    "description": "🌋 Geologic Feature: A surreal landscape of travertine terraces built by calcium carbonate-rich water. Walk the Lower Terrace Loop (1.5 mi, easy boardwalk) to explore both active steaming terraces and pale dormant formations. One of the most otherworldly sights in the park.",
+    "details": {
+      "Shoe Recommendation": "Walking Shoes",
+      "Trail Type": "Boardwalk",
+      "Difficulty": "Easy",
+      "Distance": "1.5 miles"
+    }
   },
   {
     "id": 3,
@@ -138,75 +150,30 @@
     ]
   },
   {
-    "id": 10,
+    "id": 19,
     "type": "activity",
-    "title": "Mammoth Hot Springs Terraces",
+    "title": "Tower Fall",
     "dayNumber": 3,
-    "startTime": "09:00",
-    "duration": 1.5,
-    "address": "Mammoth, WY 82190",
+    "duration": 0.5,
+    "address": "1 Dunraven Pass Road, Yellowstone National Park, WY 82190",
     "coordinates": [
-      44.977928343700924,
-      -110.70240039079818
+      44.894008857481644,
+      -110.38719474240085
     ],
-    "description": "🌋 Geologic Feature: A surreal landscape of travertine terraces built by calcium carbonate-rich water. Walk the Upper Terrace Loop (1.5 mi, easy boardwalk) to explore both active steaming terraces and pale dormant formations. One of the most otherworldly sights in the park.",
-    "details": {
-      "Shoe Recommendation": "Walking Shoes",
-      "Trail Type": "Boardwalk",
-      "Difficulty": "Easy",
-      "Distance": "1.5 miles"
-    }
-  },
-  {
-    "id": 22,
-    "type": "activity",
-    "title": "Norris Geyser Basin",
-    "dayNumber": 3,
-    "duration": 1.5,
-    "address": "Wyoming 82190",
-    "coordinates": [
-      44.74251178314092,
-      -110.70932061598391
-    ],
-    "description": "🌋 Geologic Feature: The hottest and most dynamic thermal basin in the park. Steamboat Geyser is the world's tallest active geyser. Walk the Back Basin and Porcelain Basin loops (combined ~2.5 mi, easy boardwalks) to see boiling pools, fumaroles, and Echinus Geyser.",
-    "details": {
-      "Shoe Recommendation": "Walking Shoes",
-      "Trail Type": "Boardwalk",
-      "Difficulty": "Easy",
-      "Distance": "2.5 miles"
-    }
-  },
-  {
-    "id": 23,
-    "type": "activity",
-    "title": "Artist Paint Pots Trail",
-    "dayNumber": 3,
-    "duration": 0.75,
-    "address": "Yellowstone National Park, WY 82190",
-    "coordinates": [
-      44.696421236007886,
-      -110.74106834382816
-    ],
-    "description": "🥾 Short Hike: 0.9 mi loop, easy. A fun, accessible trail winding through colorful mud pots and small geysers. The bubbling pink and gray mud pots are a highlight — great for kids.",
-    "details": {
-      "Shoe Recommendation": "Walking Shoes",
-      "Trail Type": "Boardwalk & Dirt",
-      "Difficulty": "Easy",
-      "Distance": "0.9 miles"
-    }
+    "description": "🌋 Geologic Feature: A dramatic 132-ft waterfall carved through volcanic rock. Park at the general store and then a short walk to the overlook. The basalt columns framing the falls are a great example of the park's volcanic geology."
   },
   {
     "id": 40,
     "type": "activity",
     "title": "Grand Canyon of the Yellowstone",
     "dayNumber": 3,
-    "duration": 1.5,
+    "duration": 2.25,
     "address": "Canyon Village, WY 82190",
     "coordinates": [
       44.7185756856377,
       -110.49644323070784
     ],
-    "description": "🌋 Geologic Feature: Marvel at the breathtaking canyon walls and the spectacular 308-ft Lower Falls from Artist Point and other iconic rim overlooks. The brilliant yellow, pink, and orange canyon walls are a dramatic showcase of the park's volcanic history."
+    "description": "🌋 Geologic Feature: Marvel at the breathtaking canyon walls and the spectacular 308-ft Lower Falls from Artist Point and other iconic rim overlooks. The brilliant yellow, pink, and orange canyon walls are a dramatic showcase of the park's volcanic history. Dirt in my Shoes recommends North Rim Scenic Drive, Brink of the Lower Falls, Lookout Point, Red Rock Point Trail (0.7 mi), and Artist Point."
   },
   {
     "id": 26,
@@ -215,6 +182,20 @@
     "dayNumber": 3,
     "duration": 1,
     "description": "🦬 Wildlife: Prime bison and grizzly bear territory on the drive toward West Yellowstone. Slow down and scan the open meadows — this broad glacially-carved valley is one of the best places in the park to spot large mammals. Pelican Valley and the Yellowstone Lake shoreline nearby are excellent for waterfowl and trumpeter swans."
+  },
+  {
+    "id": 38,
+    "type": "activity",
+    "title": "Mud Volcano Trail",
+    "dayNumber": 3,
+    "duration": 1,
+    "coordinates": [
+      44.696421236007886,
+      -110.74106834382816
+    ],
+    "address": "Yellowstone National Park, WY 82190",
+    "description": "🥾 Short Hike: 0.7 mi RT. Dirt on my Shoes recommends Dragon's Mouth and Mud Volcano."
+
   },
   {
     "id": 27,
@@ -288,6 +269,21 @@
     }
   },
   {
+    "id": 25,
+    "type": "activity",
+    "title": "Old Faithful & Upper Geyser Basin",
+    "dayNumber": 3,
+    "priority": 1,
+    "duration": 2,
+    "description": "⛲ Geysers: Catch an Old Faithful eruption (roughly every 90 min — check the predicted time at the visitor center). Then walk the Upper Geyser Basin boardwalk, which has the highest concentration of geysers on Earth. Castle and Grand geysers to kill a little time, or all the way to Morning Glory if we want to use up more than an hour.",
+    "details": {
+      "Shoe Recommendation": "Walking Shoes",
+      "Trail Type": "Boardwalk / Paved",
+      "Difficulty": "Easy",
+      "Distance": "Varies (~2.0 miles suggested)"
+    }
+  },
+  {
     "id": 2,
     "type": "hotel",
     "title": "West Gate KOA",
@@ -301,6 +297,56 @@
       44.689265651080056,
       -111.21680875212687
     ]
+  },
+  {
+    "id": 35,
+    "type": "activity",
+    "title": "Gibbon Falls Trail",
+    "dayNumber": 4,
+    "duration": 1,
+    "coordinates": [
+      44.71337661651282, -110.6275588613527
+    ],
+    "address": "Wyoming 82190",
+    "description": "🥾 Short Hike: 1.6 mi out-and-back, easy. A scenic trail leading to the base of Gibbon Falls, offering beautiful views of the surrounding landscape."
+  },
+  {
+    "id": 22,
+    "type": "activity",
+    "title": "Norris Geyser Basin",
+    "dayNumber": 4,
+    "duration": 1.5,
+    "address": "Wyoming 82190",
+    "coordinates": [
+      44.74251178314092,
+      -110.70932061598391
+    ],
+    "description": "🌋 Geologic Feature: The hottest and most dynamic thermal basin in the park. Steamboat Geyser is the world's tallest active geyser. Walk the Back Basin and Porcelain Basin loops (combined ~2.5 mi, easy boardwalks) to see boiling pools, fumaroles, and Echinus Geyser.",
+    "details": {
+      "Shoe Recommendation": "Walking Shoes",
+      "Trail Type": "Boardwalk",
+      "Difficulty": "Easy",
+      "Distance": "2.5 miles"
+    }
+  },
+  {
+    "id": 23,
+    "type": "activity",
+    "title": "Artist Paint Pots Trail",
+    "dayNumber": 4,
+    "duration": 0.75,
+    "address": "Yellowstone National Park, WY 82190",
+    "coordinates": [
+      44.696421236007886,
+      -110.74106834382816
+    ],
+    "description": "🥾 Short Hike: 0.9 mi loop, easy. A fun, accessible trail winding through colorful mud pots and small geysers. The bubbling pink and gray mud pots are a highlight — great for kids.",
+    "details": {
+      "Shoe Recommendation": "Walking Shoes",
+      "Trail Type": "Boardwalk & Dirt",
+      "Difficulty": "Easy",
+      "Distance": "0.9 miles"
+    }
   },
   {
     "id": 24,
@@ -320,21 +366,6 @@
       "Trail Type": "Dirt / Gravel & Boardwalk",
       "Difficulty": "Easy / Moderate",
       "Distance": "5.4 miles"
-    }
-  },
-  {
-    "id": 25,
-    "type": "activity",
-    "title": "Old Faithful & Upper Geyser Basin",
-    "dayNumber": 4,
-    "priority": 1,
-    "duration": 2,
-    "description": "⛲ Geysers: Catch an Old Faithful eruption (roughly every 90 min — check the predicted time at the visitor center). Then walk the Upper Geyser Basin boardwalk, which has the highest concentration of geysers on Earth. Castle, Grand, and Riverside geysers are all within a short walk of Old Faithful.",
-    "details": {
-      "Shoe Recommendation": "Walking Shoes",
-      "Trail Type": "Boardwalk / Paved",
-      "Difficulty": "Easy",
-      "Distance": "Varies (~2.0 miles suggested)"
     }
   },
   {

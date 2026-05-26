@@ -63,14 +63,16 @@ export function useVacationData(setActiveTab: (tab: string) => void) {
       })
     ])
       .then(([eventsData, packingData]) => {
-        const mappedEvents = eventsData.map((e: VacationEvent) => {
-          const date = new Date(`${currentVacation.startDate}T12:00:00`);
-          date.setDate(date.getDate() + (e.dayNumber - 1));
-          return {
-            ...e,
-            date: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
-          };
-        });
+        const mappedEvents = eventsData
+          .filter((e: VacationEvent) => !e.skip)
+          .map((e: VacationEvent) => {
+            const date = new Date(`${currentVacation.startDate}T12:00:00`);
+            date.setDate(date.getDate() + (e.dayNumber - 1));
+            return {
+              ...e,
+              date: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+            };
+          });
 
         const sorted = mappedEvents.sort((a: VacationEvent, b: VacationEvent) => {
           return a.dayNumber - b.dayNumber;
