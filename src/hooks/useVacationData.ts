@@ -60,9 +60,13 @@ export function useVacationData(setActiveTab: (tab: string) => void) {
       fetch(`${currentVacation.folderName}/packing.json`).then(res => {
         if (!res.ok) throw new Error('Failed to load packing list');
         return res.json();
+      }),
+      fetch(`${currentVacation.folderName}/lodging.json`).then(res => {
+        if (!res.ok) throw new Error('Failed to load lodging list');
+        return res.json();
       })
     ])
-      .then(([eventsData, packingData]) => {
+      .then(([eventsData, packingData, lodgingData]) => {
         const mappedEvents = eventsData
           .filter((e: VacationEvent) => !e.skip)
           .map((e: VacationEvent) => {
@@ -74,7 +78,29 @@ export function useVacationData(setActiveTab: (tab: string) => void) {
             };
           });
 
-        const sorted = mappedEvents.sort((a: VacationEvent, b: VacationEvent) => {
+        const mappedLodging: VacationEvent[] = [];
+        lodgingData.forEach((l: any) => {
+          const numNights = l.nights || 1;
+          for (let i = 0; i < numNights; i++) {
+            const dayNumber = l.dayNumber + i;
+            const date = new Date(`${currentVacation.startDate}T12:00:00`);
+            date.setDate(date.getDate() + (dayNumber - 1));
+            
+            mappedLodging.push({
+              ...l,
+              id: numNights > 1 ? `${l.id}-night-${i + 1}` : l.id,
+              hotelId: l.id,
+              nightNumber: i + 1,
+              dayNumber,
+              type: 'hotel',
+              date: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+            });
+          }
+        });
+
+        const combinedEvents = [...mappedEvents, ...mappedLodging];
+
+        const sorted = combinedEvents.sort((a: VacationEvent, b: VacationEvent) => {
           return a.dayNumber - b.dayNumber;
         });
 

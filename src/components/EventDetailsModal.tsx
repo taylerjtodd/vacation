@@ -9,6 +9,8 @@ import {
   Map as MapIcon,
   Navigation,
   AlertTriangle,
+  Moon,
+  Coffee,
 } from 'lucide-react';
 import { VacationEvent } from '../types';
 import { formatDisplayTime } from '../hooks/useVacationData';
@@ -60,7 +62,8 @@ export default function EventDetailsModal({
   const { completedEvents, confirmations } = localData;
   const styles = TYPE_STYLES[event.type] ?? TYPE_STYLES.activity;
   const mapsUrl = getMapsUrl(event);
-  const confirmationValue = confirmations[String(event.id)] || '';
+  const trackingId = event.hotelId ? String(event.hotelId) : String(event.id);
+  const confirmationValue = confirmations[trackingId] || '';
 
   // Close on Escape key
   useEffect(() => {
@@ -109,7 +112,7 @@ export default function EventDetailsModal({
           </div>
 
           <div className="flex-1 min-w-0">
-            <h2 className={`text-lg font-bold leading-tight ${completedEvents[event.id] ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-slate-50'}`}>
+            <h2 className={`text-lg font-bold leading-tight ${completedEvents[trackingId] ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-slate-50'}`}>
               {event.title}
             </h2>
             <span className={`inline-block mt-1 text-xs font-semibold px-2 py-0.5 rounded-full ${styles.badge}`}>
@@ -179,21 +182,64 @@ export default function EventDetailsModal({
           )}
 
           {event.type === 'hotel' && (
-            <div className="flex flex-col gap-1.5">
-              <label
-                htmlFor={`hotel-confirmation-${event.id}`}
-                className="text-[10px] font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500"
-              >
-                Confirmation #
-              </label>
-              <input
-                id={`hotel-confirmation-${event.id}`}
-                type="text"
-                placeholder="Enter confirmation #"
-                className="w-full px-3 py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition-colors text-sm"
-                value={confirmationValue}
-                onChange={(e) => updateConfirmation(String(event.id), e.target.value)}
-              />
+            <div className="flex flex-col gap-4">
+              {/* Hotel attributes grid */}
+              <div className="grid grid-cols-2 gap-3 py-1">
+                <div className="flex items-center gap-3 bg-pink-50/50 dark:bg-pink-950/10 p-3 rounded-xl border border-pink-100/60 dark:border-pink-900/20">
+                  <div className="p-2 bg-pink-100 dark:bg-pink-900/40 rounded-lg text-pink-500 dark:text-pink-300 shrink-0">
+                    <Moon size={18} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-semibold uppercase tracking-wide text-pink-400 dark:text-pink-500">
+                      {event.nights && event.nights > 1 ? 'Stay' : 'Duration'}
+                    </p>
+                    <p className="text-sm font-bold text-slate-800 dark:text-slate-100 truncate">
+                      {event.nights && event.nights > 1
+                        ? `Night ${event.nightNumber} of ${event.nights}`
+                        : '1 Night'}
+                    </p>
+                  </div>
+                </div>
+
+                <div className={`flex items-center gap-3 p-3 rounded-xl border shrink-0 ${
+                  event.freeBreakfast
+                    ? 'bg-emerald-50/50 dark:bg-emerald-950/10 border-emerald-100/60 dark:border-emerald-900/20'
+                    : 'bg-slate-50/50 dark:bg-slate-900/20 border-slate-200/60 dark:border-slate-700/50'
+                }`}>
+                  <div className={`p-2 rounded-lg shrink-0 ${
+                    event.freeBreakfast
+                      ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-500 dark:text-emerald-300'
+                      : 'bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500'
+                  }`}>
+                    <Coffee size={18} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className={`text-[10px] font-semibold uppercase tracking-wide ${
+                      event.freeBreakfast ? 'text-emerald-400 dark:text-emerald-500' : 'text-slate-400 dark:text-slate-500'
+                    }`}>Breakfast</p>
+                    <p className="text-sm font-bold text-slate-800 dark:text-slate-100 truncate">
+                      {event.freeBreakfast ? 'Free Included' : 'Not Included'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label
+                  htmlFor={`hotel-confirmation-${event.id}`}
+                  className="text-[10px] font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500"
+                >
+                  Confirmation #
+                </label>
+                <input
+                  id={`hotel-confirmation-${event.id}`}
+                  type="text"
+                  placeholder="Enter confirmation #"
+                  className="w-full px-3 py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50 focus:outline-none focus:border-blue-500 dark:focus:border-blue-500 transition-colors text-sm"
+                  value={confirmationValue}
+                  onChange={(e) => updateConfirmation(trackingId, e.target.value)}
+                />
+              </div>
             </div>
           )}
 
@@ -209,26 +255,26 @@ export default function EventDetailsModal({
         <div className="shrink-0 px-5 pb-5 pt-3 border-t border-slate-100 dark:border-slate-700 flex gap-3">
           <button
             id={`modal-complete-btn-${event.id}`}
-            onClick={() => toggleEventCompleted(String(event.id))}
+            onClick={() => toggleEventCompleted(trackingId)}
             className={`flex items-center justify-center gap-2 flex-1 px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-150 border ${
-              completedEvents[event.id]
-                ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300'
+              completedEvents[trackingId]
+                ? 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300'
                 : 'bg-slate-50 dark:bg-slate-900/60 border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:border-emerald-400 hover:text-emerald-600 dark:hover:text-emerald-400'
             }`}
-            aria-pressed={!!completedEvents[event.id]}
+            aria-pressed={!!completedEvents[trackingId]}
           >
             <span className={`w-4 h-4 rounded border-2 flex items-center justify-center shrink-0 transition-colors ${
-              completedEvents[event.id]
+              completedEvents[trackingId]
                 ? 'bg-emerald-500 border-emerald-500'
                 : 'border-slate-400 dark:border-slate-500'
             }`}>
-              {completedEvents[event.id] && (
+              {completedEvents[trackingId] && (
                 <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
                   <path d="M1 4l2.5 2.5L9 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               )}
             </span>
-            {completedEvents[event.id] ? 'Completed' : 'Mark Complete'}
+            {completedEvents[trackingId] ? 'Completed' : 'Mark Complete'}
           </button>
 
           {mapsUrl && (

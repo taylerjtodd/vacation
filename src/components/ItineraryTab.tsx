@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Plane, Hotel, Car, MapPin, Clock, Map as MapIcon, CalendarDays, AlertTriangle, ChevronDown, Info, Star } from 'lucide-react';
+import { Plane, Hotel, Car, MapPin, Clock, Map as MapIcon, CalendarDays, AlertTriangle, ChevronDown, Info, Star, Moon, Coffee } from 'lucide-react';
 import { VacationEvent } from '../types';
 import { formatDisplayTime } from '../hooks/useVacationData';
 import EventDetailsModal from './EventDetailsModal';
@@ -54,8 +54,9 @@ interface Props {
 export default function ItineraryTab({ events }: Props) {
   const { localData } = useLocalData();
   const { completedEvents, hideCompletedEvents } = localData;
+  const getTrackingId = (event: VacationEvent) => event.hotelId ? String(event.hotelId) : String(event.id);
   const visibleEvents = hideCompletedEvents
-    ? events.filter((event) => !completedEvents[String(event.id)])
+    ? events.filter((event) => !completedEvents[getTrackingId(event)])
     : events;
   const groupedEvents = visibleEvents.reduce((acc: Record<string, VacationEvent[]>, event) => {
     if (!event.date) return acc;
@@ -141,7 +142,7 @@ export default function ItineraryTab({ events }: Props) {
                       ? 'border-red-500/50 dark:border-red-500/50 shadow-red-500/10'
                       : 'border-slate-200 dark:border-slate-700'
                   } transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md relative overflow-hidden flex flex-col gap-1 ${
-                    completedEvents[event.id] ? 'opacity-60' : ''
+                    completedEvents[getTrackingId(event)] ? 'opacity-60' : ''
                   }`}
                 >
                   <div className={`absolute top-0 left-0 bottom-0 w-1 ${typeColorClass}`} />
@@ -183,12 +184,27 @@ export default function ItineraryTab({ events }: Props) {
 
                   {/* Row 2: title */}
                   <h3 className={`text-sm font-semibold leading-snug ${
-                    completedEvents[event.id]
+                    completedEvents[getTrackingId(event)]
                       ? 'line-through text-slate-400 dark:text-slate-500'
                       : 'text-slate-900 dark:text-slate-50'
                   }`}>
                     {event.title}
                   </h3>
+
+                  {event.type === 'hotel' && (
+                    <div className="flex flex-wrap gap-2 mt-1">
+                      <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full bg-pink-50 dark:bg-pink-950/30 text-pink-600 dark:text-pink-400 font-medium">
+                        <Moon size={11} className="shrink-0" />
+                        Night {event.nightNumber || 1} of {event.nights || 1}
+                      </span>
+                      {event.freeBreakfast && (
+                        <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 font-medium">
+                          <Coffee size={11} className="shrink-0" />
+                          Free Breakfast
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </div>
               );
             })}

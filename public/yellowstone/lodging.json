@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Hotel in Rapid City, SD",
+    "dayNumber": 1,
+    "nights": 1,
+    "freeBreakfast": true,
+    "earliestStart": "15:00",
+    "latestStart": "22:00",
+    "location": "La Quinta Inn and Suites by Wyndham at WaTiki Waterpark",
+    "address": "1416 N Elk Vale Rd, Rapid City, SD 57703",
+    "coordinates": [
+      44.09927221915958,
+      -103.14819092886047
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Hotel in Gardiner, MT",
+    "dayNumber": 2,
+    "nights": 1,
+    "freeBreakfast": true,
+    "earliestStart": "15:00",
+    "latestStart": "22:00",
+    "location": "Travelodge by Wyndham Gardiner Yellowstone Park North",
+    "address": "109 Hellroaring Street, Gardiner, MT, 59030",
+    "coordinates": [
+      45.0374831968102,
+      -110.71581897006291
+    ]
+  },
+  {
+    "id": 2,
+    "title": "West Gate KOA",
+    "dayNumber": 3,
+    "nights": 1,
+    "freeBreakfast": false,
+    "earliestStart": "15:00",
+    "latestStart": "22:00",
+    "location": "Yellowstone Park / West Gate KOA Holiday",
+    "address": "3305 Targhee Pass Highway 6 miles West on, US-20, West Yellowstone, MT 59758",
+    "coordinates": [
+      44.689265651080056,
+      -111.21680875212687
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Jackson Lake Lodge",
+    "dayNumber": 4,
+    "nights": 4,
+    "freeBreakfast": false,
+    "earliestStart": "15:00",
+    "latestStart": "22:00",
+    "location": "Jackson Lake Lodge",
+    "address": "101 Jackson Lake Lodge Rd, Moran, WY 83013",
+    "coordinates": [
+      43.87721293918336,
+      -110.57735497376447
+    ]
+  }
+]

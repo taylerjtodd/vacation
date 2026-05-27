@@ -25,6 +25,10 @@ export interface VacationEvent {
   coordinates?: [number, number];
   description?: string;
   details?: Record<string, string>;
+  nights?: number;
+  freeBreakfast?: boolean;
+  hotelId?: string | number;
+  nightNumber?: number;
 }
 
 export interface PackingItem {
