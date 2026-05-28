@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   X,
   Clock,
@@ -11,10 +11,17 @@ import {
   AlertTriangle,
   Moon,
   Coffee,
+  Thermometer,
+  Droplets,
+  Wind,
+  CloudRain,
+  WifiOff,
+  CalendarClock,
 } from 'lucide-react';
-import { VacationEvent } from '../types';
+import { VacationEvent, WeatherForecastPeriod, WeatherInfo } from '../types';
 import { formatDisplayTime } from '../hooks/useVacationData';
 import { useLocalData } from '../context/LocalDataContext';
+import { fetchWeatherForecast, findMatchingPeriod } from '../services/weatherService';
 
 const EventIcon = ({ type }: { type: string }) => {
   const cls = 'shrink-0';
@@ -48,6 +55,185 @@ function getMapsUrl(event: VacationEvent): string | null {
   }
   return null;
 }
+
+// ─── Weather helpers ──────────────────────────────────────────────────────────
+
+function getWeatherEmoji(shortForecast: string, isDaytime: boolean): string {
+  const f = shortForecast.toLowerCase();
+  if (f.includes('thunder') || f.includes('storm')) return '⛈️';
+  if (f.includes('snow') || f.includes('blizzard')) return '❄️';
+  if (f.includes('sleet') || f.includes('freezing rain')) return '🌨️';
+  if (f.includes('rain') || f.includes('showers')) return '🌧️';
+  if (f.includes('drizzle')) return '🌦️';
+  if (f.includes('fog') || f.includes('mist')) return '🌫️';
+  if (f.includes('windy') || f.includes('breezy')) return '💨';
+  if (f.includes('mostly sunny') || f.includes('mostly clear')) return isDaytime ? '🌤️' : '🌙';
+  if (f.includes('partly') || f.includes('partly cloudy')) return isDaytime ? '⛅' : '🌙';
+  if (f.includes('cloudy') || f.includes('overcast')) return '☁️';
+  if (f.includes('sunny') || f.includes('clear')) return isDaytime ? '☀️' : '🌙';
+  return isDaytime ? '🌤️' : '🌙';
+}
+
+function getPrecipBg(precip: number) {
+  if (precip >= 70) return { bg: 'bg-blue-50 dark:bg-blue-950/30', text: 'text-blue-700 dark:text-blue-300', icon: 'text-blue-500' };
+  if (precip >= 40) return { bg: 'bg-sky-50 dark:bg-sky-950/30', text: 'text-sky-700 dark:text-sky-300', icon: 'text-sky-500' };
+  return { bg: 'bg-slate-50 dark:bg-slate-900/60', text: 'text-slate-600 dark:text-slate-400', icon: 'text-slate-400' };
+}
+
+// ─── WeatherCard Component ────────────────────────────────────────────────────
+
+interface WeatherCardProps {
+  event: VacationEvent;
+}
+
+function WeatherCard({ event }: WeatherCardProps) {
+  const [period, setPeriod] = useState<WeatherForecastPeriod | null>(null);
+  const [isOffline, setIsOffline] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<'no-coords' | 'out-of-range' | 'error' | null>(null);
+  const mountedRef = useRef(true);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => { mountedRef.current = false; };
+  }, []);
+
+  useEffect(() => {
+    if (!event.coordinates) {
+      setError('no-coords');
+      setLoading(false);
+      return;
+    }
+    if (!event.date) {
+      setLoading(false);
+      return;
+    }
+
+    const [lat, lng] = event.coordinates;
+    setLoading(true);
+    setError(null);
+
+    fetchWeatherForecast(lat, lng).then((info: WeatherInfo | null) => {
+      if (!mountedRef.current) return;
+      if (!info) {
+        setError('error');
+        setLoading(false);
+        return;
+      }
+      setIsOffline(!!info.isOffline);
+      const matched = findMatchingPeriod(info, event.date, event.startTime);
+      if (!matched) {
+        setError('out-of-range');
+      } else {
+        setPeriod(matched);
+      }
+      setLoading(false);
+    }).catch(() => {
+      if (!mountedRef.current) return;
+      setError('error');
+      setLoading(false);
+    });
+  }, [event.coordinates, event.date, event.startTime]);
+
+  // No coordinates = no weather section at all
+  if (!event.coordinates) return null;
+
+  const precipStyle = period ? getPrecipBg(period.probabilityOfPrecipitation) : getPrecipBg(0);
+
+  return (
+    <div className="border-t border-slate-100 dark:border-slate-700 pt-4">
+      <div className="flex items-center gap-1.5 mb-3">
+        <CloudRain size={13} className="text-sky-500 shrink-0" />
+        <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">
+          Weather Forecast
+        </p>
+        {isOffline && (
+          <span className="ml-auto flex items-center gap-1 text-[10px] text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 px-1.5 py-0.5 rounded-full font-medium">
+            <WifiOff size={9} />
+            Cached
+          </span>
+        )}
+      </div>
+
+      {/* Loading skeleton */}
+      {loading && (
+        <div className="animate-pulse rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-700 p-4 flex gap-3 items-center">
+          <div className="w-12 h-12 rounded-xl bg-slate-200 dark:bg-slate-700 shrink-0" />
+          <div className="flex-1 flex flex-col gap-2">
+            <div className="h-4 rounded bg-slate-200 dark:bg-slate-700 w-3/4" />
+            <div className="h-3 rounded bg-slate-200 dark:bg-slate-700 w-1/2" />
+          </div>
+        </div>
+      )}
+
+      {/* Out-of-range or error state */}
+      {!loading && error && (
+        <div className="flex items-start gap-2.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700 px-4 py-3 text-sm text-slate-500 dark:text-slate-400">
+          <CalendarClock size={16} className="shrink-0 mt-0.5 text-slate-400" />
+          <span className="leading-snug">
+            {error === 'out-of-range'
+              ? 'Weather forecast is only available up to 7 days in advance. Check back closer to your trip!'
+              : error === 'error'
+              ? 'Could not load weather data. Check your connection and try again.'
+              : null}
+          </span>
+        </div>
+      )}
+
+      {/* Forecast card */}
+      {!loading && !error && period && (
+        <div className="rounded-2xl overflow-hidden border border-sky-100 dark:border-sky-900/40 bg-gradient-to-br from-sky-50 to-blue-50 dark:from-sky-950/20 dark:to-blue-950/20 shadow-sm">
+          {/* Top row: emoji + temp + short forecast */}
+          <div className="flex items-center gap-4 px-4 pt-4 pb-3">
+            <div className="text-4xl leading-none" aria-hidden="true">
+              {getWeatherEmoji(period.shortForecast, period.isDaytime)}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-2xl font-bold text-slate-900 dark:text-slate-50 leading-none">
+                {period.temperature}°{period.temperatureUnit}
+              </p>
+              <p className="text-sm text-slate-600 dark:text-slate-300 mt-0.5 truncate">
+                {period.shortForecast}
+              </p>
+            </div>
+          </div>
+
+          {/* Bottom row: stats grid */}
+          <div className="grid grid-cols-3 divide-x divide-sky-100 dark:divide-sky-900/40 border-t border-sky-100 dark:border-sky-900/40">
+            {/* Precipitation */}
+            <div className={`flex flex-col items-center justify-center py-3 gap-1 ${precipStyle.bg}`}>
+              <Droplets size={14} className={`${precipStyle.icon} shrink-0`} />
+              <p className={`text-xs font-bold leading-none ${precipStyle.text}`}>
+                {period.probabilityOfPrecipitation}%
+              </p>
+              <p className="text-[9px] uppercase tracking-wide text-slate-400 dark:text-slate-500 font-semibold">Precip</p>
+            </div>
+
+            {/* Humidity */}
+            <div className="flex flex-col items-center justify-center py-3 gap-1">
+              <Thermometer size={14} className="text-rose-400 shrink-0" />
+              <p className="text-xs font-bold text-slate-800 dark:text-slate-100 leading-none">
+                {period.relativeHumidity}%
+              </p>
+              <p className="text-[9px] uppercase tracking-wide text-slate-400 dark:text-slate-500 font-semibold">Humidity</p>
+            </div>
+
+            {/* Wind */}
+            <div className="flex flex-col items-center justify-center py-3 gap-1">
+              <Wind size={14} className="text-slate-400 shrink-0" />
+              <p className="text-xs font-bold text-slate-800 dark:text-slate-100 leading-none truncate max-w-[60px] text-center">
+                {period.windSpeed}
+              </p>
+              <p className="text-[9px] uppercase tracking-wide text-slate-400 dark:text-slate-500 font-semibold">Wind</p>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Main Modal Component ─────────────────────────────────────────────────────
 
 interface Props {
   event: VacationEvent;
@@ -249,6 +435,10 @@ export default function EventDetailsModal({
               {event.description}
             </div>
           )}
+
+          {/* Weather card — rendered for any event with coordinates */}
+          <WeatherCard event={event} />
+
         </div>
 
         {/* Footer actions */}

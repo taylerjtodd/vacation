@@ -8,7 +8,7 @@ export interface Vacation {
 
 export interface VacationEvent {
   id: string | number;
-  type: 'activity' | 'flight' | 'hotel' | 'driving';
+  type: 'activity' | 'flight' | 'hotel' | 'driving' | 'dining';
   title: string;
   dayNumber: number;
   skip?: boolean;
@@ -53,3 +53,24 @@ export interface LocalData {
   notes: string;
   hideCompletedEvents: boolean;
 }
+
+export interface WeatherForecastPeriod {
+  number: number;
+  startTime: string;
+  endTime: string;
+  isDaytime: boolean;
+  temperature: number;
+  temperatureUnit: string;
+  probabilityOfPrecipitation: number; // 0 to 100
+  shortForecast: string;
+  windSpeed: string;
+  relativeHumidity: number; // 0 to 100
+  icon: string; // original weather.gov icon URL
+}
+
+export interface WeatherInfo {
+  periods: WeatherForecastPeriod[];
+  fetchedAt: number;
+  isOffline?: boolean;
+}
+

@@ -1,10 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { Plane, Hotel, Car, MapPin, Clock, Map as MapIcon, CalendarDays, AlertTriangle, ChevronDown, Info, Star, Moon, Coffee } from 'lucide-react';
-import { VacationEvent } from '../types';
+import {
+  Plane, Hotel, Car, MapPin, Clock, Map as MapIcon,
+  CalendarDays, AlertTriangle, ChevronDown, Info, Star, Moon, Coffee,
+  Thermometer, Droplets,
+} from 'lucide-react';
+import { VacationEvent, WeatherForecastPeriod, WeatherInfo } from '../types';
 import { formatDisplayTime } from '../hooks/useVacationData';
 import EventDetailsModal from './EventDetailsModal';
 import { useLocalData } from '../context/LocalDataContext';
+import { fetchWeatherForecast, findMatchingPeriod } from '../services/weatherService';
 
 const MUST_DO_PRIORITY = 1;
 
@@ -31,12 +36,12 @@ const getEventIconLabel = (event: VacationEvent) => {
   switch (event.type) {
     case 'flight': return 'Flight';
     case 'hotel': return 'Hotel';
-    case 'activity': 
-        if (isMustDoEvent(event)) {
-          return 'Must do activity';
-        } else{
-          return 'Activity';
-        }
+    case 'activity':
+      if (isMustDoEvent(event)) {
+        return 'Must do activity';
+      } else {
+        return 'Activity';
+      }
     case 'driving': return 'Driving';
     default: return 'Event';
   }
@@ -46,6 +51,117 @@ const formatDate = (dateStr: string) => {
   const options: Intl.DateTimeFormatOptions = { weekday: 'long', month: 'long', day: 'numeric' };
   return new Date(`${dateStr}T12:00:00`).toLocaleDateString('en-US', options);
 };
+
+// ─── Weather helpers ──────────────────────────────────────────────────────────
+
+/** Derive a simple category from the shortForecast string so we can pick an emoji/icon. */
+function getWeatherEmoji(shortForecast: string, isDaytime: boolean): string {
+  const f = shortForecast.toLowerCase();
+  if (f.includes('thunder') || f.includes('storm')) return '⛈️';
+  if (f.includes('snow') || f.includes('blizzard')) return '❄️';
+  if (f.includes('sleet') || f.includes('freezing rain')) return '🌨️';
+  if (f.includes('rain') || f.includes('showers')) return '🌧️';
+  if (f.includes('drizzle')) return '🌦️';
+  if (f.includes('fog') || f.includes('mist')) return '🌫️';
+  if (f.includes('windy') || f.includes('breezy')) return '💨';
+  if (f.includes('mostly sunny') || f.includes('mostly clear')) {
+    return isDaytime ? '🌤️' : '🌙';
+  }
+  if (f.includes('partly') || f.includes('partly cloudy')) {
+    return isDaytime ? '⛅' : '🌙';
+  }
+  if (f.includes('cloudy') || f.includes('overcast')) return '☁️';
+  if (f.includes('sunny') || f.includes('clear')) {
+    return isDaytime ? '☀️' : '🌙';
+  }
+  return isDaytime ? '🌤️' : '🌙';
+}
+
+function getPrecipColorClass(precip: number): string {
+  if (precip >= 70) return 'text-blue-600 dark:text-blue-400';
+  if (precip >= 40) return 'text-sky-500 dark:text-sky-400';
+  return 'text-slate-400 dark:text-slate-500';
+}
+
+// ─── WeatherBadge Component ───────────────────────────────────────────────────
+
+interface WeatherBadgeProps {
+  event: VacationEvent;
+}
+
+function WeatherBadge({ event }: WeatherBadgeProps) {
+  const [period, setPeriod] = useState<WeatherForecastPeriod | null>(null);
+  const [isOffline, setIsOffline] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const mountedRef = useRef(true);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => { mountedRef.current = false; };
+  }, []);
+
+  useEffect(() => {
+    if (!event.coordinates || !event.date) {
+      setLoading(false);
+      return;
+    }
+    const [lat, lng] = event.coordinates;
+
+    setLoading(true);
+    fetchWeatherForecast(lat, lng).then((info: WeatherInfo | null) => {
+      if (!mountedRef.current) return;
+      if (!info) {
+        setLoading(false);
+        return;
+      }
+      setIsOffline(!!info.isOffline);
+      const matched = findMatchingPeriod(info, event.date, event.startTime);
+      setPeriod(matched);
+      setLoading(false);
+    });
+  }, [event.coordinates, event.date, event.startTime]);
+
+  // Don't render if no coordinates or still loading with nothing to show yet
+  if (!event.coordinates || !event.date) return null;
+  if (loading) {
+    return (
+      <div
+        className="flex items-center gap-1 text-[11px] text-slate-300 dark:text-slate-600 animate-pulse"
+        aria-label="Loading weather"
+      >
+        <span className="inline-block w-4 h-4 rounded bg-slate-100 dark:bg-slate-700" />
+        <span className="inline-block w-8 h-3 rounded bg-slate-100 dark:bg-slate-700" />
+      </div>
+    );
+  }
+  if (!period) return null;
+
+  const emoji = getWeatherEmoji(period.shortForecast, period.isDaytime);
+  const precipColor = getPrecipColorClass(period.probabilityOfPrecipitation);
+
+  return (
+    <div
+      className={`flex items-center gap-1.5 text-[11px] font-medium rounded-lg px-2 py-1 transition-opacity ${
+        isOffline ? 'opacity-60' : 'opacity-100'
+      } bg-sky-50 dark:bg-sky-950/30 border border-sky-100 dark:border-sky-900/40`}
+      title={`${period.shortForecast}${isOffline ? ' (cached)' : ''}`}
+    >
+      <span className="text-sm leading-none" aria-hidden="true">{emoji}</span>
+      <span className="flex items-center gap-0.5 text-slate-700 dark:text-slate-200 font-semibold">
+        <Thermometer size={10} className="shrink-0 text-rose-400" />
+        {period.temperature}°{period.temperatureUnit}
+      </span>
+      {period.probabilityOfPrecipitation > 0 && (
+        <span className={`flex items-center gap-0.5 ${precipColor}`}>
+          <Droplets size={10} className="shrink-0" />
+          {period.probabilityOfPrecipitation}%
+        </span>
+      )}
+    </div>
+  );
+}
+
+// ─── Main Component ───────────────────────────────────────────────────────────
 
 interface Props {
   events: VacationEvent[];
@@ -147,8 +263,8 @@ export default function ItineraryTab({ events }: Props) {
                 >
                   <div className={`absolute top-0 left-0 bottom-0 w-1 ${typeColorClass}`} />
 
-                  {/* Row 1: time + icons */}
-                  <div className="flex items-center justify-between gap-2">
+                  {/* Row 1: time + weather + icons */}
+                  <div className="flex items-center justify-between gap-2 flex-wrap">
                     <div className={`flex items-center gap-1.5 text-xs font-medium ${
                       event.timeWarning ? 'text-red-500 dark:text-red-400' : 'text-slate-400 dark:text-slate-500'
                     }`}>
@@ -163,7 +279,10 @@ export default function ItineraryTab({ events }: Props) {
                       )}
                     </div>
 
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-1.5 ml-auto">
+                      {/* Weather badge — only for events with coordinates */}
+                      <WeatherBadge event={event} />
+
                       <button
                         id={`event-details-btn-${event.id}`}
                         onClick={() => setSelectedEvent(event)}
