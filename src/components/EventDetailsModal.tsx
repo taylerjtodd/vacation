@@ -17,6 +17,7 @@ import {
   CloudRain,
   WifiOff,
   CalendarClock,
+  Utensils,
 } from 'lucide-react';
 import { VacationEvent, WeatherForecastPeriod, WeatherInfo } from '../types';
 import { formatDisplayTime } from '../hooks/useVacationData';
@@ -26,11 +27,12 @@ import { fetchWeatherForecast, findMatchingPeriod } from '../services/weatherSer
 const EventIcon = ({ type }: { type: string }) => {
   const cls = 'shrink-0';
   switch (type) {
-    case 'flight':   return <Plane  size={20} className={cls} />;
-    case 'hotel':    return <Hotel  size={20} className={cls} />;
-    case 'activity': return <MapIcon size={20} className={cls} />;
-    case 'driving':  return <Car   size={20} className={cls} />;
-    default:         return <MapPin size={20} className={cls} />;
+    case 'flight':   return <Plane    size={20} className={cls} />;
+    case 'hotel':    return <Hotel    size={20} className={cls} />;
+    case 'activity': return <MapIcon  size={20} className={cls} />;
+    case 'driving':  return <Car      size={20} className={cls} />;
+    case 'dining':   return <Utensils size={20} className={cls} />;
+    default:         return <MapPin   size={20} className={cls} />;
   }
 };
 
@@ -39,10 +41,11 @@ const TYPE_STYLES: Record<string, { badge: string; accent: string; bar: string }
   hotel:    { badge: 'bg-pink-100   text-pink-700   dark:bg-pink-900/40   dark:text-pink-300',    accent: 'text-pink-500',    bar: 'bg-pink-500'   },
   activity: { badge: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300', accent: 'text-emerald-500', bar: 'bg-emerald-500' },
   driving:  { badge: 'bg-amber-100  text-amber-700  dark:bg-amber-900/40  dark:text-amber-300',   accent: 'text-amber-500',   bar: 'bg-amber-500'  },
+  dining:   { badge: 'bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300',  accent: 'text-orange-500',  bar: 'bg-orange-500' },
 };
 
 const TYPE_LABEL: Record<string, string> = {
-  flight: 'Flight', hotel: 'Accommodation', activity: 'Activity', driving: 'Driving',
+  flight: 'Flight', hotel: 'Accommodation', activity: 'Activity', driving: 'Driving', dining: 'Dining Option',
 };
 
 function getMapsUrl(event: VacationEvent): string | null {

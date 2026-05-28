@@ -182,8 +182,15 @@ export async function fetchWeatherForecast(latitude: number, longitude: number):
 }
 
 /**
- * Finds the weather forecast period that matches the event date and optional start time.
- * Coordinates should be [lat, lng].
+ * Finds the weather forecast period that contains the event's start time using a
+ * proper [startTime, endTime) containment check against the full ISO timestamps.
+ *
+ * When a specific startTime is provided, we only return a period that actually
+ * encompasses that hour — if none do (e.g. the event starts after the last period
+ * ends) we return null so the UI can hide the forecast rather than show stale data.
+ *
+ * When no startTime is provided we fall back to a representative daytime period
+ * for the event's date.
  */
 export function findMatchingPeriod(
   weather: WeatherInfo | null,
@@ -194,50 +201,52 @@ export function findMatchingPeriod(
     return null;
   }
 
-  // Parse start hour if available, e.g. "14:00" -> 14
+  // Parse start hour if available, e.g. "08:30" -> 8
   let targetHour: number | null = null;
   if (startTimeStr) {
-    const parts = startTimeStr.split(':');
-    if (parts.length >= 1) {
-      const h = parseInt(parts[0], 10);
-      if (!isNaN(h)) {
-        targetHour = h;
-      }
-    }
+    const h = parseInt(startTimeStr.split(':')[0], 10);
+    if (!isNaN(h)) targetHour = h;
   }
 
-  // weather.gov timestamps are local to the destination (e.g. 2026-05-28T14:00:00-06:00)
-  // We extract the date portion (slicing first 10 characters "yyyy-MM-dd")
-  // and the hour portion (slicing characters 11-13)
-  
   if (targetHour !== null) {
-    // If we have a specific time, find the exact hour period
-    const matched = weather.periods.find(p => {
-      const pDate = p.startTime.slice(0, 10);
-      const pHour = parseInt(p.startTime.slice(11, 13), 10);
-      return pDate === eventDate && pHour === targetHour;
+    // Use full ISO [startTime, endTime) containment so we respect the exact
+    // boundary of each period. weather.gov timestamps look like:
+    //   "2026-06-03T06:00:00-06:00"
+    // We compare only date + hour (positions 0-12) to avoid timezone arithmetic.
+    const contained = weather.periods.find(p => {
+      const pStartDate = p.startTime.slice(0, 10);
+      const pStartHour = parseInt(p.startTime.slice(11, 13), 10);
+      const pEndDate   = p.endTime.slice(0, 10);
+      const pEndHour   = parseInt(p.endTime.slice(11, 13), 10);
+
+      // Is the event date+hour >= period start AND < period end?
+      // Handle midnight crossover (endHour === 0 means next-day 00:00).
+      const eventIsAfterStart =
+        eventDate > pStartDate ||
+        (eventDate === pStartDate && targetHour! >= pStartHour);
+
+      const eventIsBeforeEnd =
+        eventDate < pEndDate ||
+        (eventDate === pEndDate && (pEndHour === 0 ? false : targetHour! < pEndHour));
+
+      return eventIsAfterStart && eventIsBeforeEnd;
     });
-    if (matched) return matched;
+
+    // If no period contains this hour, return null — don't fall back to an
+    // unrelated period from earlier in the day.
+    return contained ?? null;
   }
 
-  // If no exact hour matched, or no start time provided, let's find the daytime period for that date
-  const daytimePeriods = weather.periods.filter(p => {
-    const pDate = p.startTime.slice(0, 10);
-    return pDate === eventDate && p.isDaytime;
-  });
+  // No specific start time → return a representative daytime period for the date.
+  const dayPeriods = weather.periods.filter(p => p.startTime.slice(0, 10) === eventDate);
+  if (dayPeriods.length === 0) return null;
 
-  if (daytimePeriods.length > 0) {
-    // Return a representative period (e.g., middle of the day if possible, or first one)
-    return daytimePeriods[Math.floor(daytimePeriods.length / 2)];
+  const daytime = dayPeriods.filter(p => p.isDaytime);
+  if (daytime.length > 0) {
+    return daytime[Math.floor(daytime.length / 2)];
   }
 
-  // Try any period on that date
-  const anyPeriods = weather.periods.filter(p => p.startTime.slice(0, 10) === eventDate);
-  if (anyPeriods.length > 0) {
-    return anyPeriods[0];
-  }
-
-  return null;
+  return dayPeriods[0];
 }
 
 /**

@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import {
   Plane, Hotel, Car, MapPin, Clock, Map as MapIcon,
   CalendarDays, AlertTriangle, ChevronDown, Info, Star, Moon, Coffee,
-  Thermometer, Droplets,
+  Thermometer, Droplets, Utensils,
 } from 'lucide-react';
 import { VacationEvent, WeatherForecastPeriod, WeatherInfo } from '../types';
 import { formatDisplayTime } from '../hooks/useVacationData';
@@ -28,6 +28,7 @@ const EventIcon = ({ event }: { event: VacationEvent }) => {
         return <MapIcon size={14} />;
       }
     case 'driving': return <Car size={14} />;
+    case 'dining': return <Utensils size={14} />;
     default: return <MapPin size={14} />;
   }
 };
@@ -43,6 +44,7 @@ const getEventIconLabel = (event: VacationEvent) => {
         return 'Activity';
       }
     case 'driving': return 'Driving';
+    case 'dining': return 'Dining';
     default: return 'Event';
   }
 };
@@ -249,6 +251,7 @@ export default function ItineraryTab({ events }: Props) {
               if (event.type === 'hotel') { typeColorClass = "bg-pink-500"; textColorClass = "text-pink-500"; }
               if (event.type === 'activity') { typeColorClass = "bg-emerald-500"; textColorClass = "text-emerald-500"; }
               if (event.type === 'driving') { typeColorClass = "bg-amber-500"; textColorClass = "text-amber-500"; }
+              if (event.type === 'dining') { typeColorClass = "bg-orange-500"; textColorClass = "text-orange-500"; }
 
               return (
                 <div
