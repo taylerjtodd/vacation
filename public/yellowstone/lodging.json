@@ -9,24 +9,21 @@
     "latestStart": "22:00",
     "location": "La Quinta Inn and Suites by Wyndham at WaTiki Waterpark",
     "address": "1416 N Elk Vale Rd, Rapid City, SD 57703",
-    "coordinates": [
-      44.09927221915958,
-      -103.14819092886047
-    ]
+    "coordinates": [44.0992, -103.1482]
   },
   {
     "id": 3,
     "title": "Hotel in Gardiner, MT",
     "dayNumber": 2,
     "nights": 1,
-    "freeBreakfast": true,
+    "freeBreakfast": false,
     "earliestStart": "15:00",
     "latestStart": "22:00",
     "location": "Travelodge by Wyndham Gardiner Yellowstone Park North",
     "address": "109 Hellroaring Street, Gardiner, MT, 59030",
     "coordinates": [
-      45.0374831968102,
-      -110.71581897006291
+      45.0374,
+      -110.7158
     ]
   },
   {
@@ -55,8 +52,8 @@
     "location": "Jackson Lake Lodge",
     "address": "101 Jackson Lake Lodge Rd, Moran, WY 83013",
     "coordinates": [
-      43.87721293918336,
-      -110.57735497376447
+      43.8772,
+      -110.5774
     ]
   }
 ]

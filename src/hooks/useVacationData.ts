@@ -22,6 +22,7 @@ export function useVacationData(setActiveTab: (tab: string) => void) {
   const [vacations, setVacations] = useState<Vacation[]>([]);
   const [currentVacation, setCurrentVacation] = useState<Vacation | null>(null);
   const [events, setEvents] = useState<VacationEvent[]>([]);
+  const [diningOptions, setDiningOptions] = useState<VacationEvent[]>([]);
   const [packingList, setPackingList] = useState<PackingItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -64,9 +65,13 @@ export function useVacationData(setActiveTab: (tab: string) => void) {
       fetch(`${currentVacation.folderName}/lodging.json`).then(res => {
         if (!res.ok) throw new Error('Failed to load lodging list');
         return res.json();
+      }),
+      fetch(`${currentVacation.folderName}/dining.json`).then(res => {
+        if (!res.ok) throw new Error('Failed to load dining list');
+        return res.json();
       })
     ])
-      .then(([eventsData, packingData, lodgingData]) => {
+      .then(([eventsData, packingData, lodgingData, diningData]) => {
         const mappedEvents = eventsData
           .filter((e: VacationEvent) => !e.skip)
           .map((e: VacationEvent) => {
@@ -182,6 +187,16 @@ export function useVacationData(setActiveTab: (tab: string) => void) {
         }
         setPackingList(flattenedPackingList);
 
+        const mappedDining = diningData.map((d: VacationEvent) => {
+          const date = new Date(`${currentVacation.startDate}T12:00:00`);
+          date.setDate(date.getDate() + (d.dayNumber - 1));
+          return {
+            ...d,
+            date: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+          };
+        });
+        setDiningOptions(mappedDining);
+
         if (sorted.length > 0) {
           const firstEventDateStr = sorted[0].date;
           const today = new Date();
@@ -209,6 +224,7 @@ export function useVacationData(setActiveTab: (tab: string) => void) {
     vacations,
     currentVacation,
     events,
+    diningOptions,
     packingList,
     loading,
     error

@@ -5,43 +5,13 @@
     "title": "Drive - Home to Rapid City",
     "dayNumber": 1,
     "startTime": "08:00",
-    "duration": 8.5
-  },
-  {
-    "id": "dining-d1-lunch",
-    "type": "dining",
-    "title": "Lunch — Al's Oasis",
-    "dayNumber": 1,
-    "startTime": "12:30",
-    "duration": 1.0,
-    "location": "Al's Oasis",
-    "address": "800 SD-50, Chamberlain, SD 57325",
-    "coordinates": [43.8083, -99.3309],
-    "description": "🍔 A beloved roadside institution on the banks of the Missouri River since 1932. Famous for its 5¢ coffee (yes, really), bison burgers, and fry bread. A perfect halfway rest on the long drive to Rapid City.",
-    "details": {
-      "Meal": "Lunch",
-      "Cuisine": "American / Roadside Diner",
-      "Known For": "Bison Burgers & 5¢ Coffee",
-      "Reservation": "Not Required"
-    }
-  },
-  {
-    "id": "dining-d1-dinner",
-    "type": "dining",
-    "title": "Dinner — Firehouse Brewing Company",
-    "dayNumber": 1,
-    "startTime": "18:30",
-    "duration": 1.5,
-    "location": "Firehouse Brewing Company",
-    "address": "610 Main St, Rapid City, SD 57701",
-    "coordinates": [44.0806, -103.2310],
-    "description": "🍺 South Dakota's oldest craft brewery, set inside a beautifully restored 1915 brick firehouse. Great pub food — burgers, ribs, and hand-cut steaks — alongside award-winning house brews. Lively atmosphere and right in downtown Rapid City.",
-    "details": {
-      "Meal": "Dinner",
-      "Cuisine": "Craft Beer & American Pub",
-      "Known For": "Craft Beer, Burgers & Ribs",
-      "Reservation": "Recommended (Busy Evenings)"
-    }
+    "duration": 8.5,
+    "address": "1416 N Elk Vale Rd, Rapid City, SD 57703",
+    "coordinates": [
+      44.0992,
+      -103.1482
+    ],
+    "verified": true
   },
   {
     "id": 6,
@@ -72,35 +42,30 @@
     "address": "340 WY-110, Devils Tower, WY 82714"
   },
   {
+    "id": 9,
+    "type": "driving",
+    "title": "Stop for fishing gear on the way",
+    "dayNumber": 2,
+    "duration": 6.5,
+    "address": "1526 Rumsey Ave, Cody, WY 82414",
+    "coordinates": [
+      44.5269, -109.0572
+    ],
+    "description": "Stop in Cody to grab fishing gear before heading to Yellowstone. Hour less if we did Devils Tower.",
+    "verified": true
+  },
+  {
     "id": 8,
     "type": "driving",
     "title": "Drive to northeast Yellowstone entrance",
     "dayNumber": 2,
-    "duration": 8,
+    "duration": 1.75,
     "address": "212, Northeast Entrance, US-212, Cooke City, MT 59081",
     "coordinates": [
-      45.005396304330226,
-      -110.01055999129481
+      45.0054,
+      -110.0106
     ],
-    "description": "7 hrs if we do Devils Tower"
-  },
-  {
-    "id": "dining-d2-lunch",
-    "type": "dining",
-    "title": "🧺 Picnic Lunch — Cooke City Rest Stop",
-    "dayNumber": 2,
-    "startTime": "13:00",
-    "duration": 0.75,
-    "location": "Cooke City, MT",
-    "address": "Cooke City, MT 59020",
-    "coordinates": [45.0183, -109.9380],
-    "description": "🥪 Pack and eat lunch at a scenic pullout or picnic area in Cooke City, just before the Northeast Entrance to Yellowstone. A rustic mountain town with great views of the Beartooth Plateau. Stretch your legs before the final push into the park.",
-    "details": {
-      "Meal": "Lunch",
-      "Cuisine": "Packed Picnic",
-      "Picnic Spot": "Cooke City Park / Roadside Pullout",
-      "Tip": "Pick up any last supplies at Cooke City General Store"
-    }
+    "verified": true
   },
   {
     "id": 17,
@@ -109,10 +74,9 @@
     "dayNumber": 2,
     "priority": 1,
     "duration": 2,
-    "address": "US-212, Yellowstone National Park, WY 82190",
     "coordinates": [
-      44.89917378699662,
-      -110.12315956962577
+      44.8991,
+      -110.1232
     ],
     "description": "🥾 Short Hike & Lure Fishing: 1.2 mi loop, easy. A peaceful alpine lake hike with frequent river otter and osprey sightings. Trout Lake is a premier spot for spin-fishing with lead-free, barbless lures. Target large native cutthroat trout (must release unharmed) and rainbow trout from the shore. NOTE: The inlet stream and cove are permanently closed to fishing to protect spawning trout.",
     "details": {
@@ -121,7 +85,8 @@
       "Difficulty": "Easy",
       "Distance": "1.2 miles",
       "Permit Required": "Yes (Yellowstone Fishing Permit)"
-    }
+    },
+    "verified": true
   },
   {
     "id": 18,
@@ -166,10 +131,9 @@
     "title": "Mammoth Hot Springs Terraces",
     "dayNumber": 2,
     "duration": 1,
-    "address": "Mammoth, WY 82190",
     "coordinates": [
-      44.977928343700924,
-      -110.70240039079818
+      44.9779,
+      -110.7024
     ],
     "description": "🌋 Geologic Feature: A surreal landscape of travertine terraces built by calcium carbonate-rich water. Walk the Lower Terrace Loop (1.5 mi, easy boardwalk) to explore both active steaming terraces and pale dormant formations. One of the most otherworldly sights in the park.",
     "details": {
@@ -177,25 +141,8 @@
       "Trail Type": "Boardwalk",
       "Difficulty": "Easy",
       "Distance": "1.5 miles"
-    }
-  },
-  {
-    "id": "dining-d2-dinner",
-    "type": "dining",
-    "title": "Dinner — Wonderland Café",
-    "dayNumber": 2,
-    "startTime": "19:30",
-    "duration": 1.5,
-    "location": "Wonderland Café",
-    "address": "206 W Park St, Gardiner, MT 59030",
-    "coordinates": [45.0334, -110.7079],
-    "description": "🌿 A beloved local gem in Gardiner with an eclectic, farm-to-table menu featuring organic ingredients, locally-sourced meats, and an excellent selection of Montana craft beers. Warm, cozy atmosphere and one of the best meals you'll find near the North Entrance.",
-    "details": {
-      "Meal": "Dinner",
-      "Cuisine": "Farm-to-Table / American",
-      "Known For": "Organic Ingredients & Local Beer",
-      "Reservation": "Highly Recommended"
-    }
+    },
+    "verified": true
   },
   {
     "id": 19,
@@ -203,12 +150,14 @@
     "title": "Tower Fall",
     "dayNumber": 3,
     "duration": 0.5,
+    "priority": 1,
     "address": "1 Dunraven Pass Road, Yellowstone National Park, WY 82190",
     "coordinates": [
-      44.894008857481644,
-      -110.38719474240085
+      44.8940,
+      -110.3872
     ],
-    "description": "🌋 Geologic Feature: A dramatic 132-ft waterfall carved through volcanic rock. Park at the general store and then a short walk to the overlook. The basalt columns framing the falls are a great example of the park's volcanic geology."
+    "description": "🌋 Geologic Feature: A dramatic 132-ft waterfall carved through volcanic rock. Park at the general store and then a short walk to the overlook. The basalt columns framing the falls are a great example of the park's volcanic geology.",
+    "verified": true
   },
   {
     "id": 40,
@@ -216,30 +165,13 @@
     "title": "Grand Canyon of the Yellowstone",
     "dayNumber": 3,
     "duration": 2.25,
-    "address": "Canyon Village, WY 82190",
+    "priority": 1,
     "coordinates": [
-      44.7185756856377,
-      -110.49644323070784
+      44.7185,
+      -110.4964
     ],
-    "description": "🌋 Geologic Feature: Marvel at the breathtaking canyon walls and the spectacular 308-ft Lower Falls from Artist Point and other iconic rim overlooks. The brilliant yellow, pink, and orange canyon walls are a dramatic showcase of the park's volcanic history. Dirt in my Shoes recommends North Rim Scenic Drive, Brink of the Lower Falls, Lookout Point, Red Rock Point Trail (0.7 mi), and Artist Point."
-  },
-  {
-    "id": "dining-d3-lunch",
-    "type": "dining",
-    "title": "🧺 Picnic Lunch — Grand Canyon Rim",
-    "dayNumber": 3,
-    "startTime": "12:30",
-    "duration": 0.75,
-    "location": "Grand Canyon of the Yellowstone — Rim Overlooks",
-    "address": "Canyon Village, WY 82190",
-    "coordinates": [44.7186, -110.4964],
-    "description": "🥪 Eat lunch at one of the rim overlooks near Artist Point or Lookout Point with a breathtaking view of the 308-ft Lower Falls plunging into the brilliant yellow-orange canyon. One of the most dramatic picnic backdrops in all of North America.",
-    "details": {
-      "Meal": "Lunch",
-      "Cuisine": "Packed Picnic",
-      "Picnic Spot": "Artist Point or Lookout Point Overlook",
-      "Tip": "Arrive early — overlooks get crowded by midday"
-    }
+    "description": "🌋 Geologic Feature: Marvel at the breathtaking canyon walls and the spectacular 308-ft Lower Falls from Artist Point and other iconic rim overlooks. The brilliant yellow, pink, and orange canyon walls are a dramatic showcase of the park's volcanic history. Dirt in my Shoes recommends North Rim Scenic Drive, Brink of the Lower Falls, Lookout Point, Red Rock Point Trail (0.7 mi), and Artist Point.",
+    "verified": true
   },
   {
     "id": 26,
@@ -247,7 +179,8 @@
     "title": "Hayden Valley Wildlife Viewing",
     "dayNumber": 3,
     "duration": 1,
-    "description": "🦬 Wildlife: Prime bison and grizzly bear territory on the drive toward West Yellowstone. Slow down and scan the open meadows — this broad glacially-carved valley is one of the best places in the park to spot large mammals. Pelican Valley and the Yellowstone Lake shoreline nearby are excellent for waterfowl and trumpeter swans."
+    "description": "🦬 Wildlife: Prime bison and grizzly bear territory on the drive toward West Yellowstone. Slow down and scan the open meadows — this broad glacially-carved valley is one of the best places in the park to spot large mammals. Pelican Valley and the Yellowstone Lake shoreline nearby are excellent for waterfowl and trumpeter swans.",
+    "verified": true
   },
   {
     "id": 38,
@@ -255,50 +188,55 @@
     "title": "Mud Volcano Trail",
     "dayNumber": 3,
     "duration": 1,
+    "priority": 1,
     "coordinates": [
-      44.62503926421772, -110.43381016065905
+      44.6250,
+      -110.4338
     ],
-    "address": "Yellowstone National Park, WY 82190",
-    "description": "🥾 Short Hike: 0.7 mi RT. Dirt on my Shoes recommends Dragon's Mouth and Mud Volcano."
+    "description": "🥾 Short Hike: 0.7 mi RT. Dirt on my Shoes recommends Dragon's Mouth and Mud Volcano.",
+    "verified": true
   },
   {
     "id": 27,
     "type": "activity",
     "title": "Storm Point Trail",
     "dayNumber": 3,
-    "duration": 1.5,
-    "address": "Unnamed Road, Cody, WY 82414",
+    "duration": 1,
     "coordinates": [
-      44.55988755246777,
-      -110.32651211553014
+      44.5597,
+      -110.3265
     ],
-    "description": "🥾 Short Hike: 2.3 mi loop, easy. Hugs the Yellowstone Lake shoreline with frequent bison and waterfowl sightings. Check the trailhead for bear activity before heading out — this area sees regular grizzly use. Great views across the lake toward the Absaroka Range.",
+    "description": "🥾 Short Hike: 2.6 mi loop, easy. Hugs the Yellowstone Lake shoreline with frequent bison and waterfowl sightings. Check the trailhead for bear activity before heading out — this area sees regular grizzly use. Great views across the lake toward the Absaroka Range.",
     "details": {
       "Shoe Recommendation": "Hiking Shoes / Boots",
       "Trail Type": "Dirt / Forest Path",
       "Difficulty": "Easy",
-      "Distance": "2.3 miles",
+      "Distance": "2.6 miles",
       "Bear Warning": "High Activity Area (Carry Bear Spray!)"
-    }
+    },
+    "priority": 2,
+    "verified": true
   },
   {
     "id": 28,
     "type": "activity",
     "title": "Natural Bridge Trail",
     "dayNumber": 3,
-    "duration": 1,
+    "duration": 1.5,
     "address": "Natural Brg Trl, Yellowstone National Park, WY 82190",
     "coordinates": [
-      44.53056494188415,
-      -110.43615854974772
+      44.5306,
+      -110.43615
     ],
-    "description": "🥾 Short Hike: 2 mi out-and-back, easy. Leads to a 51-ft rhyolite arch carved by Bridge Creek — one of the park's lesser-known geological gems. A quiet trail away from the crowds near Bridge Bay.",
+    "description": "🥾 Short Hike: 3.1 mi out-and-back, easy. Leads to a 51-ft rhyolite arch carved by Bridge Creek — one of the park's lesser-known geological gems. A quiet trail away from the crowds near Bridge Bay.",
     "details": {
       "Shoe Recommendation": "Hiking Shoes / Boots",
       "Trail Type": "Dirt Trail",
       "Difficulty": "Easy",
-      "Distance": "2.0 miles"
-    }
+      "Distance": "3.1 miles"
+    },
+    "priority": 2,
+    "verified": true
   },
   {
     "id": 30,
@@ -308,10 +246,12 @@
     "duration": 1,
     "address": "2 Grant Village Rd, Yellowstone National Park, WY 82190",
     "coordinates": [
-      44.39565856458025,
-      -110.55685695868935
+      44.39375,
+      -110.55644
     ],
-    "description": "🦬 Wildlife: The meadows near Grant Village often have bison and elk in the early morning and evening. Yellowstone Lake is a hotspot for osprey, bald eagles, and river otters along the shoreline. Keep an eye out for black bears along the forest edges on the south entrance road as you head toward Jackson."
+    "description": "🦬 Wildlife: The meadows near Grant Village often have bison and elk in the early morning and evening. Yellowstone Lake is a hotspot for osprey, bald eagles, and river otters along the shoreline. Keep an eye out for black bears along the forest edges on the south entrance road as you head toward Jackson.",
+    "priority": 3,
+    "verified": true
   },
   {
     "id": 11,
@@ -319,10 +259,9 @@
     "title": "West Thumb Geyser Basin",
     "dayNumber": 3,
     "duration": 1,
-    "address": "Yellowstone National Park, WY 82190",
     "coordinates": [
-      44.41698594503287,
-      -110.57186893644477
+      44.4165,
+      -110.5720
     ],
     "description": "🌋 Geologic Feature: A unique spot where hydrothermal features meet the shore of Yellowstone Lake. Walk the short boardwalk loop past boiling pools and the famous Fishing Cone — a submerged geyser where early visitors would cook fish directly in the boiling water.",
     "details": {
@@ -330,7 +269,9 @@
       "Trail Type": "Boardwalk",
       "Difficulty": "Easy",
       "Distance": "0.6 miles"
-    }
+    },
+    "priority": 2,
+    "verified": true
   },
   {
     "id": 25,
@@ -345,38 +286,29 @@
       "Trail Type": "Boardwalk / Paved",
       "Difficulty": "Easy",
       "Distance": "Varies (~2.0 miles suggested)"
-    }
-  },
-  {
-    "id": "dining-d3-dinner",
-    "type": "dining",
-    "title": "Dinner — Wild West Pizzeria & Saloon",
-    "dayNumber": 3,
-    "startTime": "19:30",
-    "duration": 1.5,
-    "location": "Wild West Pizzeria & Saloon",
-    "address": "14 Madison Ave, West Yellowstone, MT 59758",
-    "coordinates": [44.6628, -111.0985],
-    "description": "🍕 A rustic and raucous West Yellowstone staple. Hand-tossed pizzas with creative wild game toppings (elk, bison), craft beer on tap, and a classic western saloon atmosphere. A fun end to a day exploring the park's thermal wonders.",
-    "details": {
-      "Meal": "Dinner",
-      "Cuisine": "Pizza & American / Saloon",
-      "Known For": "Wild Game Pizzas & Craft Beer",
-      "Reservation": "Not Required (First Come)"
-    }
+    },
+    "priority": 1,
+    "verified": true
   },
   {
     "id": 35,
     "type": "activity",
-    "title": "Gibbon Falls Trail",
+    "title": "Little Gibbon Falls",
     "dayNumber": 4,
     "duration": 1,
     "coordinates": [
-      44.71337661651282,
-      -110.6275588613527
+      44.7129,
+      -110.6271
     ],
-    "address": "Wyoming 82190",
-    "description": "🥾 Short Hike: 1.6 mi out-and-back, easy. A scenic trail leading to the base of Gibbon Falls, offering beautiful views of the surrounding landscape."
+    "description": "🥾 Short Hike: 1.6 mi out-and-back, easy. A scenic trail leading to the base of Gibbon Falls, offering beautiful views of the surrounding landscape.",
+    "details": {
+      "Shoe Recommendation": "Hiking Shoes / Boots",
+      "Trail Type": "Dirt Trail",
+      "Difficulty": "Easy",
+      "Distance": "1.6 miles"
+    },
+    "priority": 3,
+    "verified": true
   },
   {
     "id": 22,
@@ -384,10 +316,9 @@
     "title": "Norris Geyser Basin",
     "dayNumber": 4,
     "duration": 1.5,
-    "address": "Wyoming 82190",
     "coordinates": [
-      44.74251178314092,
-      -110.70932061598391
+      44.7262,
+      -110.7043
     ],
     "description": "🌋 Geologic Feature: The hottest and most dynamic thermal basin in the park. Steamboat Geyser is the world's tallest active geyser. Walk the Back Basin and Porcelain Basin loops (combined ~2.5 mi, easy boardwalks) to see boiling pools, fumaroles, and Echinus Geyser.",
     "details": {
@@ -395,7 +326,9 @@
       "Trail Type": "Boardwalk",
       "Difficulty": "Easy",
       "Distance": "2.5 miles"
-    }
+    },
+    "priority": 2,
+    "verified": true
   },
   {
     "id": 23,
@@ -403,10 +336,9 @@
     "title": "Artist Paint Pots Trail",
     "dayNumber": 4,
     "duration": 0.75,
-    "address": "Yellowstone National Park, WY 82190",
     "coordinates": [
-      44.696421236007886,
-      -110.74106834382816
+      44.6964,
+      -110.7411
     ],
     "description": "🥾 Short Hike: 0.9 mi loop, easy. A fun, accessible trail winding through colorful mud pots and small geysers. The bubbling pink and gray mud pots are a highlight — great for kids.",
     "details": {
@@ -414,7 +346,9 @@
       "Trail Type": "Boardwalk & Dirt",
       "Difficulty": "Easy",
       "Distance": "0.9 miles"
-    }
+    },
+    "priority": 2,
+    "verified": true
   },
   {
     "id": 24,
@@ -423,36 +357,18 @@
     "dayNumber": 4,
     "priority": 1,
     "duration": 2,
-    "address": "Wyoming 82190",
     "coordinates": [
-      44.52960637021252,
-      -110.8380556059732
+      44.5157,
+      -110.8327
     ],
-    "description": "Alert: Trail might be closed due to bear attack. 🌋 Geologic Feature + 🥾 Hike: Grand Prismatic Spring is Yellowstone's largest hot spring and most photographed thermal feature. Start with the Fairy Falls Trail (5.4 mi out-and-back, easy) — the overlook at mile 1 gives the iconic aerial view of the rainbow-colored spring. Continue to Fairy Falls itself, a stunning 200-ft waterfall at the end of the trail.",
+    "description": "Alert: Trail might be closed due to bear attack. 🌋 Geologic Feature + 🥾 Hike: Grand Prismatic Spring is Yellowstone's largest hot spring and most photographed thermal feature. Start with the Fairy Falls Trail (4.9 mi out-and-back, easy) — the overlook at mile 1 gives the iconic aerial view of the rainbow-colored spring. Continue to Fairy Falls itself, a stunning 200-ft waterfall at the end of the trail.",
     "details": {
       "Shoe Recommendation": "Hiking Shoes / Boots",
       "Trail Type": "Dirt / Gravel & Boardwalk",
       "Difficulty": "Easy / Moderate",
-      "Distance": "5.4 miles"
-    }
-  },
-  {
-    "id": "dining-d4-lunch",
-    "type": "dining",
-    "title": "🧺 Picnic Lunch — Firehole River",
-    "dayNumber": 4,
-    "startTime": "12:30",
-    "duration": 0.75,
-    "location": "Firehole River — Midway Geyser Basin Area",
-    "address": "Yellowstone National Park, WY 82190",
-    "coordinates": [44.5351, -110.8271],
-    "description": "🥪 Pull over for a picnic lunch along the banks of the Firehole River near the Midway Geyser Basin. Listen to the rushing thermal river, watch bison graze in the adjacent meadows, and breathe in the wild Yellowstone air. A magical spot with steam rising in the background.",
-    "details": {
-      "Meal": "Lunch",
-      "Cuisine": "Packed Picnic",
-      "Picnic Spot": "Firehole River Roadside Pullout",
-      "Tip": "Check bison proximity — keep a safe 25-yard distance"
-    }
+      "Distance": "4.9 miles"
+    },
+    "verified": true
   },
   {
     "id": 29,
@@ -460,19 +376,20 @@
     "title": "Lone Star Geyser Trail",
     "dayNumber": 4,
     "duration": 2.5,
-    "address": "Yellowstone National Park, WY 82190",
     "coordinates": [
-      44.44659097807842,
-      -110.80395474640005
+      44.4448,
+      -110.8044
     ],
-    "description": "🥾 Hike + ⛲ Geyser: 4.8 mi out-and-back, easy. Follows the Firehole River through a peaceful backcountry corridor to a cone geyser that erupts every ~3 hours with a 30–50 ft column. Check the logbook at the trailhead for the last eruption time to time your arrival. One of the most rewarding uncrowded experiences in the park.",
+    "description": "🥾 Hike + ⛲ Geyser: 5.3 mi out-and-back, easy. Follows the Firehole River through a peaceful backcountry corridor to a cone geyser that erupts every ~3 hours with a 30-50 ft column. Check the logbook at the trailhead for the last eruption time to time your arrival. It'll take about an hour to get there. One of the most rewarding uncrowded experiences in the park.",
     "details": {
       "Shoe Recommendation": "Hiking Shoes / Boots",
       "Trail Type": "Old Paved Road (Flat)",
       "Difficulty": "Easy",
-      "Distance": "4.8 miles",
+      "Distance": "5.3 miles",
       "Eruption Cycle": "Every ~3 hours"
-    }
+    },
+    "priority": 2,
+    "verified": true
   },
   {
     "id": 31,
@@ -481,19 +398,25 @@
     "dayNumber": 4,
     "duration": 1.5,
     "location": "Lewis Lake Shoreline",
-    "address": "S Entrance Rd, Yellowstone National Park, WY 82190",
     "coordinates": [
-      44.3105,
-      -110.6385
+      44.3014,
+      -110.6105
     ],
-    "description": "🎣 Lure Fishing: Lewis Lake is renowned for excellent shore lure fishing. Cast lead-free, barbless spinners (like Panther Martins) or spoons (like Jake's Spin-A-Lure) from the shore near the lake inlet/outlet or pullouts along the South Entrance Road. Good chance of catching Lake Trout or Brown Trout."
+    "description": "🎣 Lure Fishing: Lewis Lake is renowned for excellent shore lure fishing. Cast lead-free, barbless spinners (like Panther Martins) or spoons (like Jake's Spin-A-Lure) from the shore near the lake inlet/outlet or pullouts along the South Entrance Road. Good chance of catching Lake Trout or Brown Trout.",
+    "details": {
+      "Gear": "2 Lures (Panther Martin/Jake's Spin-A-Lure), 6 lb fluorocarbon leader",
+      "Parking": "Pullouts along S Entrance Rd",
+      "Regulations": "Barbless hooks required; lead-free bait only"
+    },
+    "priority": 1,
+    "verified": true
   },
   {
     "id": 34,
     "type": "activity",
     "title": "Lakeshore Trail",
     "dayNumber": 4,
-    "duration": 1.0,
+    "duration": 1,
     "coordinates": [
       43.9036,
       -110.6436
@@ -505,24 +428,6 @@
       "Difficulty": "Easy",
       "Distance": "2.2 miles",
       "Elevation Gain": "100 ft"
-    }
-  },
-  {
-    "id": "dining-d4-dinner",
-    "type": "dining",
-    "title": "Dinner — The Pioneer Grill",
-    "dayNumber": 4,
-    "startTime": "19:00",
-    "duration": 1.25,
-    "location": "The Pioneer Grill — Jackson Lake Lodge",
-    "address": "101 Jackson Lake Lodge Rd, Moran, WY 83013",
-    "coordinates": [43.8772, -110.5774],
-    "description": "🍽️ A beloved 1950s-style diner inside the iconic Jackson Lake Lodge, featuring a sweeping 70-foot counter where you can watch the Teton Range light up at dusk. Classic American comfort food — trout, burgers, and homemade pie. No reservations needed; just walk in and grab a stool.",
-    "details": {
-      "Meal": "Dinner",
-      "Cuisine": "American Diner / Western",
-      "Known For": "Historic 70-ft Counter & Teton Views",
-      "Reservation": "Not Required"
     }
   },
   {
@@ -545,24 +450,6 @@
     }
   },
   {
-    "id": "dining-d5-lunch",
-    "type": "dining",
-    "title": "🧺 Picnic Lunch — Bradley Lake Shoreline",
-    "dayNumber": 5,
-    "startTime": "13:00",
-    "duration": 1.0,
-    "location": "Bradley Lake — Grand Teton National Park",
-    "address": "Taggart Lake Trailhead, Moose, WY 83012",
-    "coordinates": [43.6967, -110.7317],
-    "description": "🥪 Enjoy a trail lunch on the rocky shores of Bradley Lake with a direct, jaw-dropping view straight up at the Grand Teton. The lake's still surface perfectly mirrors the towering peaks. One of the most scenic lunch spots on the trip.",
-    "details": {
-      "Meal": "Lunch",
-      "Cuisine": "Packed Picnic",
-      "Picnic Spot": "Bradley Lake Shoreline Rocks",
-      "Tip": "Carry out all trash — no bins on the trail"
-    }
-  },
-  {
     "id": 33,
     "type": "activity",
     "title": "Cottonwood Creek",
@@ -579,7 +466,7 @@
     "type": "activity",
     "title": "Delta Lake Loop",
     "dayNumber": 5,
-    "duration": 5.0,
+    "duration": 5,
     "coordinates": [
       43.734720001441104,
       -110.74157431541782
@@ -598,7 +485,7 @@
     "type": "activity",
     "title": "Schwabacher Trail",
     "dayNumber": 5,
-    "duration": 1.0,
+    "duration": 1,
     "coordinates": [
       43.7115,
       -110.6709
@@ -627,24 +514,6 @@
       "Best Time": "Early morning or golden hour",
       "Highlights": "Moulton Barns, open Teton views, wildlife in Antelope Flats",
       "Road Notes": "Mostly flat gravel road with easy pull-offs for quick stops"
-    }
-  },
-  {
-    "id": "dining-d5-dinner",
-    "type": "dining",
-    "title": "Dinner — Trapper Grill",
-    "dayNumber": 5,
-    "startTime": "19:00",
-    "duration": 1.5,
-    "location": "Trapper Grill — Signal Mountain Lodge",
-    "address": "Signal Mountain Lodge, Moran, WY 83013",
-    "coordinates": [43.8399, -110.6104],
-    "description": "🏔️ A casual lakeside restaurant perched right on Jackson Lake at Signal Mountain Lodge. Famous for their loaded nachos, elk burgers, local trout, and a full bar with stunning Teton views. Great atmosphere for families after a big hiking day.",
-    "details": {
-      "Meal": "Dinner",
-      "Cuisine": "American / Lakeside Casual",
-      "Known For": "Giant Nachos, Elk Burgers & Lake Views",
-      "Reservation": "Recommended"
     }
   },
   {
@@ -685,29 +554,11 @@
     }
   },
   {
-    "id": "dining-d6-lunch",
-    "type": "dining",
-    "title": "🧺 Picnic Lunch — Cascade Canyon",
-    "dayNumber": 6,
-    "startTime": "12:30",
-    "duration": 0.75,
-    "location": "Cascade Canyon — Grand Teton National Park",
-    "address": "Jenny Lake Trailhead, Moose, WY 83012",
-    "coordinates": [43.7630, -110.7220],
-    "description": "🥪 Find a flat boulder along the Cascade Canyon creek and eat lunch deep inside the most iconic canyon in the Tetons. Sheer granite walls tower 3,000 ft on either side. Keep an eye out for moose in the willows as you eat — sightings are very common here.",
-    "details": {
-      "Meal": "Lunch",
-      "Cuisine": "Packed Picnic",
-      "Picnic Spot": "Cascade Canyon Creek Boulders",
-      "Tip": "About 2.5 miles in from the Jenny Lake boat landing"
-    }
-  },
-  {
     "id": 36,
     "type": "activity",
     "title": "Cascade Canyon Trail",
     "dayNumber": 6,
-    "duration": 5.0,
+    "duration": 5,
     "coordinates": [
       43.763,
       -110.722
@@ -720,24 +571,6 @@
       "Distance": "9.3 miles",
       "Elevation Gain": "1,100 ft",
       "Highlights": "Hidden Falls, Inspiration Point, Canyon View"
-    }
-  },
-  {
-    "id": "dining-d6-dinner",
-    "type": "dining",
-    "title": "Dinner — The Mural Room",
-    "dayNumber": 6,
-    "startTime": "19:30",
-    "duration": 2.0,
-    "location": "The Mural Room — Jackson Lake Lodge",
-    "address": "101 Jackson Lake Lodge Rd, Moran, WY 83013",
-    "coordinates": [43.8772, -110.5774],
-    "description": "✨ The crown jewel dining experience of the trip. The Mural Room is a fine-dining institution at Jackson Lake Lodge, featuring floor-to-ceiling 60-foot windows perfectly framing the Grand Teton and Jackson Lake at sunset. Regional cuisine — Snake River trout, Wyoming elk, wild game — executed with elegance. Reservations are essential.",
-    "details": {
-      "Meal": "Dinner",
-      "Cuisine": "Fine Dining / Regional American",
-      "Known For": "60-ft Teton Views, Elk & Trout",
-      "Reservation": "Required — Book Ahead!"
     }
   },
   {
@@ -778,24 +611,6 @@
     }
   },
   {
-    "id": "dining-d7-lunch",
-    "type": "dining",
-    "title": "Lunch — Nora's Fish Creek Inn",
-    "dayNumber": 7,
-    "startTime": "13:00",
-    "duration": 1.25,
-    "location": "Nora's Fish Creek Inn",
-    "address": "5600 WY-22, Wilson, WY 83014",
-    "coordinates": [43.4804, -110.8669],
-    "description": "🏆 A James Beard Award-winning breakfast and lunch landmark in the tiny mountain town of Wilson. Famous for massive, golden waffles, trout, and eggs in a warm rustic cabin setting. A true Jackson Hole institution — lines can form early, but it's worth every minute.",
-    "details": {
-      "Meal": "Lunch",
-      "Cuisine": "American Diner / Western Cabin",
-      "Known For": "James Beard Award — Waffles & Trout",
-      "Reservation": "Not Taken — Arrive Early"
-    }
-  },
-  {
     "id": 38,
     "type": "activity",
     "title": "Colter Bay Hermitage Point Trail",
@@ -815,60 +630,6 @@
     }
   },
   {
-    "id": "dining-d7-dinner",
-    "type": "dining",
-    "title": "Dinner — Dornan's Spur Bar & Pizzeria",
-    "dayNumber": 7,
-    "startTime": "18:30",
-    "duration": 1.5,
-    "location": "Dornan's Spur Bar & Pizzeria",
-    "address": "10 Moose Village Rd, Moose, WY 83012",
-    "coordinates": [43.6583, -110.7257],
-    "description": "🍕 A legendary Jackson Hole gathering spot right inside the park at Moose Village. Order wood-fired pizzas, cold beers, and then head up to the rooftop deck for one of the most spectacular views of the Grand Teton you'll find anywhere. The perfect casual celebration dinner after an epic hiking week.",
-    "details": {
-      "Meal": "Dinner",
-      "Cuisine": "Pizza & Bar",
-      "Known For": "Rooftop Teton Views & Wood-Fired Pizza",
-      "Reservation": "Not Required"
-    }
-  },
-  {
-    "id": "dining-d8-lunch",
-    "type": "dining",
-    "title": "Lunch — The Middle Fork",
-    "dayNumber": 8,
-    "startTime": "12:30",
-    "duration": 1.25,
-    "location": "The Middle Fork",
-    "address": "351 Main St, Lander, WY 82520",
-    "coordinates": [42.8333, -108.7307],
-    "description": "🌊 A fresh, seasonal café in the charming town of Lander at the foot of the Wind River Range. Light, riverfront dining with creative sandwiches, salads, and local ingredients. A wonderful midway stop on the long drive back south toward Cheyenne.",
-    "details": {
-      "Meal": "Lunch",
-      "Cuisine": "Seasonal Café / American",
-      "Known For": "Fresh Local Ingredients & Riverfront Setting",
-      "Reservation": "Not Required"
-    }
-  },
-  {
-    "id": "dining-d8-dinner",
-    "type": "dining",
-    "title": "Dinner — The Albany Restaurant",
-    "dayNumber": 8,
-    "startTime": "18:30",
-    "duration": 1.5,
-    "location": "The Albany Restaurant & Bar",
-    "address": "1506 Capitol Ave, Cheyenne, WY 82001",
-    "coordinates": [41.1400, -104.8197],
-    "description": "🍽️ A Cheyenne institution operating since 1942, just steps from the historic Union Pacific depot. Classic American comfort food — steaks, burgers, chicken-fried steak — in a warm, no-frills setting that locals have loved for generations. The perfect place to wind down after a long final driving day.",
-    "details": {
-      "Meal": "Dinner",
-      "Cuisine": "Classic American Comfort Food",
-      "Known For": "Steaks & Historic Cheyenne Atmosphere",
-      "Reservation": "Recommended"
-    }
-  },
-  {
     "id": 15,
     "type": "driving",
     "title": "Drive - Moran, WY to Cheyenne",
@@ -882,19 +643,5 @@
     "dayNumber": 9,
     "startTime": "09:00",
     "duration": 9
-  },
-  {
-    "id": "dining-d9-lunch",
-    "type": "dining",
-    "title": "🧺 Roadside Diner Lunch",
-    "dayNumber": 9,
-    "startTime": "13:00",
-    "duration": 1.0,
-    "description": "🥪 Quick highway lunch stop on the final stretch home. Find a local diner or fast-casual spot along the route to refuel everyone for the last leg. A great time to share trip highlights and favorite memories before pulling into the driveway.",
-    "details": {
-      "Meal": "Lunch",
-      "Cuisine": "Roadside / Your Choice",
-      "Tip": "Check Google Maps for top-rated spots along your exact route home"
-    }
   }
 ]

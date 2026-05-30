@@ -1,0 +1,346 @@
+[
+  {
+    "id": "dining-d1-lunch",
+    "type": "dining",
+    "title": "Lunch — Chick-fil-A",
+    "dayNumber": 1,
+    "duration": 0.5,
+    "location": "Chick-fil-A",
+    "address": "4005 W 41st St, Sioux Falls, SD 57106",
+    "coordinates": [
+      43.5139,
+      -96.7756
+    ],
+    "description": "Quick stop for lunch",
+    "verified": true
+  },
+  {
+    "id": "dining-d1-dinner",
+    "type": "dining",
+    "title": "Dinner — Firehouse Brewing Company",
+    "dayNumber": 1,
+    "startTime": "18:30",
+    "duration": 1.5,
+    "location": "Firehouse Brewing Company",
+    "address": "610 Main St, Rapid City, SD 57701",
+    "coordinates": [
+      44.0806,
+      -103.231
+    ],
+    "description": "🍺 South Dakota's oldest craft brewery, set inside a beautifully restored 1915 brick firehouse. Great pub food — burgers, ribs, and hand-cut steaks — alongside award-winning house brews. Lively atmosphere and right in downtown Rapid City.",
+    "details": {
+      "Meal": "Dinner",
+      "Cuisine": "Craft Beer & American Pub",
+      "Known For": "Craft Beer, Burgers & Ribs",
+      "Reservation": "Recommended (Busy Evenings)"
+    }
+  },
+  {
+    "id": "dining-d2-lunch",
+    "type": "dining",
+    "title": "🧺 Picnic Lunch — Cooke City Rest Stop",
+    "dayNumber": 2,
+    "startTime": "13:00",
+    "duration": 0.75,
+    "location": "Cooke City, MT",
+    "address": "Cooke City, MT 59020",
+    "coordinates": [
+      45.0183,
+      -109.938
+    ],
+    "description": "🥪 Pack and eat lunch at a scenic pullout or picnic area in Cooke City, just before the Northeast Entrance to Yellowstone. A rustic mountain town with great views of the Beartooth Plateau. Stretch your legs before the final push into the park.",
+    "details": {
+      "Meal": "Lunch",
+      "Cuisine": "Packed Picnic",
+      "Picnic Spot": "Cooke City Park / Roadside Pullout",
+      "Tip": "Pick up any last supplies at Cooke City General Store"
+    }
+  },
+  {
+    "id": "dining-d2-dinner",
+    "type": "dining",
+    "title": "Dinner — Wonderland Café",
+    "dayNumber": 2,
+    "startTime": "19:30",
+    "duration": 1.5,
+    "location": "Wonderland Café",
+    "address": "206 W Park St, Gardiner, MT 59030",
+    "coordinates": [
+      45.0334,
+      -110.7079
+    ],
+    "description": "🌿 A beloved local gem in Gardiner with an eclectic, farm-to-table menu featuring organic ingredients, locally-sourced meats, and an excellent selection of Montana craft beers. Warm, cozy atmosphere and one of the best meals you'll find near the North Entrance.",
+    "details": {
+      "Meal": "Dinner",
+      "Cuisine": "Farm-to-Table / American",
+      "Known For": "Organic Ingredients & Local Beer",
+      "Reservation": "Highly Recommended"
+    }
+  },
+  {
+    "id": "dining-d3-lunch",
+    "type": "dining",
+    "title": "🧺 Picnic Lunch — Grand Canyon Rim",
+    "dayNumber": 3,
+    "startTime": "12:30",
+    "duration": 0.75,
+    "location": "Grand Canyon of the Yellowstone — Rim Overlooks",
+    "address": "Canyon Village, WY 82190",
+    "coordinates": [
+      44.7186,
+      -110.4964
+    ],
+    "description": "🥪 Eat lunch at one of the rim overlooks near Artist Point or Lookout Point with a breathtaking view of the 308-ft Lower Falls plunging into the brilliant yellow-orange canyon. One of the most dramatic picnic backdrops in all of North America.",
+    "details": {
+      "Meal": "Lunch",
+      "Cuisine": "Packed Picnic",
+      "Picnic Spot": "Artist Point or Lookout Point Overlook",
+      "Tip": "Arrive early — overlooks get crowded by midday"
+    }
+  },
+  {
+    "id": "dining-d3-dinner",
+    "type": "dining",
+    "title": "Dinner — Wild West Pizzeria & Saloon",
+    "dayNumber": 3,
+    "startTime": "19:30",
+    "duration": 1.5,
+    "location": "Wild West Pizzeria & Saloon",
+    "address": "14 Madison Ave, West Yellowstone, MT 59758",
+    "coordinates": [
+      44.6628,
+      -111.0985
+    ],
+    "description": "🍕 A rustic and raucous West Yellowstone staple. Hand-tossed pizzas with creative wild game toppings (elk, bison), craft beer on tap, and a classic western saloon atmosphere. A fun end to a day exploring the park's thermal wonders.",
+    "details": {
+      "Meal": "Dinner",
+      "Cuisine": "Pizza & American / Saloon",
+      "Known For": "Wild Game Pizzas & Craft Beer",
+      "Reservation": "Not Required (First Come)"
+    }
+  },
+  {
+    "id": "dining-d4-lunch",
+    "type": "dining",
+    "title": "🧺 Picnic Lunch — Firehole River",
+    "dayNumber": 4,
+    "startTime": "12:30",
+    "duration": 0.75,
+    "location": "Firehole River — Midway Geyser Basin Area",
+    "address": "Yellowstone National Park, WY 82190",
+    "coordinates": [
+      44.5351,
+      -110.8271
+    ],
+    "description": "🥪 Pull over for a picnic lunch along the banks of the Firehole River near the Midway Geyser Basin. Listen to the rushing thermal river, watch bison graze in the adjacent meadows, and breathe in the wild Yellowstone air. A magical spot with steam rising in the background.",
+    "details": {
+      "Meal": "Lunch",
+      "Cuisine": "Packed Picnic",
+      "Picnic Spot": "Firehole River Roadside Pullout",
+      "Tip": "Check bison proximity — keep a safe 25-yard distance"
+    }
+  },
+  {
+    "id": "dining-d4-dinner",
+    "type": "dining",
+    "title": "Dinner — The Pioneer Grill",
+    "dayNumber": 4,
+    "startTime": "19:00",
+    "duration": 1.25,
+    "location": "The Pioneer Grill — Jackson Lake Lodge",
+    "address": "101 Jackson Lake Lodge Rd, Moran, WY 83013",
+    "coordinates": [
+      43.8772,
+      -110.5774
+    ],
+    "description": "🍽️ A beloved 1950s-style diner inside the iconic Jackson Lake Lodge, featuring a sweeping 70-foot counter where you can watch the Teton Range light up at dusk. Classic American comfort food — trout, burgers, and homemade pie. No reservations needed; just walk in and grab a stool.",
+    "details": {
+      "Meal": "Dinner",
+      "Cuisine": "American Diner / Western",
+      "Known For": "Historic 70-ft Counter & Teton Views",
+      "Reservation": "Not Required"
+    }
+  },
+  {
+    "id": "dining-d5-lunch",
+    "type": "dining",
+    "title": "🧺 Picnic Lunch — Bradley Lake Shoreline",
+    "dayNumber": 5,
+    "startTime": "13:00",
+    "duration": 1,
+    "location": "Bradley Lake — Grand Teton National Park",
+    "address": "Taggart Lake Trailhead, Moose, WY 83012",
+    "coordinates": [
+      43.6967,
+      -110.7317
+    ],
+    "description": "🥪 Enjoy a trail lunch on the rocky shores of Bradley Lake with a direct, jaw-dropping view straight up at the Grand Teton. The lake's still surface perfectly mirrors the towering peaks. One of the most scenic lunch spots on the trip.",
+    "details": {
+      "Meal": "Lunch",
+      "Cuisine": "Packed Picnic",
+      "Picnic Spot": "Bradley Lake Shoreline Rocks",
+      "Tip": "Carry out all trash — no bins on the trail"
+    }
+  },
+  {
+    "id": "dining-d5-dinner",
+    "type": "dining",
+    "title": "Dinner — Trapper Grill",
+    "dayNumber": 5,
+    "startTime": "19:00",
+    "duration": 1.5,
+    "location": "Trapper Grill — Signal Mountain Lodge",
+    "address": "Signal Mountain Lodge, Moran, WY 83013",
+    "coordinates": [
+      43.8399,
+      -110.6104
+    ],
+    "description": "🏔️ A casual lakeside restaurant perched right on Jackson Lake at Signal Mountain Lodge. Famous for their loaded nachos, elk burgers, local trout, and a full bar with stunning Teton views. Great atmosphere for families after a big hiking day.",
+    "details": {
+      "Meal": "Dinner",
+      "Cuisine": "American / Lakeside Casual",
+      "Known For": "Giant Nachos, Elk Burgers & Lake Views",
+      "Reservation": "Recommended"
+    }
+  },
+  {
+    "id": "dining-d6-lunch",
+    "type": "dining",
+    "title": "🧺 Picnic Lunch — Cascade Canyon",
+    "dayNumber": 6,
+    "startTime": "12:30",
+    "duration": 0.75,
+    "location": "Cascade Canyon — Grand Teton National Park",
+    "address": "Jenny Lake Trailhead, Moose, WY 83012",
+    "coordinates": [
+      43.763,
+      -110.722
+    ],
+    "description": "🥪 Find a flat boulder along the Cascade Canyon creek and eat lunch deep inside the most iconic canyon in the Tetons. Sheer granite walls tower 3,000 ft on either side. Keep an eye out for moose in the willows as you eat — sightings are very common here.",
+    "details": {
+      "Meal": "Lunch",
+      "Cuisine": "Packed Picnic",
+      "Picnic Spot": "Cascade Canyon Creek Boulders",
+      "Tip": "About 2.5 miles in from the Jenny Lake boat landing"
+    }
+  },
+  {
+    "id": "dining-d6-dinner",
+    "type": "dining",
+    "title": "Dinner — The Mural Room",
+    "dayNumber": 6,
+    "startTime": "19:30",
+    "duration": 2,
+    "location": "The Mural Room — Jackson Lake Lodge",
+    "address": "101 Jackson Lake Lodge Rd, Moran, WY 83013",
+    "coordinates": [
+      43.8772,
+      -110.5774
+    ],
+    "description": "✨ The crown jewel dining experience of the trip. The Mural Room is a fine-dining institution at Jackson Lake Lodge, featuring floor-to-ceiling 60-foot windows perfectly framing the Grand Teton and Jackson Lake at sunset. Regional cuisine — Snake River trout, Wyoming elk, wild game — executed with elegance. Reservations are essential.",
+    "details": {
+      "Meal": "Dinner",
+      "Cuisine": "Fine Dining / Regional American",
+      "Known For": "60-ft Teton Views, Elk & Trout",
+      "Reservation": "Required — Book Ahead!"
+    }
+  },
+  {
+    "id": "dining-d7-lunch",
+    "type": "dining",
+    "title": "Lunch — Nora's Fish Creek Inn",
+    "dayNumber": 7,
+    "startTime": "13:00",
+    "duration": 1.25,
+    "location": "Nora's Fish Creek Inn",
+    "address": "5600 WY-22, Wilson, WY 83014",
+    "coordinates": [
+      43.4804,
+      -110.8669
+    ],
+    "description": "🏆 A James Beard Award-winning breakfast and lunch landmark in the tiny mountain town of Wilson. Famous for massive, golden waffles, trout, and eggs in a warm rustic cabin setting. A true Jackson Hole institution — lines can form early, but it's worth every minute.",
+    "details": {
+      "Meal": "Lunch",
+      "Cuisine": "American Diner / Western Cabin",
+      "Known For": "James Beard Award — Waffles & Trout",
+      "Reservation": "Not Taken — Arrive Early"
+    }
+  },
+  {
+    "id": "dining-d7-dinner",
+    "type": "dining",
+    "title": "Dinner — Dornan's Spur Bar & Pizzeria",
+    "dayNumber": 7,
+    "startTime": "18:30",
+    "duration": 1.5,
+    "location": "Dornan's Spur Bar & Pizzeria",
+    "address": "10 Moose Village Rd, Moose, WY 83012",
+    "coordinates": [
+      43.6583,
+      -110.7257
+    ],
+    "description": "🍕 A legendary Jackson Hole gathering spot right inside the park at Moose Village. Order wood-fired pizzas, cold beers, and then head up to the rooftop deck for one of the most spectacular views of the Grand Teton you'll find anywhere. The perfect casual celebration dinner after an epic hiking week.",
+    "details": {
+      "Meal": "Dinner",
+      "Cuisine": "Pizza & Bar",
+      "Known For": "Rooftop Teton Views & Wood-Fired Pizza",
+      "Reservation": "Not Required"
+    }
+  },
+  {
+    "id": "dining-d8-lunch",
+    "type": "dining",
+    "title": "Lunch — The Middle Fork",
+    "dayNumber": 8,
+    "startTime": "12:30",
+    "duration": 1.25,
+    "location": "The Middle Fork",
+    "address": "351 Main St, Lander, WY 82520",
+    "coordinates": [
+      42.8333,
+      -108.7307
+    ],
+    "description": "🌊 A fresh, seasonal café in the charming town of Lander at the foot of the Wind River Range. Light, riverfront dining with creative sandwiches, salads, and local ingredients. A wonderful midway stop on the long drive back south toward Cheyenne.",
+    "details": {
+      "Meal": "Lunch",
+      "Cuisine": "Seasonal Café / American",
+      "Known For": "Fresh Local Ingredients & Riverfront Setting",
+      "Reservation": "Not Required"
+    }
+  },
+  {
+    "id": "dining-d8-dinner",
+    "type": "dining",
+    "title": "Dinner — The Albany Restaurant",
+    "dayNumber": 8,
+    "startTime": "18:30",
+    "duration": 1.5,
+    "location": "The Albany Restaurant & Bar",
+    "address": "1506 Capitol Ave, Cheyenne, WY 82001",
+    "coordinates": [
+      41.14,
+      -104.8197
+    ],
+    "description": "🍽️ A Cheyenne institution operating since 1942, just steps from the historic Union Pacific depot. Classic American comfort food — steaks, burgers, chicken-fried steak — in a warm, no-frills setting that locals have loved for generations. The perfect place to wind down after a long final driving day.",
+    "details": {
+      "Meal": "Dinner",
+      "Cuisine": "Classic American Comfort Food",
+      "Known For": "Steaks & Historic Cheyenne Atmosphere",
+      "Reservation": "Recommended"
+    }
+  },
+  {
+    "id": "dining-d9-lunch",
+    "type": "dining",
+    "title": "🧺 Roadside Diner Lunch",
+    "dayNumber": 9,
+    "startTime": "13:00",
+    "duration": 1,
+    "description": "🥪 Quick highway lunch stop on the final stretch home. Find a local diner or fast-casual spot along the route to refuel everyone for the last leg. A great time to share trip highlights and favorite memories before pulling into the driveway.",
+    "details": {
+      "Meal": "Lunch",
+      "Cuisine": "Roadside / Your Choice",
+      "Tip": "Check Google Maps for top-rated spots along your exact route home"
+    }
+  }
+]
