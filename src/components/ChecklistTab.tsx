@@ -4,7 +4,7 @@ import { ListCheck } from 'lucide-react';
 const preTripItems: string[] = [
   'Clean out the car',
   'Get gas',
-  "Try out the cargo bag/put on roofracks if needed",
+  "Try out the cargo bag",
   'Prechill cooler',
   "Download offline maps on everyone's phone",
   'Sign up for Alltrails and download hikes',
@@ -16,6 +16,7 @@ const preTripItems: string[] = [
   'Plan picnic meals and breakfasts',
   'Buy groceries',
   'Mow the lawn',
+  'Buy kids rain coats',
 ];
 
 export default function ChecklistTab() {
