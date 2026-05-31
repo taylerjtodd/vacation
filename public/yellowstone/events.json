@@ -413,25 +413,6 @@
     "verified": true
   },
   {
-    "id": 34,
-    "type": "activity",
-    "title": "Lakeshore Trail",
-    "dayNumber": 4,
-    "duration": 1,
-    "coordinates": [
-      43.9036,
-      -110.6436
-    ],
-    "description": "🥾 Easy Hike: 2.2 mi loop, 100 ft elevation gain. Located at Colter Bay. A flat, paved figure-eight loop that follows the forested shoreline of Jackson Lake. Offers spectacular, easy-access views of the lake and the Teton Range, including Mount Moran — perfect for a relaxing stroll.",
-    "details": {
-      "Shoe Recommendation": "Walking Shoes",
-      "Trail Type": "Paved Loop",
-      "Difficulty": "Easy",
-      "Distance": "2.2 miles",
-      "Elevation Gain": "100 ft"
-    }
-  },
-  {
     "id": 32,
     "type": "activity",
     "title": "Bradley Lake Trail",
@@ -448,19 +429,23 @@
       "Difficulty": "Moderate",
       "Distance": "5.3 miles",
       "Elevation Gain": "565 ft"
-    }
+    },
+    "verified": true
   },
   {
     "id": 33,
     "type": "activity",
     "title": "Cottonwood Creek",
     "dayNumber": 5,
-    "duration": 0.75,
+    "duration": 1.5,
     "coordinates": [
       43.6974,
       -110.7302
     ],
-    "description": "🏞️ Scenic Walk & Picnic: A quiet, beautiful spot near Moose along the Teton Park Road where Cottonwood Creek flows. Walk down to the water, enjoy a picnic, and view the nearby historic Jimmy Manges Cabin, the oldest standing homestead structure in Jackson Hole."
+    "description": "🏞️ Scenic Walk & Picnic: A quiet, beautiful spot near Moose along the Teton Park Road where Cottonwood Creek flows. Walk down to the water, enjoy a picnic, and view the nearby historic Jimmy Manges Cabin, the oldest standing homestead structure in Jackson Hole.",
+    "details": {
+      "Distance": "3.2 miles"
+    }
   },
   {
     "id": 37,
@@ -482,42 +467,6 @@
     }
   },
   {
-    "id": 35,
-    "type": "activity",
-    "title": "Schwabacher Trail",
-    "dayNumber": 5,
-    "duration": 1,
-    "coordinates": [
-      43.7115,
-      -110.6709
-    ],
-    "description": "📷 Scenic Walk: 1.3 mi round-trip, flat. A world-famous photography spot along the Snake River. Beaver dams create perfectly still pools that reflect the Grand Teton. Excellent for a morning walk and highly active for wildlife like moose and waterfowl.",
-    "details": {
-      "Shoe Recommendation": "Walking Shoes",
-      "Trail Type": "Flat Dirt / Gravel",
-      "Difficulty": "Easy",
-      "Distance": "1.3 miles"
-    }
-  },
-  {
-    "id": 13,
-    "type": "activity",
-    "title": "Drive through Mormon Row",
-    "dayNumber": 5,
-    "duration": 0.75,
-    "address": "Mormon Row Historic District, Antelope Flats Rd, Moose, WY 83012",
-    "coordinates": [
-      43.6637,
-      -110.6678
-    ],
-    "description": "📷 Scenic drive and photo stop: Cruise the quiet road through the historic Mormon Row district for iconic barn views with the Tetons rising behind them. This is one of the best sunrise or morning photography spots in the park, and it's also a good place to watch for bison and pronghorn in the surrounding sage flats.",
-    "details": {
-      "Best Time": "Early morning or golden hour",
-      "Highlights": "Moulton Barns, open Teton views, wildlife in Antelope Flats",
-      "Road Notes": "Mostly flat gravel road with easy pull-offs for quick stops"
-    }
-  },
-  {
     "id": 14,
     "type": "activity",
     "title": "Drive to the top of Signal Mountain",
@@ -536,33 +485,14 @@
     }
   },
   {
-    "id": 12,
-    "type": "activity",
-    "title": "Jenny Lake, Hidden Falls, Inspiration Point",
-    "dayNumber": 6,
-    "duration": 4,
-    "description": "🥾 Scenic hike and viewpoint: Take the Jenny Lake shuttle boat (seasonal) across the lake or hike the lakeshore to the Hidden Falls trailhead. Hidden Falls is a short, family-friendly cascade reached via a 0.5 mi out-and-back from the boat landing; Inspiration Point is a steep short climb above the falls that rewards you with panoramic views of Jenny Lake and the Teton Range. Early morning delivers best light and quieter trails.",
-    "details": {
-      "Shoe Recommendation": "Hiking Shoes / Boots",
-      "Trail Type": "Dirt / Rocky Steps",
-      "Difficulty": "Easy / Moderate (boat reduces distance)",
-      "Distance": "~2.2 miles round-trip with boat shuttle; ~5.0 miles round-trip from Lupine Meadows",
-      "Elevation Gain": "~350 ft to Inspiration Point from the lakeshore",
-      "Highlights": "Hidden Falls, Inspiration Point, Jenny Lake shuttle boat crossing",
-      "Boat Shuttle": "Seasonal (late spring–early fall). Boarding the shuttle shortens the hike by ~2.8 miles and is highly recommended for families or quick visits.",
-      "Accessibility": "Boat + easy lakeshore access to Hidden Falls; steep, uneven steps to Inspiration Point are not wheelchair accessible",
-      "Tips": "Arrive early to avoid crowds, carry water, and check for wildlife. Park at the Jenny Lake parking area or take the Lupine Meadows trail for a longer route."
-    }
-  },
-  {
     "id": 36,
     "type": "activity",
-    "title": "Cascade Canyon Trail",
+    "title": "Hidden Falls, Inspiration Point, Cascade Canyon Trail",
     "dayNumber": 6,
     "duration": 5,
     "coordinates": [
-      43.763,
-      -110.722
+      43.7673,
+      -110.7442
     ],
     "description": "🥾 Challenging Hike: 9.3 mi out-and-back, 1,100 ft elevation gain. One of the most famous and scenic hikes in the Rocky Mountains. Take the Jenny Lake shuttle boat across the water, then ascend past Hidden Falls and Inspiration Point into the breathtaking, steep-walled Cascade Canyon. High chance of spotting moose in the willows.",
     "details": {
@@ -572,6 +502,42 @@
       "Distance": "9.3 miles",
       "Elevation Gain": "1,100 ft",
       "Highlights": "Hidden Falls, Inspiration Point, Canyon View"
+    }
+  },
+  {
+    "id": 35,
+    "type": "activity",
+    "title": "Schwabacher Trail",
+    "dayNumber": 6,
+    "duration": 1,
+    "coordinates": [
+      43.7115,
+      -110.6709
+    ],
+    "description": "📷 Scenic Walk: 1.3 mi round-trip, flat. A world-famous photography spot along the Snake River. Beaver dams create perfectly still pools that reflect the Grand Teton. Excellent for a morning walk and highly active for wildlife like moose and waterfowl.",
+    "details": {
+      "Shoe Recommendation": "Walking Shoes",
+      "Trail Type": "Flat Dirt / Gravel",
+      "Difficulty": "Easy",
+      "Distance": "1.3 miles"
+    }
+  },
+  {
+    "id": 13,
+    "type": "activity",
+    "title": "Drive through Mormon Row",
+    "dayNumber": 6,
+    "duration": 0.75,
+    "address": "Mormon Row Historic District, Antelope Flats Rd, Moose, WY 83012",
+    "coordinates": [
+      43.6637,
+      -110.6678
+    ],
+    "description": "📷 Scenic drive and photo stop: Cruise the quiet road through the historic Mormon Row district for iconic barn views with the Tetons rising behind them. This is one of the best sunrise or morning photography spots in the park, and it's also a good place to watch for bison and pronghorn in the surrounding sage flats.",
+    "details": {
+      "Best Time": "Early morning or golden hour",
+      "Highlights": "Moulton Barns, open Teton views, wildlife in Antelope Flats",
+      "Road Notes": "Mostly flat gravel road with easy pull-offs for quick stops"
     }
   },
   {
@@ -590,17 +556,36 @@
     "type": "activity",
     "title": "Big Rocks Trail and Black Canyon Loop",
     "dayNumber": 7,
-    "duration": 4.5,
+    "duration": 1.75,
     "coordinates": [
-      43.4919,
-      -110.9082
+      43.4918,
+      -110.9086
     ],
-    "description": "🥾 Challenging Hike: ~8.3 mi loop. Located in the Bridger-Teton National Forest near Wilson, WY. Climbs through lush wildflower meadows and aspen groves on the Big Rocks Trail (#4004A), then connects to follow a gorgeous high ridgeline along the Black Canyon Trail (#4004) before descending along the creek. Note: The Black Canyon section is also popular with mountain bikers.",
+    "description": "🥾 Hike: Explore this 2.7-mile loop trail near Wilson, Wyoming. Generally considered a moderately challenging route, it takes an average of 1 h 26 min to complete. This is a popular trail for hiking, horseback riding, and trail running, but you can still enjoy some solitude during quieter times of day.",
     "details": {
       "Shoe Recommendation": "Hiking Shoes / Boots",
       "Trail Type": "Dirt Loop / Ridgeline",
       "Difficulty": "Challenging",
-      "Distance": "8.3 miles"
+      "Distance": "2.7 miles"
+    }
+  },
+  {
+    "id": 34,
+    "type": "activity",
+    "title": "Lakeshore Trail",
+    "dayNumber": 7,
+    "duration": 2,
+    "coordinates": [
+      43.9036,
+      -110.6436
+    ],
+    "description": "🥾 Easy Hike: 2.2 mi loop, 100 ft elevation gain. Located at Colter Bay. A flat, paved figure-eight loop that follows the forested shoreline of Jackson Lake. Offers spectacular, easy-access views of the lake and the Teton Range, including Mount Moran — perfect for a relaxing stroll.",
+    "details": {
+      "Shoe Recommendation": "Walking Shoes",
+      "Trail Type": "Paved Loop",
+      "Difficulty": "Easy",
+      "Distance": "2.2 miles",
+      "Elevation Gain": "100 ft"
     }
   },
   {

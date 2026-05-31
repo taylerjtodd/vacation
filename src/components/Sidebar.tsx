@@ -2,6 +2,7 @@ import { CalendarDays, Utensils, Briefcase, Compass, FileText, Settings, Trash2,
 import { useLocalData } from '../context/LocalDataContext';
 import { Vacation, PackingItem } from '../types';
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 
 interface Props {
   activeTab: string;
@@ -124,8 +125,8 @@ export default function Sidebar({
       </div>
 
       {/* Confirmation Modal */}
-      {isConfirmClearOpen && (
-        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-[100] p-4 animate-in fade-in">
+      {isConfirmClearOpen && createPortal(
+        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-[1000] p-4 animate-in fade-in">
           <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 max-w-sm w-full shadow-xl border border-slate-200 dark:border-slate-700 animate-in zoom-in-95 duration-200">
             <h2 className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-2">Clear Local Data</h2>
             <p className="text-slate-500 dark:text-slate-400 mb-6 text-sm leading-relaxed">
@@ -149,7 +150,8 @@ export default function Sidebar({
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </aside>
   );

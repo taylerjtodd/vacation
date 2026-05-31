@@ -2,6 +2,7 @@ import { X, CalendarDays, Utensils, Briefcase, Compass, FileText, Settings, Tras
 import { useLocalData } from '../context/LocalDataContext';
 import { Vacation, PackingItem } from '../types';
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 
 interface Props {
   activeTab: string;
@@ -92,11 +93,10 @@ export default function NavigationDrawer({
                   setActiveTab(tab.id);
                   onClose();
                 }}
-                className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl text-left transition-all duration-200 relative group cursor-pointer ${
-                  isActive
+                className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl text-left transition-all duration-200 relative group cursor-pointer ${isActive
                     ? 'bg-blue-500 text-white shadow-md shadow-blue-500/10'
                     : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/40 hover:text-slate-950 dark:hover:text-white'
-                }`}
+                  }`}
               >
                 {/* Active side-indicator */}
                 {isActive && (
@@ -153,8 +153,8 @@ export default function NavigationDrawer({
       </aside>
 
       {/* Confirmation Modal */}
-      {isConfirmClearOpen && (
-        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-[100] p-4 animate-in fade-in">
+      {isConfirmClearOpen && createPortal(
+        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-[1000] p-4 animate-in fade-in">
           <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 max-w-sm w-full shadow-xl border border-slate-200 dark:border-slate-700 animate-in zoom-in-95 duration-200">
             <h2 className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-2">Clear Local Data</h2>
             <p className="text-slate-500 dark:text-slate-400 mb-6 text-sm leading-relaxed">
@@ -179,7 +179,8 @@ export default function NavigationDrawer({
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
