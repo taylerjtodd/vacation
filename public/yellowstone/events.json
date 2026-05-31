@@ -545,10 +545,14 @@
     "type": "activity",
     "title": "Bike ride",
     "dayNumber": 7,
-    "duration": 3.5,
+    "duration": 6,
+    "startTime": "9:00",
+    "endTime": "15:00",
     "description": "🥾 Bike Ride: Pick up bikes in Jackson. We can probably ride to the Big Rocks Trail and Black Canyon Loop and then to Phelps Lake and back.",
     "details": {
-      "Url": "https://ebikerentalsjacksonhole.com/"
+      "Url": "https://ebikerentalsjacksonhole.com/",
+      "Booking # 1": "352465970",
+      "Booking # 2": "352465973"
     }
   },
   {
@@ -556,6 +560,7 @@
     "type": "activity",
     "title": "Big Rocks Trail and Black Canyon Loop",
     "dayNumber": 7,
+    "startTime": "10:00",
     "duration": 1.75,
     "coordinates": [
       43.4918,
@@ -575,6 +580,7 @@
     "title": "Lakeshore Trail",
     "dayNumber": 7,
     "duration": 2,
+    "startTime": "16:00",
     "coordinates": [
       43.9036,
       -110.6436
