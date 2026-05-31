@@ -23,6 +23,7 @@ export function useVacationData(setActiveTab: (tab: string) => void) {
   const [currentVacation, setCurrentVacation] = useState<Vacation | null>(null);
   const [events, setEvents] = useState<VacationEvent[]>([]);
   const [diningOptions, setDiningOptions] = useState<VacationEvent[]>([]);
+  const [alternateEvents, setAlternateEvents] = useState<VacationEvent[]>([]);
   const [packingList, setPackingList] = useState<PackingItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -82,6 +83,27 @@ export function useVacationData(setActiveTab: (tab: string) => void) {
               date: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
             };
           });
+
+        const skippedEvents = eventsData
+          .filter((e: VacationEvent) => e.skip)
+          .map((e: VacationEvent) => {
+            const date = new Date(`${currentVacation.startDate}T12:00:00`);
+            date.setDate(date.getDate() + (e.dayNumber - 1));
+            return {
+              ...e,
+              date: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+            };
+          });
+
+        const sortedSkipped = skippedEvents.sort((a: VacationEvent, b: VacationEvent) => {
+          if (a.dayNumber !== b.dayNumber) {
+            return a.dayNumber - b.dayNumber;
+          }
+          if (a.startTime && b.startTime) {
+            return a.startTime.localeCompare(b.startTime);
+          }
+          return 0;
+        });
 
         const mappedLodging: VacationEvent[] = [];
         lodgingData.forEach((l: any) => {
@@ -196,6 +218,7 @@ export function useVacationData(setActiveTab: (tab: string) => void) {
           };
         });
         setDiningOptions(mappedDining);
+        setAlternateEvents(sortedSkipped);
 
         if (sorted.length > 0) {
           const firstEventDateStr = sorted[0].date;
@@ -226,6 +249,7 @@ export function useVacationData(setActiveTab: (tab: string) => void) {
     events,
     diningOptions,
     packingList,
+    alternateEvents,
     loading,
     error
   };

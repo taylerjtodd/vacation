@@ -87,11 +87,11 @@ function getPrecipColorClass(precip: number): string {
 
 // ─── WeatherBadge Component ───────────────────────────────────────────────────
 
-interface WeatherBadgeProps {
+export interface WeatherBadgeProps {
   event: VacationEvent;
 }
 
-function WeatherBadge({ event }: WeatherBadgeProps) {
+export function WeatherBadge({ event }: WeatherBadgeProps) {
   const [period, setPeriod] = useState<WeatherForecastPeriod | null>(null);
   const [isOffline, setIsOffline] = useState(false);
   const [loading, setLoading] = useState(true);
