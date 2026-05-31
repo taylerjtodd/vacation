@@ -17,6 +17,7 @@ const preTripItems: string[] = [
   'Buy groceries',
   'Mow the lawn',
   'Buy kids rain coats',
+  'Rent bikes',
 ];
 
 export default function ChecklistTab() {

@@ -35,14 +35,16 @@
         "Swimwear",
         "Sunglasses",
         "Watch Charger",
-        "CPAP and water"
+        "CPAP and water",
+        "Pills"
       ]
     },
     {
       "person": "Robin",
       "items": [
         "Camera",
-        "Sunglasses"
+        "Sunglasses",
+        "Pills"
       ]
     },
     {
