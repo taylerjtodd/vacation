@@ -3,6 +3,8 @@
     "Phone charger",
     "Clothes - need layers",
     "Swimwear",
+    "Towel",
+    "Sleeping bag and pillow",
     "Toothbrush",
     "Snacks",
     "Hat",
@@ -10,7 +12,7 @@
     "Book",
     "Spinning rod & reel",
     "Yellowstone Fishing Permit (buy online via Recreation.gov)",
-    "Bedding"
+    "Wyoming Fishing License (buy at https://wgfd.wyo.gov/Fishing/Fishing-Licenses)"
   ],
   "family": [
     "Sunscreen",
@@ -20,14 +22,18 @@
     "Cooler",
     "Storage bags",
     "Pliers (to pinch down hook barbs)",
-    "Lead-free spoons & spinners (barbless only)"
+    "Lead-free spoons & spinners (barbless only)",
+    "Toothpaste",
+    "Shower supplies"
   ],
   "lists": [
     {
       "person": "Tayler",
       "items": [
         "Swimwear",
-        "Sunglasses"
+        "Sunglasses",
+        "Watch Charger",
+        "CPAP and water"
       ]
     },
     {

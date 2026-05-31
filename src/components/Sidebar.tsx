@@ -1,4 +1,4 @@
-import { CalendarDays, Utensils, Briefcase, Compass, FileText, Settings, Trash2, Eye, EyeOff } from 'lucide-react';
+import { CalendarDays, Utensils, Briefcase, Compass, FileText, Settings, Trash2, Eye, EyeOff, ListCheck } from 'lucide-react';
 import { useLocalData } from '../context/LocalDataContext';
 import { Vacation, PackingItem } from '../types';
 import { useState } from 'react';
@@ -40,6 +40,7 @@ export default function Sidebar({
     { id: 'dining', label: 'Dining Options', icon: Utensils, desc: `${diningCount} spots` },
     { id: 'packing', label: 'Packing List', icon: Briefcase, desc: packingList.length ? `${packedCount}/${packingList.length} (${packingPercent}%)` : 'empty' },
     { id: 'alternates', label: 'Alternate Options', icon: Compass, desc: `${alternatesCount} events` },
+    { id: 'checklist', label: 'Pre-Trip Checklist', icon: ListCheck, desc: 'Checklist' },
     { id: 'notes', label: 'Quick Notes', icon: FileText, desc: 'Notebook' },
   ];
 
@@ -70,11 +71,10 @@ export default function Sidebar({
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-left transition-all duration-200 relative group cursor-pointer ${
-                isActive
+              className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-left transition-all duration-200 relative group cursor-pointer ${isActive
                   ? 'bg-blue-500 text-white shadow-md shadow-blue-500/10'
                   : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/40 hover:text-slate-950 dark:hover:text-white'
-              }`}
+                }`}
             >
               <div className={`p-1.5 rounded-lg shrink-0 ${isActive ? 'bg-white/20' : 'bg-slate-100 dark:bg-slate-700 group-hover:scale-110 transition-transform'}`}>
                 <Icon size={16} />

@@ -5,6 +5,7 @@ import NotesTab from './components/NotesTab';
 import DiningTab from './components/DiningTab';
 import AlternatesTab from './components/AlternatesTab';
 import Sidebar from './components/Sidebar';
+import ChecklistTab from './components/ChecklistTab';
 import NavigationDrawer from './components/NavigationDrawer';
 import { useVacationData } from './hooks/useVacationData';
 import Header from './components/Header';
@@ -94,6 +95,10 @@ function App() {
 
               {activeTab === 'alternates' && (
                 <AlternatesTab alternateEvents={alternateEvents} />
+              )}
+
+              {activeTab === 'checklist' && (
+                <ChecklistTab />
               )}
 
               {activeTab === 'notes' && (

@@ -1,4 +1,4 @@
-import { X, CalendarDays, Utensils, Briefcase, Compass, FileText, Settings, Trash2, Eye, EyeOff } from 'lucide-react';
+import { X, CalendarDays, Utensils, Briefcase, Compass, FileText, Settings, Trash2, Eye, EyeOff, ListCheck } from 'lucide-react';
 import { useLocalData } from '../context/LocalDataContext';
 import { Vacation, PackingItem } from '../types';
 import { useState } from 'react';
@@ -46,6 +46,7 @@ export default function NavigationDrawer({
     { id: 'dining', label: 'Dining Options', icon: Utensils, desc: `${diningCount} spots` },
     { id: 'packing', label: 'Packing List', icon: Briefcase, desc: packingList.length ? `${packedCount}/${packingList.length} (${packingPercent}%)` : 'empty' },
     { id: 'alternates', label: 'Alternate Options', icon: Compass, desc: `${alternatesCount} events` },
+    { id: 'checklist', label: 'Pre-Trip Checklist', icon: ListCheck, desc: 'Checklist' },
     { id: 'notes', label: 'Quick Notes', icon: FileText, desc: 'Notebook' },
   ];
 
