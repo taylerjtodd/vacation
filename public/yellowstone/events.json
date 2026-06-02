@@ -636,16 +636,16 @@
   {
     "id": 15,
     "type": "driving",
-    "title": "Drive - Moran, WY to Cheyenne",
+    "title": "Drive to North Platte",
     "dayNumber": 8,
-    "duration": 6.5
+    "duration": 9.75
   },
   {
     "id": 16,
     "type": "driving",
-    "title": "Drive - Cheyenne to Home",
+    "title": "Drive Home",
     "dayNumber": 9,
     "startTime": "09:00",
-    "duration": 9
+    "duration": 5.75
   }
 ]

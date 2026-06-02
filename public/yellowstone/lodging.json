@@ -55,5 +55,19 @@
       43.8772,
       -110.5774
     ]
+  },
+  {
+    "id": 4,
+    "title": "Best Western, North Platte",
+    "dayNumber": 8,
+    "nights": 1,
+    "freeBreakfast": false,
+    "earliestStart": "15:00",
+    "latestStart": "22:00",
+    "location": "Best Western Plus North Platte Inn & Suites",
+    "address": "3201 South Jeffers Street, North Platte, NE, 69101",
+    "coordinates": [
+      41.1055, -100.7622
+    ]
   }
 ]
